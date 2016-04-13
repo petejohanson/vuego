@@ -51,7 +51,7 @@ export default {
       let cs = this.cellSize;
       return map(c => {
         return c * cs + cs / 2;
-      })(range(0)(this.size));
+      })(range(0)(this.gameSize));
     }
   }
 }

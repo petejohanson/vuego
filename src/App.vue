@@ -1,6 +1,9 @@
 <template>
   <div id="app">
     <board></board>
+    <div>
+      <a href="#" @click.prevent="newGame(19)">New Game</a>
+    </div>
   </div>
 </template>
 
@@ -14,6 +17,8 @@ import Hello from './components/Hello';
 import Board from './game/Board';
 
 import store from './game/store';
+
+import { newGame } from './game/actions';
 
 store.dispatch('NEW_GAME', 19);
 store.dispatch('PLAYER_TURN', 0, 0);
@@ -31,6 +36,11 @@ export default {
   components: {
     Hello,
     Board
+  },
+  vuex: {
+    actions: {
+      newGame
+    }
   }
 }
 </script>

@@ -1,6 +1,6 @@
 <template>
   <svg :height="size" :width="size"
-       version="1.1" xmlns="http://www.w3.org/2000/svg" @click="click">
+       version="1.1" xmlns="http://www.w3.org/2000/svg" @click.capture="click">
     <grid :size="size" :game-size="gameSize"></grid>
     <g>
       <stone v-for="s in stones" :size="cellSize/2" :x="pointToCoordinate(s.x)" :y="pointToCoordinate(s.y)" :color="s.color"></stone>
@@ -11,6 +11,10 @@
 <script>
 import Stone from './Stone';
 import Grid from './Grid';
+
+import { playerTurn } from './actions';
+
+import offset from 'mouse-event-offset';
 
 import map from 'lodash/fp/map';
 import flatMap from 'lodash/fp/flatMap';
@@ -38,8 +42,7 @@ export default {
   },
   methods: {
     click: function (event) {
-      let x = this.coordinateToPoint(event.offsetX);
-      let y = this.coordinateToPoint(event.offsetY);
+      let [x, y] = map(this.coordinateToPoint)(offset(event));
 
       this.play(x, y);
     },
@@ -53,7 +56,7 @@ export default {
   },
   vuex: {
     actions: {
-      play: ({ dispatch }, x, y) => dispatch('PLAYER_TURN', x, y)
+      play: playerTurn
     },
     getters: {
       gameSize (state) {
