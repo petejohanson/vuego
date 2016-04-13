@@ -28,7 +28,7 @@ export default {
   props: {
     size: {
       type: Number,
-      default: 400
+      default: 350
     }
   },
   computed: {
