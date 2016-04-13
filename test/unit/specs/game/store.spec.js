@@ -33,5 +33,20 @@ describe('game store', () => {
         expect(s.current_turn).toBe(WHITE);
       });
     });
+
+    describe('attempting to play an occupied location', () => {
+      let s = Object.assign({}, state);
+      beforeEach(() => {
+        NEW_GAME(s, 19)
+        PLAYER_TURN(s, 1, 1);
+      });
+
+      it('should not update the board', () => {
+        PLAYER_TURN(s, 1, 1);
+
+        expect(s.board[1][1]).toBe(BLACK);
+        expect(s.current_turn).toBe(WHITE);
+      });
+    });
   });
 });

@@ -1,6 +1,6 @@
 <template>
   <svg :height="size" :width="size"
-       version="1.1" xmlns="http://www.w3.org/2000/svg">
+       version="1.1" xmlns="http://www.w3.org/2000/svg" @click="click">
     <grid :size="size" :game-size="gameSize"></grid>
     <g>
       <stone v-for="s in stones" :size="cellSize/2" :x="pointToCoordinate(s.x)" :y="pointToCoordinate(s.y)" :color="s.color"></stone>
@@ -37,12 +37,24 @@ export default {
     Grid
   },
   methods: {
+    click: function (event) {
+      let x = this.coordinateToPoint(event.offsetX);
+      let y = this.coordinateToPoint(event.offsetY);
+
+      this.play(x, y);
+    },
     pointToCoordinate: function (x) {
       let cs = this.cellSize;
       return x * cs + cs / 2.0;
+    },
+    coordinateToPoint: function (x) {
+      return Math.abs(Math.round((x - this.cellSize / 2) / this.cellSize));
     }
   },
   vuex: {
+    actions: {
+      play: ({ dispatch }, x, y) => dispatch('PLAYER_TURN', x, y)
+    },
     getters: {
       gameSize (state) {
         return state.size;

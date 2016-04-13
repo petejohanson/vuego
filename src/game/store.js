@@ -20,7 +20,10 @@ export const mutations = {
   },
 
   PLAYER_TURN (state, x, y) {
-    state.board[x][y] = state.current_turn;
+    if (state.board[x][y]) {
+      return;
+    }
+    state.board[x].$set(y, state.current_turn);
     state.current_turn = state.current_turn.next;
   }
 };
