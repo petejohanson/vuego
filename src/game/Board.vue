@@ -1,0 +1,75 @@
+<template>
+  <svg :height="size" :width="size"
+       version="1.1" xmlns="http://www.w3.org/2000/svg">
+    <grid :size="size" :game-size="gameSize"></grid>
+    <g>
+      <stone v-for="s in stones" :size="cellSize/2" :x="pointToCoordinate(s.x)" :y="pointToCoordinate(s.y)" :color="s.color"></stone>
+    </g>
+  </svg>
+</template>
+
+<script>
+import Stone from './Stone';
+import Grid from './Grid';
+
+import map from 'lodash/fp/map';
+import flatMap from 'lodash/fp/flatMap';
+import filter from 'lodash/fp/filter';
+import range from 'lodash/fp/range';
+
+let range0 = range(0);
+let compact = filter(Boolean);
+
+export default {
+  props: {
+    size: {
+      type: Number,
+      default: 400
+    }
+  },
+  computed: {
+    cellSize: function () {
+      return this.size / this.gameSize;
+    }
+  },
+  components: {
+    Stone,
+    Grid
+  },
+  methods: {
+    pointToCoordinate: function (x) {
+      let cs = this.cellSize;
+      return x * cs + cs / 2.0;
+    }
+  },
+  vuex: {
+    getters: {
+      gameSize (state) {
+        return state.size;
+      },
+      stones (state) {
+        // TODO: This is ugly. Must be a nicer lodash/fp way.
+        let ret = compact(flatMap(x => {
+          return map(y => {
+            let color = state.board[x][y];
+            if (!color) {
+              return null;
+            }
+
+            let stone = {
+              x,
+              y,
+              color
+            };
+
+            return stone;
+          })(range0(state.size));
+        })(range0(state.size)));
+
+        return ret;
+      }
+    }
+  }
+}
+</script>
+
