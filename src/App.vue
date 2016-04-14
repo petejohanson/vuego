@@ -27,13 +27,6 @@ import store from './game/store';
 
 import { newGame } from './game/actions';
 
-store.dispatch('NEW_GAME', 19);
-store.dispatch('PLAYER_TURN', 0, 0);
-store.dispatch('PLAYER_TURN', 1, 2);
-store.dispatch('PLAYER_TURN', 4, 2);
-store.dispatch('PLAYER_TURN', 17, 18);
-store.dispatch('PLAYER_TURN', 18, 17);
-
 export default {
   store,
   components: {
@@ -44,6 +37,9 @@ export default {
     actions: {
       newGame
     }
+  },
+  ready: function () {
+    this.newGame(19);
   }
 }
 </script>

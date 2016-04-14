@@ -1,7 +1,6 @@
-const BLACK = {};
-const WHITE = {};
+const BLACK = 'black';
+const WHITE = 'white';
 
-BLACK.next = WHITE;
-WHITE.next = BLACK;
+let oppositeColor = c => c === BLACK ? WHITE : BLACK;
 
-export { BLACK, WHITE }
+export { BLACK, WHITE, oppositeColor }

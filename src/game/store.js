@@ -4,12 +4,12 @@ import Vuex from 'vuex';
 Vue.use(Vuex);
 
 import { matrix } from '../arrays';
-import { BLACK } from './color';
+import { BLACK, oppositeColor } from './color';
 
 export const state = {
   board: [],
   current_turn: null,
-  size: null
+  size: 19
 };
 
 export const mutations = {
@@ -20,11 +20,12 @@ export const mutations = {
   },
 
   PLAYER_TURN (state, x, y) {
-    if (state.board[x][y]) {
+    if (!state.current_turn || state.board[x][y]) {
       return;
     }
+
     state.board[x].$set(y, state.current_turn);
-    state.current_turn = state.current_turn.next;
+    state.current_turn = oppositeColor(state.current_turn);
   }
 };
 

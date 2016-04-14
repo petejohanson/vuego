@@ -54,6 +54,10 @@ export default {
   },
   methods: {
     mouseMove: function (event) {
+      if (!this.currentTurn) {
+        return;
+      }
+
       let [x, y] = map(this.coordinateToPoint)(offset(event));
       this.hover = {
         x,

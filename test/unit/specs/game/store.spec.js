@@ -22,30 +22,41 @@ describe('game store', () => {
   });
 
   describe('game play', () => {
-    let s = Object.assign({}, state);
-    beforeEach(() => NEW_GAME(s, 19));
-
-    describe('player turn', () => {
-      it('should update the board', () => {
+    describe('without an active game', () => {
+      it('player turn does nothing', () => {
+        let s = Object.assign({}, state);
         PLAYER_TURN(s, 1, 2);
 
-        expect(s.board[1][2]).toBe(BLACK);
-        expect(s.current_turn).toBe(WHITE);
+        expect(s).toEqual(state);
       });
     });
 
-    describe('attempting to play an occupied location', () => {
+    describe('with an active game', () => {
       let s = Object.assign({}, state);
-      beforeEach(() => {
-        NEW_GAME(s, 19)
-        PLAYER_TURN(s, 1, 1);
+      beforeEach(() => NEW_GAME(s, 19));
+
+      describe('player turn', () => {
+        it('should update the board', () => {
+          PLAYER_TURN(s, 1, 2);
+
+          expect(s.board[1][2]).toBe(BLACK);
+          expect(s.current_turn).toBe(WHITE);
+        });
       });
 
-      it('should not update the board', () => {
-        PLAYER_TURN(s, 1, 1);
+      describe('attempting to play an occupied location', () => {
+        let s = Object.assign({}, state);
+        beforeEach(() => {
+          NEW_GAME(s, 19)
+          PLAYER_TURN(s, 1, 1);
+        });
 
-        expect(s.board[1][1]).toBe(BLACK);
-        expect(s.current_turn).toBe(WHITE);
+        it('should not update the board', () => {
+          PLAYER_TURN(s, 1, 1);
+
+          expect(s.board[1][1]).toBe(BLACK);
+          expect(s.current_turn).toBe(WHITE);
+        });
       });
     });
   });
