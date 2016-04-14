@@ -1,9 +1,16 @@
 <template>
-  <svg :height="size" :width="size"
-       version="1.1" xmlns="http://www.w3.org/2000/svg" @click.capture="click">
+  <svg version="1.1" xmlns="http://www.w3.org/2000/svg"
+       class="vuego-board"
+       :height="size" :width="size"
+       @mousemove="mouseMove"
+       @mouseleave="mouseLeave"
+       @click.capture="click">
     <grid :size="size" :game-size="gameSize"></grid>
     <g>
       <stone v-for="s in stones" :size="cellSize/2" :x="pointToCoordinate(s.x)" :y="pointToCoordinate(s.y)" :color="s.color"></stone>
+    </g>
+    <g v-if="hover">
+      <stone class="vuego-stone-hover" :size="cellSize/2" :x="pointToCoordinate(hover.x)" :y="pointToCoordinate(hover.y)" :color="currentTurn"></stone>
     </g>
   </svg>
 </template>
@@ -31,6 +38,11 @@ export default {
       default: 350
     }
   },
+  data () {
+    return {
+      hover: null
+    };
+  },
   computed: {
     cellSize: function () {
       return this.size / this.gameSize;
@@ -41,6 +53,16 @@ export default {
     Grid
   },
   methods: {
+    mouseMove: function (event) {
+      let [x, y] = map(this.coordinateToPoint)(offset(event));
+      this.hover = {
+        x,
+        y
+      };
+    },
+    mouseLeave: function (event) {
+      this.hover = null;
+    },
     click: function (event) {
       let [x, y] = map(this.coordinateToPoint)(offset(event));
 
@@ -61,6 +83,9 @@ export default {
     getters: {
       gameSize (state) {
         return state.size;
+      },
+      currentTurn (state) {
+        return state.current_turn;
       },
       stones (state) {
         // TODO: This is ugly. Must be a nicer lodash/fp way.
@@ -87,4 +112,14 @@ export default {
   }
 }
 </script>
+
+<style>
+.vuego-board {
+  cursor: none;
+}
+
+.vuego-stone-hover {
+  fill-opacity: .75;
+}
+</style>
 
