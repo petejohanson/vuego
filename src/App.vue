@@ -4,6 +4,13 @@
     <div>
       <a href="#" @click.prevent="newGame(19)">New Game</a>
     </div>
+
+    <div class="footer">
+      <ul>
+        <li>GitHub: <a href="https://github.com/petejohanson/vuego">petejohanson/vuego</a></li>
+        <li>Twitter: <a href="https://twitter.com/petejohanson">@petejohanson</a></li>
+      <ul>
+    </div>
   </div>
 </template>
 
@@ -23,11 +30,7 @@ import { newGame } from './game/actions';
 store.dispatch('NEW_GAME', 19);
 store.dispatch('PLAYER_TURN', 0, 0);
 store.dispatch('PLAYER_TURN', 1, 2);
-store.dispatch('PLAYER_TURN', 0, 2);
 store.dispatch('PLAYER_TURN', 4, 2);
-store.dispatch('PLAYER_TURN', 7, 9);
-store.dispatch('PLAYER_TURN', 17, 4);
-store.dispatch('PLAYER_TURN', 18, 18);
 store.dispatch('PLAYER_TURN', 17, 18);
 store.dispatch('PLAYER_TURN', 18, 17);
 
@@ -58,14 +61,15 @@ body {
 }
 
 #app {
-  margin-top: -100px;
   max-width: 600px;
   font-family: Helvetica, sans-serif;
   text-align: center;
 }
 
-.logo {
-  width: 100px;
-  height: 100px
+.footer ul {
+  list-style-type: none;
+  margin: 10px 0;
+  padding: 0;
 }
+
 </style>
