@@ -2,6 +2,7 @@ import _ from 'lodash';
 import { neighboringPoints, freedoms } from 'src/game/engine';
 import { matrix } from 'src/arrays';
 import { BLACK, WHITE } from 'src/game/color';
+import FREEDOM_TESTS from './freedomDetection.data';
 
 describe('game engine', () => {
   describe('neighboringPoints', () => {
@@ -72,68 +73,6 @@ describe('game engine', () => {
 
       return { board, expect };
     }
-    const FREEDOM_TESTS = [
-      {
-        test: 'Single unsurrounded stone',
-        board: 'B?++++\n' +
-               '?+++++\n' +
-               '++++++\n' +
-               '++++++\n' +
-               '++++++\n' +
-               '++++++\n',
-        check: { x: 0, y: 0 }
-      },
-      {
-        test: 'Simple group line',
-        board: 'BB?+++\n' +
-               '??++++\n' +
-               '++++++\n' +
-               '++++++\n' +
-               '++++++\n' +
-               '++++++\n',
-        check: { x: 0, y: 0 }
-      },
-      {
-        test: 'Basic group',
-        board: 'BB?+++\n' +
-               '?B?+++\n' +
-               '+?++++\n' +
-               '++++++\n' +
-               '++++++\n' +
-               '++++++\n',
-        check: { x: 0, y: 0 }
-      },
-      {
-        test: 'Circular group',
-        board: '?BBB?+\n' +
-               '?B?B?+\n' +
-               '?BBB?+\n' +
-               '+???++\n' +
-               '++++++\n' +
-               '++++++\n',
-        check: { x: 1, y: 0 }
-      },
-      {
-        test: 'Partially surrounded group',
-        board: 'BBBB?+\n' +
-               'BBBW++\n' +
-               '?WW+++\n' +
-               '++++++\n' +
-               '++++++\n' +
-               '++++++\n',
-        check: { x: 0, y: 0 }
-      },
-      {
-        test: 'Completely surrounded group',
-        board: 'BBBBW+\n' +
-               'BBBW++\n' +
-               'WWW+++\n' +
-               '++++++\n' +
-               '++++++\n' +
-               '++++++\n',
-        check: { x: 0, y: 0 }
-      }
-    ];
 
     for (let i = 0; i < FREEDOM_TESTS.length; ++i) {
       let test = FREEDOM_TESTS[i];
