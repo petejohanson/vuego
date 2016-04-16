@@ -5,9 +5,10 @@ Vue.use(Vuex);
 
 import { matrix } from '../arrays';
 import { BLACK, oppositeColor } from './color';
+import { play, validatePlay } from './engine';
 
 export const state = {
-  board: [],
+  board: matrix(19, 19),
   current_turn: null,
   size: 19
 };
@@ -20,11 +21,17 @@ export const mutations = {
   },
 
   PLAYER_TURN (state, x, y) {
-    if (!state.current_turn || state.board[x][y]) {
+    if (!state.current_turn || !validatePlay(state, x, y)) {
       return;
     }
 
-    state.board[x].$set(y, state.current_turn);
+    let turn = play(state, x, y);
+
+    for (let i = 0; i < turn.length; ++i) {
+      let t = turn[i];
+      state.board[t.x].$set(t.y, t.color);
+    }
+
     state.current_turn = oppositeColor(state.current_turn);
   }
 };
