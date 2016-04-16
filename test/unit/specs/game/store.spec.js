@@ -39,7 +39,7 @@ describe('game store', () => {
         it('should update the board', () => {
           PLAYER_TURN(s, 1, 2);
 
-          expect(s.board[1][2]).toBe(BLACK);
+          expect(s.board[2][1]).toBe(BLACK);
           expect(s.current_turn).toBe(WHITE);
         });
       });
