@@ -93,9 +93,9 @@ export default {
       },
       stones (state) {
         // TODO: This is ugly. Must be a nicer lodash/fp way.
-        let ret = compact(flatMap(x => {
-          return map(y => {
-            let color = state.board[x][y];
+        let ret = compact(flatMap(y => {
+          return map(x => {
+            let color = state.board[y][x];
             if (!color) {
               return null;
             }

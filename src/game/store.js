@@ -29,7 +29,7 @@ export const mutations = {
 
     for (let i = 0; i < turn.length; ++i) {
       let t = turn[i];
-      state.board[t.x].$set(t.y, t.color);
+      state.board[t.y].$set(t.x, t.color);
     }
 
     state.current_turn = oppositeColor(state.current_turn);
