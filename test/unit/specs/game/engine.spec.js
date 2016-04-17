@@ -1,8 +1,32 @@
 import _ from 'lodash';
-import { neighboringPoints, freedoms } from 'src/game/engine';
+import { neighboringPoints, freedoms, validatePlay } from 'src/game/engine';
 import { matrix } from 'src/arrays';
 import { BLACK, WHITE } from 'src/game/color';
 import FREEDOM_TESTS from './freedomDetection.data';
+import VALID_PLAY_TESTS from './validatePlay.data';
+
+let parseBoard = s => {
+  let lines = s.split('\n');
+  let board = matrix(lines.length, lines.length);
+  let expect = []
+  for (let i = 0; i < lines.length; ++i) {
+    let line = lines[i];
+    for (let j = 0; j < line.length; ++j) {
+      switch (line[j]) {
+        case 'B':
+          board[i][j] = BLACK;
+          break;
+        case 'W':
+          board[i][j] = WHITE;
+          break;
+        case '?':
+          expect.push({ x: j, y: i });
+      }
+    }
+  }
+
+  return { board, expect };
+}
 
 describe('game engine', () => {
   describe('neighboringPoints', () => {
@@ -51,28 +75,6 @@ describe('game engine', () => {
         }
       });
     });
-    let parseBoard = s => {
-      let lines = s.split('\n');
-      let board = matrix(lines.length, lines.length);
-      let expect = []
-      for (let i = 0; i < lines.length; ++i) {
-        let line = lines[i];
-        for (let j = 0; j < line.length; ++j) {
-          switch (line[j]) {
-            case 'B':
-              board[i][j] = BLACK;
-              break;
-            case 'W':
-              board[i][j] = WHITE;
-              break;
-            case '?':
-              expect.push({ x: j, y: i });
-          }
-        }
-      }
-
-      return { board, expect };
-    }
 
     for (let i = 0; i < FREEDOM_TESTS.length; ++i) {
       let test = FREEDOM_TESTS[i];
@@ -82,6 +84,23 @@ describe('game engine', () => {
         let res = freedoms({board, size: board.length}, x, y);
 
         expect(res).toEqual(e);
+      });
+    }
+  });
+
+  describe('validatePlay', () => {
+    for (let i = 0; i < VALID_PLAY_TESTS.length; ++i) {
+      let test = VALID_PLAY_TESTS[i];
+      it(test.test, () => {
+        let { color } = test.check;
+        let { board, expect: expectations } = parseBoard(test.board);
+
+        let check = expectations.length > 0 ? expectations[0] : test.check;
+        let { x, y } = check;
+
+        let res = validatePlay({board, size: board.length, current_turn: color}, x, y);
+
+        expect(res).toEqual(test.expect);
       });
     }
   });
