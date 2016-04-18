@@ -1,10 +1,10 @@
 
 import isUndefined from 'lodash/isUndefined';
 import isEqual from 'lodash/isEqual';
-import filter from 'lodash/fp/filter';
 import flatMap from 'lodash/fp/flatMap';
 import partition from 'lodash/fp/partition';
 import uniqWith from 'lodash/fp/uniqWith';
+import some from 'lodash/fp/some';
 import flow from 'lodash/fp/flow';
 import { matrix } from '../arrays';
 
@@ -38,15 +38,20 @@ function moveIsSuicide (state, x, y, color) {
     return false;
   }
 
+  let [friends, enemies] = partition(p => state.board[p.y][p.x] === color)(occupied);
+
   free = flow(
-    filter(p => state.board[p.y][p.x] === color),
     flatMap(p => {
       return freedoms(state, p.x, p.y);
     }),
     uniqWith(isEqual)
-  )(occupied);
+  )(friends);
 
-  return free.length === 0 || (free.length === 1 && free[0].x === x && free[0].y === y);
+  if (free.length > 1) {
+    return false;
+  }
+
+  return !some(p => freedoms(state, p.x, p.y).length === 1)(enemies);
 }
 
 function freedoms (state, x, y) {

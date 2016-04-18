@@ -92,5 +92,15 @@ export default [
            '++BBB+\n' +
            '++++++\n',
     check: { color: WHITE }
+  },
+  {
+    test: 'Surrounded corner with vulnerable enemy neighbor',
+    board: '✓WB+++\n' +
+           'WB++++\n' +
+           '++++++\n' +
+           '++++++\n' +
+           '++++++\n' +
+           '++++++\n',
+    check: { color: BLACK }
   }
 ];
