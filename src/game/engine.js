@@ -1,5 +1,11 @@
 
 import isUndefined from 'lodash/isUndefined';
+import isEqual from 'lodash/isEqual';
+import filter from 'lodash/fp/filter';
+import flatMap from 'lodash/fp/flatMap';
+import partition from 'lodash/fp/partition';
+import uniqWith from 'lodash/fp/uniqWith';
+import flow from 'lodash/fp/flow';
 import { matrix } from '../arrays';
 
 function neighboringPoints (x, y, size) {
@@ -22,6 +28,25 @@ function neighboringPoints (x, y, size) {
   }
 
   return ret;
+}
+
+function moveIsSuicide (state, x, y, color) {
+  let neighbors = neighboringPoints(x, y, state.size);
+  let [occupied, free] = partition(p => state.board[p.y][p.x])(neighbors);
+
+  if (free.length > 0) {
+    return false;
+  }
+
+  free = flow(
+    filter(p => state.board[p.y][p.x] === color),
+    flatMap(p => {
+      return freedoms(state, p.x, p.y);
+    }),
+    uniqWith(isEqual)
+  )(occupied);
+
+  return free.length === 0 || (free.length === 1 && free[0].x === x && free[0].y === y);
 }
 
 function freedoms (state, x, y) {
@@ -47,6 +72,7 @@ function freedoms (state, x, y) {
 
   return ret;
 }
+
 function calculateFreedoms (state, color, x, y, calculated) {
   if (!isUndefined(calculated[y][x])) {
     return;
@@ -68,6 +94,10 @@ function calculateFreedoms (state, color, x, y, calculated) {
 
 function validatePlay (state, x, y) {
   if (state.board[y][x]) {
+    return false;
+  }
+
+  if (moveIsSuicide(state, x, y, state.current_turn)) {
     return false;
   }
 

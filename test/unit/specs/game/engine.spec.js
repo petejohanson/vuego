@@ -6,9 +6,13 @@ import FREEDOM_TESTS from './freedomDetection.data';
 import VALID_PLAY_TESTS from './validatePlay.data';
 
 let parseBoard = s => {
+  let valid = [];
+  let invalid = [];
+  let expect = [];
+
   let lines = s.split('\n');
   let board = matrix(lines.length, lines.length);
-  let expect = []
+
   for (let i = 0; i < lines.length; ++i) {
     let line = lines[i];
     for (let j = 0; j < line.length; ++j) {
@@ -21,11 +25,18 @@ let parseBoard = s => {
           break;
         case '?':
           expect.push({ x: j, y: i });
+          break;
+        case '✓':
+          valid.push({ x: j, y: i });
+          break;
+        case '×':
+          invalid.push({ x: j, y: i });
+          break;
       }
     }
   }
 
-  return { board, expect };
+  return { board, expect, valid, invalid };
 }
 
 describe('game engine', () => {
@@ -93,14 +104,23 @@ describe('game engine', () => {
       let test = VALID_PLAY_TESTS[i];
       it(test.test, () => {
         let { color } = test.check;
-        let { board, expect: expectations } = parseBoard(test.board);
+        let { board, valid, invalid } = parseBoard(test.board);
 
-        let check = expectations.length > 0 ? expectations[0] : test.check;
+        let expectedResult = test.expect;
+        let check = test.check;
+        if (valid.length > 0) {
+          expectedResult = true;
+          check = valid[0];
+        } else if (invalid.length > 0) {
+          expectedResult = false;
+          check = invalid[0];
+        }
+
         let { x, y } = check;
 
         let res = validatePlay({board, size: board.length, current_turn: color}, x, y);
 
-        expect(res).toEqual(test.expect);
+        expect(res).toEqual(expectedResult);
       });
     }
   });
