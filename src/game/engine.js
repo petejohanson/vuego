@@ -1,12 +1,15 @@
 
 import isUndefined from 'lodash/isUndefined';
 import isEqual from 'lodash/isEqual';
+import filter from 'lodash/fp/filter';
 import flatMap from 'lodash/fp/flatMap';
+import map from 'lodash/fp/map';
 import partition from 'lodash/fp/partition';
 import uniqWith from 'lodash/fp/uniqWith';
 import some from 'lodash/fp/some';
 import flow from 'lodash/fp/flow';
 import { matrix } from '../arrays';
+import { oppositeColor } from './color';
 
 function neighboringPoints (x, y, size) {
   let ret = [];
@@ -55,27 +58,34 @@ function moveIsSuicide (state, x, y, color) {
 }
 
 function freedoms (state, x, y) {
+  return findGroupAndFreedoms(state, x, y).freedoms;
+}
+
+function findGroupAndFreedoms (state, x, y) {
   let points = matrix(state.size, state.size);
 
   let groupColor = state.board[y][x];
 
   if (!groupColor) {
-    return [];
+    throw Error(`No piece at ${x},${y}`);
   }
 
   calculateFreedoms(state, groupColor, x, y, points);
 
-  let ret = [];
+  let freedoms = [];
+  let group = [];
   for (let i = 0; i < points.length; ++i) {
     let row = points[i];
     for (let j = 0; j < row.length; ++j) {
       if (row[j] === true) {
-        ret.push({ x: j, y: i });
+        freedoms.push({ x: j, y: i });
+      } else if (row[j] === groupColor) {
+        group.push({ x: j, y: i });
       }
     }
   }
 
-  return ret;
+  return { freedoms, group };
 }
 
 function calculateFreedoms (state, color, x, y, calculated) {
@@ -83,7 +93,11 @@ function calculateFreedoms (state, color, x, y, calculated) {
     return;
   }
 
-  calculated[y][x] = isUndefined(state.board[y][x]);
+  if (state.board[y][x] === color) {
+    calculated[y][x] = color;
+  } else {
+    calculated[y][x] = isUndefined(state.board[y][x]);
+  }
 
   let candidates = neighboringPoints(x, y, state.size);
 
@@ -110,9 +124,17 @@ function validatePlay (state, x, y) {
 };
 
 function play (state, x, y) {
-  return [
-    { x, y, color: state.current_turn }
-  ];
+  let killed = flow(
+    filter(p => state.board[p.y][p.x] === oppositeColor(state.current_turn)),
+    map(p => findGroupAndFreedoms(state, p.x, p.y)),
+    filter(found => found.freedoms.length === 1),
+    flatMap(found => found.group),
+    uniqWith(isEqual)
+  )(neighboringPoints(x, y, state.size));
+
+  killed.unshift({ x, y, color: state.current_turn });
+
+  return killed;
 };
 
 export { neighboringPoints, freedoms, validatePlay, play }

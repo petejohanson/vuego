@@ -1,9 +1,10 @@
 import _ from 'lodash';
-import { neighboringPoints, freedoms, validatePlay } from 'src/game/engine';
+import { neighboringPoints, freedoms, validatePlay, play } from 'src/game/engine';
 import { matrix } from 'src/arrays';
 import { BLACK, WHITE } from 'src/game/color';
 import FREEDOM_TESTS from './freedomDetection.data';
 import VALID_PLAY_TESTS from './validatePlay.data';
+import PLAY_TESTS from './play.data';
 
 let parseBoard = s => {
   let valid = [];
@@ -36,7 +37,7 @@ let parseBoard = s => {
     }
   }
 
-  return { board, expect, valid, invalid };
+  return { board, check: expect, expect, valid, invalid };
 }
 
 describe('game engine', () => {
@@ -121,6 +122,24 @@ describe('game engine', () => {
         let res = validatePlay({board, size: board.length, current_turn: color}, x, y);
 
         expect(res).toEqual(expectedResult);
+      });
+    }
+  });
+  describe('play', () => {
+    for (let i = 0; i < PLAY_TESTS.length; ++i) {
+      let test = PLAY_TESTS[i];
+      it(test.test, () => {
+        let { board: before, check: [{ x, y }] } = parseBoard(test.before);
+        let { board: after } = parseBoard(test.after);
+
+        let res = play({board: before, size: before.length, current_turn: test.turn}, x, y);
+
+        for (let i = 0; i < res.length; ++i) {
+          let change = res[i];
+          before[change.y][change.x] = change.color;
+        }
+
+        expect(before).toEqual(after);
       });
     }
   });
