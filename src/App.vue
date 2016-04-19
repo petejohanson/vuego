@@ -1,5 +1,9 @@
 <template>
   <div id="app">
+    <div>
+      <p>Captures</p>
+      <captures></captures>
+    </div>
     <board></board>
     <div>
       <a href="#" @click.prevent="newGame(19)">New Game</a>
@@ -22,6 +26,7 @@ Vue.use(Vuex);
 
 import Hello from './components/Hello';
 import Board from './game/Board';
+import Captures from './game/Captures';
 
 import store from './game/store';
 
@@ -31,7 +36,8 @@ export default {
   store,
   components: {
     Hello,
-    Board
+    Board,
+    Captures
   },
   vuex: {
     actions: {

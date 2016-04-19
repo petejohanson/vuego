@@ -9,11 +9,22 @@ describe('game store', () => {
     beforeAll(() => {
       s = Object.assign({}, state);
 
+      NEW_GAME(s, 13);
+      PLAYER_TURN(s, 0, 0);
+      PLAYER_TURN(s, 0, 1);
+      PLAYER_TURN(s, 10, 10);
+      PLAYER_TURN(s, 1, 0);
+
       NEW_GAME(s, 19);
     });
 
     it('has the specified size',
        () => expect(s.size).toBe(19));
+
+    it('has 0 captures for both colors', () => {
+      expect(s.captures[BLACK]).toBe(0);
+      expect(s.captures[WHITE]).toBe(0);
+    });
 
     it('has the correct number of rows',
        () => expect(s.board.length).toBe(19));
@@ -41,6 +52,21 @@ describe('game store', () => {
 
           expect(s.board[2][1]).toBe(BLACK);
           expect(s.current_turn).toBe(WHITE);
+        });
+      });
+
+      describe('player turn to capture a piece', () => {
+        beforeEach(() => {
+          PLAYER_TURN(s, 0, 0);
+          PLAYER_TURN(s, 0, 1);
+          PLAYER_TURN(s, 10, 10);
+        });
+
+        it('should update the captures appropriately', () => {
+          let turn = s.current_turn;
+          PLAYER_TURN(s, 1, 0);
+
+          expect(s.captures[turn]).toBe(1);
         });
       });
 

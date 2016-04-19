@@ -1,7 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a61a2ef9-f80d-4b7c-92e2-00d298ff5d7d" name="Default" comment="" />
+    <list default="true" id="a61a2ef9-f80d-4b7c-92e2-00d298ff5d7d" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/game/Captures.vue" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/..arrays.js" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/App.vue" afterPath="$PROJECT_DIR$/src/App.vue" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/game/store.js" afterPath="$PROJECT_DIR$/src/game/store.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/unit/specs/game/store.spec.js" afterPath="$PROJECT_DIR$/test/unit/specs/game/store.spec.js" />
+    </list>
     <ignored path="vuego.iws" />
     <ignored path=".idea/workspace.xml" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -20,34 +28,12 @@
     <favorites_list name="vuego" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="App.vue" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/App.vue">
+    <leaf>
+      <file leaf-file-name="Captures.vue" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/game/Captures.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="72">
-              <caret line="24" column="0" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="main.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="90">
-              <caret line="6" column="21" selection-start-line="6" selection-start-column="21" selection-end-line="6" selection-end-column="21" />
-              <folding>
-                <element signature="e#0#21#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Hello.vue" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/components/Hello.vue">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <state relative-caret-position="211">
+              <caret line="27" column="0" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -55,12 +41,18 @@
       </file>
     </leaf>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/components/Hello.vue" />
         <option value="$PROJECT_DIR$/src/main.js" />
+        <option value="$PROJECT_DIR$/src/components/Hello.vue" />
+        <option value="$PROJECT_DIR$/test/unit/specs/game/store.spec.js" />
+        <option value="$PROJECT_DIR$/src/game/store.js" />
         <option value="$PROJECT_DIR$/src/App.vue" />
+        <option value="$PROJECT_DIR$/src/game/Captures.vue" />
       </list>
     </option>
   </component>
@@ -113,6 +105,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -159,13 +152,12 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="components" />
+              <option name="myItemId" value="game" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scratches" />
       <pane id="Scope" />
     </panes>
   </component>
@@ -180,8 +172,9 @@
     <property name="nodejs_interpreter_path" value="$USER_HOME$/.nvm/versions/node/v5.8.0/bin/node" />
     <property name="JavaScriptPreferStrict" value="false" />
     <property name="JavaScriptWeakerCompletionTypeGuess" value="true" />
+    <property name="SearchEverywhereHistoryKey" value="&#9;FILE&#9;file:///home/peter/git/vuego/src/game/Captures.vue&#10;app&#9;FILE&#9;file:///home/peter/git/vuego/src/App.vue&#10;store&#9;FILE&#9;file:///home/peter/git/vuego/src/game/store.js" />
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Karma.Karma Unit Tests">
     <configuration default="true" type="DartCommandLineRunConfigurationType" factoryName="Dart Command Line Application">
       <method />
     </configuration>
@@ -235,6 +228,16 @@
       <recursive>false</recursive>
       <method />
     </configuration>
+    <configuration default="false" name="Karma Unit Tests" type="JavaScriptTestRunnerKarma" factoryName="Karma">
+      <config-file value="$PROJECT_DIR$/test/unit/karma.conf.js" />
+      <karma-package-dir value="$PROJECT_DIR$/node_modules/karma" />
+      <node-interpreter value="project" />
+      <envs />
+      <method />
+    </configuration>
+    <list size="1">
+      <item index="0" class="java.lang.String" itemvalue="Karma.Karma Unit Tests" />
+    </list>
   </component>
   <component name="ShelveChangesManager" show_recycled="false">
     <option name="remove_strategy" value="false" />
@@ -326,35 +329,56 @@
       <workItem from="1460080193427" duration="33000" />
       <workItem from="1460081897712" duration="810000" />
       <workItem from="1460143745567" duration="889000" />
+      <workItem from="1461093417836" duration="2430000" />
     </task>
     <servers />
   </component>
+  <component name="TestHistory">
+    <history-entry file="Karma_Unit_Tests - 2016.04.19 at 15h 31m 42s.xml">
+      <configuration name="Karma Unit Tests" configurationId="JavaScriptTestRunnerKarma" />
+    </history-entry>
+    <history-entry file="Karma_Unit_Tests - 2016.04.19 at 15h 36m 01s.xml">
+      <configuration name="Karma Unit Tests" configurationId="JavaScriptTestRunnerKarma" />
+    </history-entry>
+    <history-entry file="Karma_Unit_Tests - 2016.04.19 at 15h 37m 58s.xml">
+      <configuration name="Karma Unit Tests" configurationId="JavaScriptTestRunnerKarma" />
+    </history-entry>
+    <history-entry file="Karma_Unit_Tests - 2016.04.19 at 15h 38m 18s.xml">
+      <configuration name="Karma Unit Tests" configurationId="JavaScriptTestRunnerKarma" />
+    </history-entry>
+    <history-entry file="Karma_Unit_Tests - 2016.04.19 at 15h 39m 19s.xml">
+      <configuration name="Karma Unit Tests" configurationId="JavaScriptTestRunnerKarma" />
+    </history-entry>
+    <history-entry file="Karma_Unit_Tests - 2016.04.19 at 15h 39m 49s.xml">
+      <configuration name="Karma Unit Tests" configurationId="JavaScriptTestRunnerKarma" />
+    </history-entry>
+  </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="17769000" />
+    <option name="totallyTimeSpent" value="20199000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="27" width="1366" height="741" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24597365" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32854864" sideWeight="0.50292826" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32724506" sideWeight="0.5087848" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32724506" sideWeight="0.49121523" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32854864" sideWeight="0.4941435" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Gulp" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32854864" sideWeight="0.49707174" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -373,11 +397,27 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/src/App.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/Hello.vue">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="270">
           <caret line="15" column="5" selection-start-line="15" selection-start-column="5" selection-end-line="15" selection-end-column="5" />
-          <folding />
+          <folding>
+            <marker date="1459871105118" expanded="true" signature="9:75" placeholder="..." />
+            <marker date="1459871105118" expanded="true" signature="31:63" placeholder="..." />
+            <marker date="1459871105118" expanded="true" signature="85:372" placeholder="..." />
+            <marker date="1459871105118" expanded="true" signature="102:363" placeholder="{...}" />
+            <marker date="1459871105118" expanded="true" signature="114:361" placeholder="{...}" />
+            <marker date="1459871105118" expanded="true" signature="127:357" placeholder="{&quot;msg&quot;: 'Hello World!'...}" />
+            <marker date="1459871105118" expanded="true" signature="135:325" placeholder="//..." />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -393,7 +433,15 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="270">
           <caret line="15" column="5" selection-start-line="15" selection-start-column="5" selection-end-line="15" selection-end-column="5" />
-          <folding />
+          <folding>
+            <marker date="1459871105118" expanded="true" signature="9:75" placeholder="..." />
+            <marker date="1459871105118" expanded="true" signature="31:63" placeholder="..." />
+            <marker date="1459871105118" expanded="true" signature="85:372" placeholder="..." />
+            <marker date="1459871105118" expanded="true" signature="102:363" placeholder="{...}" />
+            <marker date="1459871105118" expanded="true" signature="114:361" placeholder="{...}" />
+            <marker date="1459871105118" expanded="true" signature="127:357" placeholder="{&quot;msg&quot;: 'Hello World!'...}" />
+            <marker date="1459871105118" expanded="true" signature="135:325" placeholder="//..." />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -409,87 +457,15 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="270">
           <caret line="15" column="5" selection-start-line="15" selection-start-column="5" selection-end-line="15" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/App.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="486">
-          <caret line="27" column="9" selection-start-line="27" selection-start-column="9" selection-end-line="27" selection-end-column="9" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/Hello.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="15" column="5" selection-start-line="15" selection-start-column="5" selection-end-line="15" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/App.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/Hello.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="15" column="5" selection-start-line="15" selection-start-column="5" selection-end-line="15" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/App.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/Hello.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="15" column="5" selection-start-line="15" selection-start-column="5" selection-end-line="15" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/App.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/Hello.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="15" column="5" selection-start-line="15" selection-start-column="5" selection-end-line="15" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/App.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/Hello.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="15" column="5" selection-start-line="15" selection-start-column="5" selection-end-line="15" selection-end-column="5" />
-          <folding />
+          <folding>
+            <marker date="1459871105118" expanded="true" signature="9:75" placeholder="..." />
+            <marker date="1459871105118" expanded="true" signature="31:63" placeholder="..." />
+            <marker date="1459871105118" expanded="true" signature="85:372" placeholder="..." />
+            <marker date="1459871105118" expanded="true" signature="102:363" placeholder="{...}" />
+            <marker date="1459871105118" expanded="true" signature="114:361" placeholder="{...}" />
+            <marker date="1459871105118" expanded="true" signature="127:357" placeholder="{&quot;msg&quot;: 'Hello World!'...}" />
+            <marker date="1459871105118" expanded="true" signature="135:325" placeholder="//..." />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -505,7 +481,15 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="126">
           <caret line="7" column="16" selection-start-line="7" selection-start-column="16" selection-end-line="7" selection-end-column="16" />
-          <folding />
+          <folding>
+            <marker date="1459871105118" expanded="true" signature="9:75" placeholder="..." />
+            <marker date="1459871105118" expanded="true" signature="31:63" placeholder="..." />
+            <marker date="1459871105118" expanded="true" signature="85:372" placeholder="..." />
+            <marker date="1459871105118" expanded="true" signature="102:363" placeholder="{...}" />
+            <marker date="1459871105118" expanded="true" signature="114:361" placeholder="{...}" />
+            <marker date="1459871105118" expanded="true" signature="127:357" placeholder="{&quot;msg&quot;: 'Hello World!'...}" />
+            <marker date="1459871105118" expanded="true" signature="135:325" placeholder="//..." />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -521,7 +505,15 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="126">
           <caret line="7" column="16" selection-start-line="7" selection-start-column="16" selection-end-line="7" selection-end-column="16" />
-          <folding />
+          <folding>
+            <marker date="1459871105118" expanded="true" signature="9:75" placeholder="..." />
+            <marker date="1459871105118" expanded="true" signature="31:63" placeholder="..." />
+            <marker date="1459871105118" expanded="true" signature="85:372" placeholder="..." />
+            <marker date="1459871105118" expanded="true" signature="102:363" placeholder="{...}" />
+            <marker date="1459871105118" expanded="true" signature="114:361" placeholder="{...}" />
+            <marker date="1459871105118" expanded="true" signature="127:357" placeholder="{&quot;msg&quot;: 'Hello World!'...}" />
+            <marker date="1459871105118" expanded="true" signature="135:325" placeholder="//..." />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -537,7 +529,15 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="126">
           <caret line="7" column="16" selection-start-line="7" selection-start-column="16" selection-end-line="7" selection-end-column="16" />
-          <folding />
+          <folding>
+            <marker date="1459871105118" expanded="true" signature="9:75" placeholder="..." />
+            <marker date="1459871105118" expanded="true" signature="31:63" placeholder="..." />
+            <marker date="1459871105118" expanded="true" signature="85:372" placeholder="..." />
+            <marker date="1459871105118" expanded="true" signature="102:363" placeholder="{...}" />
+            <marker date="1459871105118" expanded="true" signature="114:361" placeholder="{...}" />
+            <marker date="1459871105118" expanded="true" signature="127:357" placeholder="{&quot;msg&quot;: 'Hello World!'...}" />
+            <marker date="1459871105118" expanded="true" signature="135:325" placeholder="//..." />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -553,7 +553,15 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="36">
           <caret line="2" column="22" selection-start-line="2" selection-start-column="22" selection-end-line="2" selection-end-column="22" />
-          <folding />
+          <folding>
+            <marker date="1459871105118" expanded="true" signature="9:75" placeholder="..." />
+            <marker date="1459871105118" expanded="true" signature="31:63" placeholder="..." />
+            <marker date="1459871105118" expanded="true" signature="85:372" placeholder="..." />
+            <marker date="1459871105118" expanded="true" signature="102:363" placeholder="{...}" />
+            <marker date="1459871105118" expanded="true" signature="114:361" placeholder="{...}" />
+            <marker date="1459871105118" expanded="true" signature="127:357" placeholder="{&quot;msg&quot;: 'Hello World!'...}" />
+            <marker date="1459871105118" expanded="true" signature="135:325" placeholder="//..." />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -569,7 +577,15 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="36">
           <caret line="2" column="22" selection-start-line="2" selection-start-column="22" selection-end-line="2" selection-end-column="22" />
-          <folding />
+          <folding>
+            <marker date="1459871105118" expanded="true" signature="9:75" placeholder="..." />
+            <marker date="1459871105118" expanded="true" signature="31:63" placeholder="..." />
+            <marker date="1459871105118" expanded="true" signature="85:372" placeholder="..." />
+            <marker date="1459871105118" expanded="true" signature="102:363" placeholder="{...}" />
+            <marker date="1459871105118" expanded="true" signature="114:361" placeholder="{...}" />
+            <marker date="1459871105118" expanded="true" signature="127:357" placeholder="{&quot;msg&quot;: 'Hello World!'...}" />
+            <marker date="1459871105118" expanded="true" signature="135:325" placeholder="//..." />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -585,7 +601,15 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+          <folding>
+            <marker date="1459871105118" expanded="true" signature="9:75" placeholder="..." />
+            <marker date="1459871105118" expanded="true" signature="31:63" placeholder="..." />
+            <marker date="1459871105118" expanded="true" signature="85:372" placeholder="..." />
+            <marker date="1459871105118" expanded="true" signature="102:363" placeholder="{...}" />
+            <marker date="1459871105118" expanded="true" signature="114:361" placeholder="{...}" />
+            <marker date="1459871105118" expanded="true" signature="127:357" placeholder="{&quot;msg&quot;: 'Hello World!'...}" />
+            <marker date="1459871105118" expanded="true" signature="135:325" placeholder="//..." />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -601,7 +625,15 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+          <folding>
+            <marker date="1459871105118" expanded="true" signature="9:75" placeholder="..." />
+            <marker date="1459871105118" expanded="true" signature="31:63" placeholder="..." />
+            <marker date="1459871105118" expanded="true" signature="85:372" placeholder="..." />
+            <marker date="1459871105118" expanded="true" signature="102:363" placeholder="{...}" />
+            <marker date="1459871105118" expanded="true" signature="114:361" placeholder="{...}" />
+            <marker date="1459871105118" expanded="true" signature="127:357" placeholder="{&quot;msg&quot;: 'Hello World!'...}" />
+            <marker date="1459871105118" expanded="true" signature="135:325" placeholder="//..." />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -617,7 +649,15 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+          <folding>
+            <marker date="1459871105118" expanded="true" signature="9:75" placeholder="..." />
+            <marker date="1459871105118" expanded="true" signature="31:63" placeholder="..." />
+            <marker date="1459871105118" expanded="true" signature="85:372" placeholder="..." />
+            <marker date="1459871105118" expanded="true" signature="102:363" placeholder="{...}" />
+            <marker date="1459871105118" expanded="true" signature="114:361" placeholder="{...}" />
+            <marker date="1459871105118" expanded="true" signature="127:357" placeholder="{&quot;msg&quot;: 'Hello World!'...}" />
+            <marker date="1459871105118" expanded="true" signature="135:325" placeholder="//..." />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -633,75 +673,19 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+          <folding>
+            <marker date="1459871105118" expanded="true" signature="9:75" placeholder="..." />
+            <marker date="1459871105118" expanded="true" signature="31:63" placeholder="..." />
+            <marker date="1459871105118" expanded="true" signature="85:372" placeholder="..." />
+            <marker date="1459871105118" expanded="true" signature="102:363" placeholder="{...}" />
+            <marker date="1459871105118" expanded="true" signature="114:361" placeholder="{...}" />
+            <marker date="1459871105118" expanded="true" signature="127:357" placeholder="{&quot;msg&quot;: 'Hello World!'...}" />
+            <marker date="1459871105118" expanded="true" signature="135:325" placeholder="//..." />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/App.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/App.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="54">
-          <caret line="3" column="7" selection-start-line="3" selection-start-column="7" selection-end-line="3" selection-end-column="7" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/Hello.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/App.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="54">
-          <caret line="3" column="7" selection-start-line="3" selection-start-column="7" selection-end-line="3" selection-end-column="7" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/Hello.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/App.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="54">
-          <caret line="3" column="7" selection-start-line="3" selection-start-column="7" selection-end-line="3" selection-end-column="7" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/Hello.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/App.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="54">
-          <caret line="3" column="7" selection-start-line="3" selection-start-column="7" selection-end-line="3" selection-end-column="7" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/Hello.vue">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -721,43 +705,139 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+          <folding>
+            <marker date="1459871105118" expanded="true" signature="9:75" placeholder="..." />
+            <marker date="1459871105118" expanded="true" signature="31:63" placeholder="..." />
+            <marker date="1459871105118" expanded="true" signature="85:372" placeholder="..." />
+            <marker date="1459871105118" expanded="true" signature="102:363" placeholder="{...}" />
+            <marker date="1459871105118" expanded="true" signature="114:361" placeholder="{...}" />
+            <marker date="1459871105118" expanded="true" signature="127:357" placeholder="{&quot;msg&quot;: 'Hello World!'...}" />
+            <marker date="1459871105118" expanded="true" signature="135:325" placeholder="//..." />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/App.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/App.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/App.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/App.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state relative-caret-position="54">
+          <caret line="3" column="7" selection-start-line="3" selection-start-column="7" selection-end-line="3" selection-end-column="7" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/components/Hello.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <marker date="1459871105118" expanded="true" signature="9:75" placeholder="..." />
+            <marker date="1459871105118" expanded="true" signature="31:63" placeholder="..." />
+            <marker date="1459871105118" expanded="true" signature="85:372" placeholder="..." />
+            <marker date="1459871105118" expanded="true" signature="102:363" placeholder="{...}" />
+            <marker date="1459871105118" expanded="true" signature="114:361" placeholder="{...}" />
+            <marker date="1459871105118" expanded="true" signature="127:357" placeholder="{&quot;msg&quot;: 'Hello World!'...}" />
+            <marker date="1459871105118" expanded="true" signature="135:325" placeholder="//..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/App.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="54">
+          <caret line="3" column="7" selection-start-line="3" selection-start-column="7" selection-end-line="3" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/Hello.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <marker date="1459871105118" expanded="true" signature="9:75" placeholder="..." />
+            <marker date="1459871105118" expanded="true" signature="31:63" placeholder="..." />
+            <marker date="1459871105118" expanded="true" signature="85:372" placeholder="..." />
+            <marker date="1459871105118" expanded="true" signature="102:363" placeholder="{...}" />
+            <marker date="1459871105118" expanded="true" signature="114:361" placeholder="{...}" />
+            <marker date="1459871105118" expanded="true" signature="127:357" placeholder="{&quot;msg&quot;: 'Hello World!'...}" />
+            <marker date="1459871105118" expanded="true" signature="135:325" placeholder="//..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/App.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="54">
+          <caret line="3" column="7" selection-start-line="3" selection-start-column="7" selection-end-line="3" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/Hello.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <marker date="1459871105118" expanded="true" signature="9:75" placeholder="..." />
+            <marker date="1459871105118" expanded="true" signature="31:63" placeholder="..." />
+            <marker date="1459871105118" expanded="true" signature="85:372" placeholder="..." />
+            <marker date="1459871105118" expanded="true" signature="102:363" placeholder="{...}" />
+            <marker date="1459871105118" expanded="true" signature="114:361" placeholder="{...}" />
+            <marker date="1459871105118" expanded="true" signature="127:357" placeholder="{&quot;msg&quot;: 'Hello World!'...}" />
+            <marker date="1459871105118" expanded="true" signature="135:325" placeholder="//..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/App.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="54">
+          <caret line="3" column="7" selection-start-line="3" selection-start-column="7" selection-end-line="3" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/Hello.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <marker date="1459871105118" expanded="true" signature="9:75" placeholder="..." />
+            <marker date="1459871105118" expanded="true" signature="31:63" placeholder="..." />
+            <marker date="1459871105118" expanded="true" signature="85:372" placeholder="..." />
+            <marker date="1459871105118" expanded="true" signature="102:363" placeholder="{...}" />
+            <marker date="1459871105118" expanded="true" signature="114:361" placeholder="{...}" />
+            <marker date="1459871105118" expanded="true" signature="127:357" placeholder="{&quot;msg&quot;: 'Hello World!'...}" />
+            <marker date="1459871105118" expanded="true" signature="135:325" placeholder="//..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/App.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/App.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/App.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/App.vue">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -769,16 +849,242 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="90">
           <caret line="6" column="21" selection-start-line="6" selection-start-column="21" selection-end-line="6" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/..arrays.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/arrays.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" column="3" selection-start-line="11" selection-start-column="3" selection-end-line="11" selection-end-column="3" />
           <folding>
-            <element signature="e#0#21#0" expanded="true" />
+            <marker date="1460431358252" expanded="true" signature="54:255" placeholder="{...}" />
+            <marker date="1460431358252" expanded="true" signature="114:234" placeholder="{...}" />
+            <marker date="1460431358252" expanded="true" signature="174:206" placeholder="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/Hello.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" column="11" selection-start-line="8" selection-start-column="11" selection-end-line="8" selection-end-column="11" />
+          <folding>
+            <marker date="1459871105118" expanded="true" signature="9:75" placeholder="..." />
+            <marker date="1459871105118" expanded="true" signature="31:63" placeholder="..." />
+            <marker date="1459871105118" expanded="true" signature="85:372" placeholder="..." />
+            <marker date="1459871105118" expanded="true" signature="102:363" placeholder="{...}" />
+            <marker date="1459871105118" expanded="true" signature="114:361" placeholder="{...}" />
+            <marker date="1459871105118" expanded="true" signature="127:357" placeholder="{&quot;msg&quot;: 'Hello World!'...}" />
+            <marker date="1459871105118" expanded="true" signature="135:325" placeholder="//..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/unit/karma.conf.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="322">
+          <caret line="64" column="1" selection-start-line="64" selection-start-column="1" selection-end-line="64" selection-end-column="1" />
+          <folding>
+            <marker date="1459127902588" expanded="true" signature="0:212" placeholder="//..." />
+            <marker date="1459127902588" expanded="true" signature="427:570" placeholder="{&quot;devtool&quot;: '#inline-source-map'...}" />
+            <marker date="1459127902588" expanded="true" signature="522:568" placeholder="{...}" />
+            <marker date="1459127902588" expanded="true" signature="537:564" placeholder="{&quot;js&quot;: 'isparta'...}" />
+            <marker date="1459127902588" expanded="true" signature="732:834" placeholder="{&quot;test&quot;: /\.js$/...}" />
+            <marker date="1459127902588" expanded="true" signature="946:1038" placeholder="{...}" />
+            <marker date="1459127902588" expanded="true" signature="981:1036" placeholder="{...}" />
+            <marker date="1459127902588" expanded="true" signature="1076:1726" placeholder="{...}" />
+            <marker date="1459127902588" expanded="true" signature="1091:1723" placeholder="{...}" />
+            <marker date="1459127902588" expanded="true" signature="1097:1291" placeholder="//..." />
+            <marker date="1459127902588" expanded="true" signature="1433:1485" placeholder="{...}" />
+            <marker date="1459127902588" expanded="true" signature="1538:1564" placeholder="{&quot;noInfo&quot;: true...}" />
+            <marker date="1459127902588" expanded="true" signature="1588:1719" placeholder="{&quot;dir&quot;: './coverage'...}" />
+            <marker date="1459127902588" expanded="true" signature="1632:1713" placeholder="[...]" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/unit/specs/Hello.spec.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
+          <folding>
+            <marker date="1459127902587" expanded="false" signature="7:62" placeholder="..." />
+            <marker date="1459127902587" expanded="true" signature="92:341" placeholder="{...}" />
+            <marker date="1459127902587" expanded="true" signature="139:338" placeholder="{...}" />
+            <marker date="1459127902587" expanded="true" signature="164:245" placeholder="{&quot;template&quot;: '&lt;div&gt;&lt;hello&gt;&lt;/hello&gt;&lt;/div&gt;'...}" />
+            <marker date="1459127902587" expanded="true" signature="344:484" placeholder="//..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/unit/specs/game/engine.spec.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="147">
+          <caret line="42" column="0" selection-start-line="42" selection-start-column="0" selection-end-line="42" selection-end-column="0" />
+          <folding>
+            <marker date="1461027754383" expanded="false" signature="7:333" placeholder="..." />
+            <marker date="1461027754383" expanded="true" signature="357:1067" placeholder="{...}" />
+            <marker date="1461027754383" expanded="true" signature="538:1005" placeholder="{...}" />
+            <marker date="1461027754383" expanded="true" signature="607:1001" placeholder="{...}" />
+            <marker date="1461027754383" expanded="true" signature="632:995" placeholder="{...}" />
+            <marker date="1461027754383" expanded="true" signature="1099:4162" placeholder="{...}" />
+            <marker date="1461027754383" expanded="true" signature="1139:2260" placeholder="{...}" />
+            <marker date="1461027754383" expanded="true" signature="1188:1352" placeholder="{...}" />
+            <marker date="1461027754383" expanded="true" signature="1406:1570" placeholder="{...}" />
+            <marker date="1461027754383" expanded="true" signature="1624:1788" placeholder="{...}" />
+            <marker date="1461027754383" expanded="true" signature="1845:2009" placeholder="{...}" />
+            <marker date="1461027754383" expanded="true" signature="2049:2254" placeholder="{...}" />
+            <marker date="1461027754383" expanded="true" signature="2293:2863" placeholder="{...}" />
+            <marker date="1461027754383" expanded="true" signature="2316:2536" placeholder="{...}" />
+            <marker date="1461027754383" expanded="true" signature="2366:2528" placeholder="{...}" />
+            <marker date="1461027754383" expanded="true" signature="2410:2520" placeholder="{...}" />
+            <marker date="1461027754383" expanded="true" signature="2591:2859" placeholder="{...}" />
+            <marker date="1461027754383" expanded="true" signature="2654:2851" placeholder="{...}" />
+            <marker date="1461027754383" expanded="true" signature="2900:3592" placeholder="{...}" />
+            <marker date="1461027754383" expanded="true" signature="2956:3588" placeholder="{...}" />
+            <marker date="1461027754383" expanded="true" signature="3022:3580" placeholder="{...}" />
+            <marker date="1461027754383" expanded="true" signature="3229:3301" placeholder="{...}" />
+            <marker date="1461027754383" expanded="true" signature="3331:3406" placeholder="{...}" />
+            <marker date="1461027754383" expanded="true" signature="3620:4158" placeholder="{...}" />
+            <marker date="1461027754383" expanded="true" signature="3670:4154" placeholder="{...}" />
+            <marker date="1461027754383" expanded="true" signature="3730:4146" placeholder="{...}" />
+            <marker date="1461027754383" expanded="true" signature="4003:4098" placeholder="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/unit/specs/game/store.spec.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="147">
+          <caret line="23" column="4" selection-start-line="23" selection-start-column="4" selection-end-line="23" selection-end-column="4" />
+          <folding>
+            <marker date="1461094757564" expanded="true" signature="7:97" placeholder="..." />
+            <marker date="1461094757564" expanded="true" signature="173:2272" placeholder="{...}" />
+            <marker date="1461094757564" expanded="true" signature="215:849" placeholder="{...}" />
+            <marker date="1461094757564" expanded="true" signature="249:454" placeholder="{...}" />
+            <marker date="1461094757564" expanded="true" signature="578:667" placeholder="{...}" />
+            <marker date="1461094757564" expanded="true" signature="883:2268" placeholder="{...}" />
+            <marker date="1461094757564" expanded="true" signature="930:1099" placeholder="{...}" />
+            <marker date="1461094757564" expanded="true" signature="975:1091" placeholder="{...}" />
+            <marker date="1461094757564" expanded="true" signature="1145:2262" placeholder="{...}" />
+            <marker date="1461094757564" expanded="true" signature="1265:1456" placeholder="{...}" />
+            <marker date="1461094757564" expanded="true" signature="1311:1446" placeholder="{...}" />
+            <marker date="1461094757564" expanded="true" signature="1515:1851" placeholder="{...}" />
+            <marker date="1461094757564" expanded="true" signature="1542:1651" placeholder="{...}" />
+            <marker date="1461094757564" expanded="true" signature="1716:1841" placeholder="{...}" />
+            <marker date="1461094757564" expanded="true" signature="1919:2254" placeholder="{...}" />
+            <marker date="1461094757564" expanded="true" signature="1988:2057" placeholder="{...}" />
+            <marker date="1461094757564" expanded="true" signature="2109:2244" placeholder="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/game/store.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="25" column="30" selection-start-line="25" selection-start-column="30" selection-end-line="25" selection-end-column="30" />
+          <folding>
+            <marker date="1461094787496" expanded="true" signature="7:47" placeholder="..." />
+            <marker date="1461094787496" expanded="true" signature="72:202" placeholder="..." />
+            <marker date="1461094787496" expanded="true" signature="225:336" placeholder="{&quot;current_turn&quot;: null...}" />
+            <marker date="1461094787496" expanded="true" signature="298:334" placeholder="{&quot;null&quot;: 0...}" />
+            <marker date="1461094787496" expanded="true" signature="364:960" placeholder="{...}" />
+            <marker date="1461094787496" expanded="true" signature="391:551" placeholder="{...}" />
+            <marker date="1461094787496" expanded="true" signature="582:958" placeholder="{...}" />
+            <marker date="1461094787496" expanded="true" signature="643:664" placeholder="{...}" />
+            <marker date="1461094787496" expanded="true" signature="743:893" placeholder="{...}" />
+            <marker date="1461094787496" expanded="true" signature="832:887" placeholder="{...}" />
+            <marker date="1461094787496" expanded="true" signature="993:1017" placeholder="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/game/Board.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="82" column="0" selection-start-line="82" selection-start-column="0" selection-end-line="82" selection-end-column="0" />
+          <folding>
+            <marker date="1460770158534" expanded="true" signature="9:628" placeholder="..." />
+            <marker date="1460770158534" expanded="true" signature="66:616" placeholder="..." />
+            <marker date="1460770158534" expanded="true" signature="282:425" placeholder="..." />
+            <marker date="1460770158534" expanded="true" signature="446:607" placeholder="..." />
+            <marker date="1460770158534" expanded="true" signature="638:2618" placeholder="..." />
+            <marker date="1460770158534" expanded="false" signature="647:929" placeholder="..." />
+            <marker date="1460770158534" expanded="true" signature="1001:2609" placeholder="{...}" />
+            <marker date="1460770158534" expanded="true" signature="1012:1074" placeholder="{...}" />
+            <marker date="1460770158534" expanded="true" signature="1024:1070" placeholder="{&quot;default&quot;: 350...}" />
+            <marker date="1460770158534" expanded="true" signature="1086:1129" placeholder="{...}" />
+            <marker date="1460770158534" expanded="true" signature="1099:1124" placeholder="{&quot;hover&quot;: null...}" />
+            <marker date="1460770158534" expanded="true" signature="1143:1222" placeholder="{...}" />
+            <marker date="1460770158534" expanded="true" signature="1171:1218" placeholder="{...}" />
+            <marker date="1460770158534" expanded="true" signature="1238:1263" placeholder="{...}" />
+            <marker date="1460770158534" expanded="true" signature="1276:1910" placeholder="{...}" />
+            <marker date="1460770158534" expanded="true" signature="1310:1487" placeholder="{...}" />
+            <marker date="1460770158534" expanded="true" signature="1341:1366" placeholder="{...}" />
+            <marker date="1460770158534" expanded="true" signature="1450:1480" placeholder="{...}" />
+            <marker date="1460770158534" expanded="true" signature="1522:1554" placeholder="{...}" />
+            <marker date="1460770158534" expanded="true" signature="1584:1678" placeholder="{...}" />
+            <marker date="1460770158534" expanded="true" signature="1716:1785" placeholder="{...}" />
+            <marker date="1460770158534" expanded="true" signature="1823:1906" placeholder="{...}" />
+            <marker date="1460770158534" expanded="true" signature="1920:2607" placeholder="{...}" />
+            <marker date="1460770158534" expanded="true" signature="1935:1965" placeholder="{...}" />
+            <marker date="1460770158534" expanded="true" signature="1980:2603" placeholder="{...}" />
+            <marker date="1460770158534" expanded="true" signature="2005:2041" placeholder="{...}" />
+            <marker date="1460770158534" expanded="true" signature="2069:2113" placeholder="{...}" />
+            <marker date="1460770158534" expanded="true" signature="2136:2597" placeholder="{...}" />
+            <marker date="1460770158534" expanded="true" signature="2239:2310" placeholder="{...}" />
+            <marker date="1460770158534" expanded="true" signature="2267:2310" placeholder="{...}" />
+            <marker date="1460770158534" expanded="true" signature="2336:2378" placeholder="{...}" />
+            <marker date="1460770158534" expanded="true" signature="2404:2473" placeholder="{...}" />
+            <marker date="1460770158534" expanded="true" signature="2627:2714" placeholder="..." />
+            <marker date="1460770158534" expanded="true" signature="2642:2661" placeholder="{...}" />
+            <marker date="1460770158534" expanded="true" signature="2682:2706" placeholder="{...}" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/App.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="72">
-          <caret line="24" column="0" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
+        <state relative-caret-position="51">
+          <caret line="3" column="17" selection-start-line="3" selection-start-column="17" selection-end-line="3" selection-end-column="17" />
+          <folding>
+            <marker date="1461095562599" expanded="true" signature="9:461" placeholder="..." />
+            <marker date="1461095562599" expanded="true" signature="26:449" placeholder="..." />
+            <marker date="1461095562599" expanded="true" signature="36:97" placeholder="..." />
+            <marker date="1461095562599" expanded="true" signature="127:198" placeholder="..." />
+            <marker date="1461095562599" expanded="true" signature="224:440" placeholder="..." />
+            <marker date="1461095562599" expanded="true" signature="235:434" placeholder="..." />
+            <marker date="1461095562599" expanded="true" signature="429:434" placeholder="..." />
+            <marker date="1461095562599" expanded="true" signature="489:940" placeholder="..." />
+            <marker date="1461095562599" expanded="false" signature="498:538" placeholder="..." />
+            <marker date="1461095562599" expanded="true" signature="563:747" placeholder="..." />
+            <marker date="1461095562599" expanded="true" signature="764:931" placeholder="{...}" />
+            <marker date="1461095562599" expanded="true" signature="789:829" placeholder="{...}" />
+            <marker date="1461095562599" expanded="true" signature="839:879" placeholder="{...}" />
+            <marker date="1461095562599" expanded="true" signature="854:875" placeholder="{...}" />
+            <marker date="1461095562599" expanded="true" signature="902:929" placeholder="{...}" />
+            <marker date="1461095562599" expanded="true" signature="949:1240" placeholder="..." />
+            <marker date="1461095562599" expanded="true" signature="956:975" placeholder="{...}" />
+            <marker date="1461095562599" expanded="true" signature="982:1068" placeholder="{...}" />
+            <marker date="1461095562599" expanded="true" signature="1075:1158" placeholder="{...}" />
+            <marker date="1461095562599" expanded="true" signature="1171:1231" placeholder="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/game/Captures.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="211">
+          <caret line="27" column="0" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
           <folding />
         </state>
       </provider>
