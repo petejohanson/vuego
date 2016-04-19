@@ -1,4 +1,4 @@
-# vuego
+# VueGo [![Build Status](https://travis-ci.org/petejohanson/vuego.svg?branch=master)](https://travis-ci.org/petejohanson/vuego)
 
 > A Vue.js Go Game
 
