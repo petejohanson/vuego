@@ -2,6 +2,8 @@
 
 > A Vue.js Go Game
 
+You can play test the game here: http://petejohanson.github.io/vuego/
+
 ## Build Setup
 
 ``` bash
