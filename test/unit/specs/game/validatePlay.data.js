@@ -34,6 +34,17 @@ export default [
     expect: false
   },
   {
+    test: 'Ko point',
+    board: '++++++\n' +
+           '++++++\n' +
+           '++WB++\n' +
+           '+WBKB+\n' +
+           '++WW++\n' +
+           '++++++\n',
+    check: { x: 3, y: 3, color: WHITE },
+    expect: false
+  },
+  {
     test: 'Surrounded corner',
     board: '×W++++\n' +
            'W+++++\n' +

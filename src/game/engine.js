@@ -5,6 +5,8 @@ import filter from 'lodash/fp/filter';
 import flatMap from 'lodash/fp/flatMap';
 import map from 'lodash/fp/map';
 import partition from 'lodash/fp/partition';
+import differenceWith from 'lodash/fp/differenceWith';
+import every from 'lodash/fp/every';
 import uniqWith from 'lodash/fp/uniqWith';
 import some from 'lodash/fp/some';
 import flow from 'lodash/fp/flow';
@@ -116,15 +118,19 @@ function validatePlay (state, x, y) {
     return false;
   }
 
+  if (isEqual(state.ko, { x, y })) {
+    return false;
+  }
+
   if (moveIsSuicide(state, x, y, state.current_turn)) {
     return false;
   }
 
   return true;
-};
+}
 
 function play (state, x, y) {
-  let killed = flow(
+  let changes = flow(
     filter(p => state.board[p.y][p.x] === oppositeColor(state.current_turn)),
     map(p => findGroupAndFreedoms(state, p.x, p.y)),
     filter(found => found.freedoms.length === 1),
@@ -132,9 +138,22 @@ function play (state, x, y) {
     uniqWith(isEqual)
   )(neighboringPoints(x, y, state.size));
 
-  killed.unshift({ x, y, color: state.current_turn });
+  let ko = null;
 
-  return killed;
-};
+  if (changes.length === 1) {
+    let isKo = flow(
+      differenceWith(changes, isEqual),
+      every(p => state.board[p.y][p.x] === oppositeColor(state.current_turn))
+    )(neighboringPoints(x, y, state.size));
+
+    if (isKo) {
+      ko = changes[0];
+    }
+  }
+
+  changes.unshift({ x, y, color: state.current_turn });
+
+  return { changes, ko };
+}
 
 export { neighboringPoints, freedoms, validatePlay, play }

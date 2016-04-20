@@ -2,13 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a61a2ef9-f80d-4b7c-92e2-00d298ff5d7d" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/game/Captures.vue" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/..arrays.js" afterPath="" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/game/KoMarker.vue" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/App.vue" afterPath="$PROJECT_DIR$/src/App.vue" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/game/Board.vue" afterPath="$PROJECT_DIR$/src/game/Board.vue" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/game/engine.js" afterPath="$PROJECT_DIR$/src/game/engine.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/game/store.js" afterPath="$PROJECT_DIR$/src/game/store.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/unit/specs/game/store.spec.js" afterPath="$PROJECT_DIR$/test/unit/specs/game/store.spec.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/unit/specs/game/engine.spec.js" afterPath="$PROJECT_DIR$/test/unit/specs/game/engine.spec.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/unit/specs/game/play.data.js" afterPath="$PROJECT_DIR$/test/unit/specs/game/play.data.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/unit/specs/game/validatePlay.data.js" afterPath="$PROJECT_DIR$/test/unit/specs/game/validatePlay.data.js" />
     </list>
     <ignored path="vuego.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -29,11 +30,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="Captures.vue" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/game/Captures.vue">
+      <file leaf-file-name="KoMarker.vue" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/game/KoMarker.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="211">
-              <caret line="27" column="0" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
+            <state relative-caret-position="136">
+              <caret line="8" column="16" selection-start-line="8" selection-start-column="16" selection-end-line="8" selection-end-column="16" />
               <folding />
             </state>
           </provider>
@@ -50,9 +51,15 @@
         <option value="$PROJECT_DIR$/src/main.js" />
         <option value="$PROJECT_DIR$/src/components/Hello.vue" />
         <option value="$PROJECT_DIR$/test/unit/specs/game/store.spec.js" />
-        <option value="$PROJECT_DIR$/src/game/store.js" />
         <option value="$PROJECT_DIR$/src/App.vue" />
         <option value="$PROJECT_DIR$/src/game/Captures.vue" />
+        <option value="$PROJECT_DIR$/test/unit/specs/game/play.data.js" />
+        <option value="$PROJECT_DIR$/test/unit/specs/game/engine.spec.js" />
+        <option value="$PROJECT_DIR$/test/unit/specs/game/validatePlay.data.js" />
+        <option value="$PROJECT_DIR$/src/game/engine.js" />
+        <option value="$PROJECT_DIR$/src/game/store.js" />
+        <option value="$PROJECT_DIR$/src/game/Board.vue" />
+        <option value="$PROJECT_DIR$/src/game/KoMarker.vue" />
       </list>
     </option>
   </component>
@@ -172,7 +179,7 @@
     <property name="nodejs_interpreter_path" value="$USER_HOME$/.nvm/versions/node/v5.8.0/bin/node" />
     <property name="JavaScriptPreferStrict" value="false" />
     <property name="JavaScriptWeakerCompletionTypeGuess" value="true" />
-    <property name="SearchEverywhereHistoryKey" value="&#9;FILE&#9;file:///home/peter/git/vuego/src/game/Captures.vue&#10;app&#9;FILE&#9;file:///home/peter/git/vuego/src/App.vue&#10;store&#9;FILE&#9;file:///home/peter/git/vuego/src/game/store.js" />
+    <property name="SearchEverywhereHistoryKey" value="&#9;FILE&#9;file:///home/peter/git/vuego/src/game/KoMarker.vue&#10;grid&#9;FILE&#9;file:///home/peter/git/vuego/src/game/Grid.vue&#10;store&#9;FILE&#9;file:///home/peter/git/vuego/src/game/store.js&#10;board&#9;FILE&#9;file:///home/peter/git/vuego/src/game/Board.vue&#10;valid&#9;FILE&#9;file:///home/peter/git/vuego/test/unit/specs/game/validatePlay.data.js&#10;engin&#9;FILE&#9;file:///home/peter/git/vuego/src/game/engine.js&#10;eng&#9;FILE&#9;file:///home/peter/git/vuego/test/unit/specs/game/engine.spec.js&#10;play.d&#9;FILE&#9;file:///home/peter/git/vuego/test/unit/specs/game/play.data.js&#10;app&#9;FILE&#9;file:///home/peter/git/vuego/src/App.vue" />
   </component>
   <component name="RunManager" selected="Karma.Karma Unit Tests">
     <configuration default="true" type="DartCommandLineRunConfigurationType" factoryName="Dart Command Line Application">
@@ -329,32 +336,52 @@
       <workItem from="1460080193427" duration="33000" />
       <workItem from="1460081897712" duration="810000" />
       <workItem from="1460143745567" duration="889000" />
-      <workItem from="1461093417836" duration="2430000" />
+      <workItem from="1461093417836" duration="10733000" />
     </task>
+    <task id="LOCAL-00001" summary="Capture tracking, and super simple capture display.">
+      <created>1461095882733</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1461095882733</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="Karma_Unit_Tests - 2016.04.19 at 15h 31m 42s.xml">
+    <history-entry file="Karma_Unit_Tests - 2016.04.19 at 21h 53m 49s.xml">
       <configuration name="Karma Unit Tests" configurationId="JavaScriptTestRunnerKarma" />
     </history-entry>
-    <history-entry file="Karma_Unit_Tests - 2016.04.19 at 15h 36m 01s.xml">
+    <history-entry file="Karma_Unit_Tests - 2016.04.19 at 21h 54m 15s.xml">
       <configuration name="Karma Unit Tests" configurationId="JavaScriptTestRunnerKarma" />
     </history-entry>
-    <history-entry file="Karma_Unit_Tests - 2016.04.19 at 15h 37m 58s.xml">
+    <history-entry file="Karma_Unit_Tests - 2016.04.19 at 21h 54m 29s.xml">
       <configuration name="Karma Unit Tests" configurationId="JavaScriptTestRunnerKarma" />
     </history-entry>
-    <history-entry file="Karma_Unit_Tests - 2016.04.19 at 15h 38m 18s.xml">
+    <history-entry file="Karma_Unit_Tests - 2016.04.19 at 21h 54m 54s.xml">
       <configuration name="Karma Unit Tests" configurationId="JavaScriptTestRunnerKarma" />
     </history-entry>
-    <history-entry file="Karma_Unit_Tests - 2016.04.19 at 15h 39m 19s.xml">
+    <history-entry file="Karma_Unit_Tests - 2016.04.19 at 21h 55m 31s.xml">
       <configuration name="Karma Unit Tests" configurationId="JavaScriptTestRunnerKarma" />
     </history-entry>
-    <history-entry file="Karma_Unit_Tests - 2016.04.19 at 15h 39m 49s.xml">
+    <history-entry file="Karma_Unit_Tests - 2016.04.19 at 21h 59m 59s.xml">
+      <configuration name="Karma Unit Tests" configurationId="JavaScriptTestRunnerKarma" />
+    </history-entry>
+    <history-entry file="Karma_Unit_Tests - 2016.04.19 at 22h 00m 22s.xml">
+      <configuration name="Karma Unit Tests" configurationId="JavaScriptTestRunnerKarma" />
+    </history-entry>
+    <history-entry file="Karma_Unit_Tests - 2016.04.19 at 22h 07m 03s.xml">
+      <configuration name="Karma Unit Tests" configurationId="JavaScriptTestRunnerKarma" />
+    </history-entry>
+    <history-entry file="Karma_Unit_Tests - 2016.04.19 at 22h 08m 04s.xml">
+      <configuration name="Karma Unit Tests" configurationId="JavaScriptTestRunnerKarma" />
+    </history-entry>
+    <history-entry file="Karma_Unit_Tests - 2016.04.19 at 22h 14m 25s.xml">
       <configuration name="Karma Unit Tests" configurationId="JavaScriptTestRunnerKarma" />
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="20199000" />
+    <option name="totallyTimeSpent" value="28502000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="27" width="1366" height="741" extended-state="6" />
@@ -392,67 +419,15 @@
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Capture tracking, and super simple capture display." />
+    <option name="LAST_COMMIT_MESSAGE" value="Capture tracking, and super simple capture display." />
+  </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/App.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/Hello.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="15" column="5" selection-start-line="15" selection-start-column="5" selection-end-line="15" selection-end-column="5" />
-          <folding>
-            <marker date="1459871105118" expanded="true" signature="9:75" placeholder="..." />
-            <marker date="1459871105118" expanded="true" signature="31:63" placeholder="..." />
-            <marker date="1459871105118" expanded="true" signature="85:372" placeholder="..." />
-            <marker date="1459871105118" expanded="true" signature="102:363" placeholder="{...}" />
-            <marker date="1459871105118" expanded="true" signature="114:361" placeholder="{...}" />
-            <marker date="1459871105118" expanded="true" signature="127:357" placeholder="{&quot;msg&quot;: 'Hello World!'...}" />
-            <marker date="1459871105118" expanded="true" signature="135:325" placeholder="//..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/App.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/Hello.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="15" column="5" selection-start-line="15" selection-start-column="5" selection-end-line="15" selection-end-column="5" />
-          <folding>
-            <marker date="1459871105118" expanded="true" signature="9:75" placeholder="..." />
-            <marker date="1459871105118" expanded="true" signature="31:63" placeholder="..." />
-            <marker date="1459871105118" expanded="true" signature="85:372" placeholder="..." />
-            <marker date="1459871105118" expanded="true" signature="102:363" placeholder="{...}" />
-            <marker date="1459871105118" expanded="true" signature="114:361" placeholder="{...}" />
-            <marker date="1459871105118" expanded="true" signature="127:357" placeholder="{&quot;msg&quot;: 'Hello World!'...}" />
-            <marker date="1459871105118" expanded="true" signature="135:325" placeholder="//..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/App.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/Hello.vue">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="270">
@@ -926,42 +901,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test/unit/specs/game/engine.spec.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="147">
-          <caret line="42" column="0" selection-start-line="42" selection-start-column="0" selection-end-line="42" selection-end-column="0" />
-          <folding>
-            <marker date="1461027754383" expanded="false" signature="7:333" placeholder="..." />
-            <marker date="1461027754383" expanded="true" signature="357:1067" placeholder="{...}" />
-            <marker date="1461027754383" expanded="true" signature="538:1005" placeholder="{...}" />
-            <marker date="1461027754383" expanded="true" signature="607:1001" placeholder="{...}" />
-            <marker date="1461027754383" expanded="true" signature="632:995" placeholder="{...}" />
-            <marker date="1461027754383" expanded="true" signature="1099:4162" placeholder="{...}" />
-            <marker date="1461027754383" expanded="true" signature="1139:2260" placeholder="{...}" />
-            <marker date="1461027754383" expanded="true" signature="1188:1352" placeholder="{...}" />
-            <marker date="1461027754383" expanded="true" signature="1406:1570" placeholder="{...}" />
-            <marker date="1461027754383" expanded="true" signature="1624:1788" placeholder="{...}" />
-            <marker date="1461027754383" expanded="true" signature="1845:2009" placeholder="{...}" />
-            <marker date="1461027754383" expanded="true" signature="2049:2254" placeholder="{...}" />
-            <marker date="1461027754383" expanded="true" signature="2293:2863" placeholder="{...}" />
-            <marker date="1461027754383" expanded="true" signature="2316:2536" placeholder="{...}" />
-            <marker date="1461027754383" expanded="true" signature="2366:2528" placeholder="{...}" />
-            <marker date="1461027754383" expanded="true" signature="2410:2520" placeholder="{...}" />
-            <marker date="1461027754383" expanded="true" signature="2591:2859" placeholder="{...}" />
-            <marker date="1461027754383" expanded="true" signature="2654:2851" placeholder="{...}" />
-            <marker date="1461027754383" expanded="true" signature="2900:3592" placeholder="{...}" />
-            <marker date="1461027754383" expanded="true" signature="2956:3588" placeholder="{...}" />
-            <marker date="1461027754383" expanded="true" signature="3022:3580" placeholder="{...}" />
-            <marker date="1461027754383" expanded="true" signature="3229:3301" placeholder="{...}" />
-            <marker date="1461027754383" expanded="true" signature="3331:3406" placeholder="{...}" />
-            <marker date="1461027754383" expanded="true" signature="3620:4158" placeholder="{...}" />
-            <marker date="1461027754383" expanded="true" signature="3670:4154" placeholder="{...}" />
-            <marker date="1461027754383" expanded="true" signature="3730:4146" placeholder="{...}" />
-            <marker date="1461027754383" expanded="true" signature="4003:4098" placeholder="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/test/unit/specs/game/store.spec.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="147">
@@ -984,70 +923,6 @@
             <marker date="1461094757564" expanded="true" signature="1919:2254" placeholder="{...}" />
             <marker date="1461094757564" expanded="true" signature="1988:2057" placeholder="{...}" />
             <marker date="1461094757564" expanded="true" signature="2109:2244" placeholder="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/game/store.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="25" column="30" selection-start-line="25" selection-start-column="30" selection-end-line="25" selection-end-column="30" />
-          <folding>
-            <marker date="1461094787496" expanded="true" signature="7:47" placeholder="..." />
-            <marker date="1461094787496" expanded="true" signature="72:202" placeholder="..." />
-            <marker date="1461094787496" expanded="true" signature="225:336" placeholder="{&quot;current_turn&quot;: null...}" />
-            <marker date="1461094787496" expanded="true" signature="298:334" placeholder="{&quot;null&quot;: 0...}" />
-            <marker date="1461094787496" expanded="true" signature="364:960" placeholder="{...}" />
-            <marker date="1461094787496" expanded="true" signature="391:551" placeholder="{...}" />
-            <marker date="1461094787496" expanded="true" signature="582:958" placeholder="{...}" />
-            <marker date="1461094787496" expanded="true" signature="643:664" placeholder="{...}" />
-            <marker date="1461094787496" expanded="true" signature="743:893" placeholder="{...}" />
-            <marker date="1461094787496" expanded="true" signature="832:887" placeholder="{...}" />
-            <marker date="1461094787496" expanded="true" signature="993:1017" placeholder="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/game/Board.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="82" column="0" selection-start-line="82" selection-start-column="0" selection-end-line="82" selection-end-column="0" />
-          <folding>
-            <marker date="1460770158534" expanded="true" signature="9:628" placeholder="..." />
-            <marker date="1460770158534" expanded="true" signature="66:616" placeholder="..." />
-            <marker date="1460770158534" expanded="true" signature="282:425" placeholder="..." />
-            <marker date="1460770158534" expanded="true" signature="446:607" placeholder="..." />
-            <marker date="1460770158534" expanded="true" signature="638:2618" placeholder="..." />
-            <marker date="1460770158534" expanded="false" signature="647:929" placeholder="..." />
-            <marker date="1460770158534" expanded="true" signature="1001:2609" placeholder="{...}" />
-            <marker date="1460770158534" expanded="true" signature="1012:1074" placeholder="{...}" />
-            <marker date="1460770158534" expanded="true" signature="1024:1070" placeholder="{&quot;default&quot;: 350...}" />
-            <marker date="1460770158534" expanded="true" signature="1086:1129" placeholder="{...}" />
-            <marker date="1460770158534" expanded="true" signature="1099:1124" placeholder="{&quot;hover&quot;: null...}" />
-            <marker date="1460770158534" expanded="true" signature="1143:1222" placeholder="{...}" />
-            <marker date="1460770158534" expanded="true" signature="1171:1218" placeholder="{...}" />
-            <marker date="1460770158534" expanded="true" signature="1238:1263" placeholder="{...}" />
-            <marker date="1460770158534" expanded="true" signature="1276:1910" placeholder="{...}" />
-            <marker date="1460770158534" expanded="true" signature="1310:1487" placeholder="{...}" />
-            <marker date="1460770158534" expanded="true" signature="1341:1366" placeholder="{...}" />
-            <marker date="1460770158534" expanded="true" signature="1450:1480" placeholder="{...}" />
-            <marker date="1460770158534" expanded="true" signature="1522:1554" placeholder="{...}" />
-            <marker date="1460770158534" expanded="true" signature="1584:1678" placeholder="{...}" />
-            <marker date="1460770158534" expanded="true" signature="1716:1785" placeholder="{...}" />
-            <marker date="1460770158534" expanded="true" signature="1823:1906" placeholder="{...}" />
-            <marker date="1460770158534" expanded="true" signature="1920:2607" placeholder="{...}" />
-            <marker date="1460770158534" expanded="true" signature="1935:1965" placeholder="{...}" />
-            <marker date="1460770158534" expanded="true" signature="1980:2603" placeholder="{...}" />
-            <marker date="1460770158534" expanded="true" signature="2005:2041" placeholder="{...}" />
-            <marker date="1460770158534" expanded="true" signature="2069:2113" placeholder="{...}" />
-            <marker date="1460770158534" expanded="true" signature="2136:2597" placeholder="{...}" />
-            <marker date="1460770158534" expanded="true" signature="2239:2310" placeholder="{...}" />
-            <marker date="1460770158534" expanded="true" signature="2267:2310" placeholder="{...}" />
-            <marker date="1460770158534" expanded="true" signature="2336:2378" placeholder="{...}" />
-            <marker date="1460770158534" expanded="true" signature="2404:2473" placeholder="{...}" />
-            <marker date="1460770158534" expanded="true" signature="2627:2714" placeholder="..." />
-            <marker date="1460770158534" expanded="true" signature="2642:2661" placeholder="{...}" />
-            <marker date="1460770158534" expanded="true" signature="2682:2706" placeholder="{...}" />
           </folding>
         </state>
       </provider>
@@ -1083,8 +958,229 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/game/Captures.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="211">
-          <caret line="27" column="0" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
+        <state relative-caret-position="187">
+          <caret line="11" column="4" selection-start-line="11" selection-start-column="4" selection-end-line="11" selection-end-column="4" />
+          <folding>
+            <marker date="1461095645507" expanded="true" signature="9:113" placeholder="..." />
+            <marker date="1461095645507" expanded="true" signature="33:101" placeholder="..." />
+            <marker date="1461095645507" expanded="true" signature="123:366" placeholder="..." />
+            <marker date="1461095645507" expanded="true" signature="181:357" placeholder="{...}" />
+            <marker date="1461095645507" expanded="true" signature="191:355" placeholder="{...}" />
+            <marker date="1461095645507" expanded="true" signature="206:351" placeholder="{...}" />
+            <marker date="1461095645507" expanded="true" signature="228:275" placeholder="{...}" />
+            <marker date="1461095645507" expanded="true" signature="298:345" placeholder="{...}" />
+            <marker date="1461095645507" expanded="true" signature="382:455" placeholder="..." />
+            <marker date="1461095645507" expanded="true" signature="395:445" placeholder="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/unit/specs/game/play.data.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="390">
+          <caret line="82" column="15" selection-start-line="82" selection-start-column="15" selection-end-line="82" selection-end-column="15" />
+          <folding>
+            <marker date="1461116187169" expanded="true" signature="64:1845" placeholder="[...]" />
+            <marker date="1461116187169" expanded="true" signature="68:406" placeholder="{&quot;test&quot;: 'Empty board'...}" />
+            <marker date="1461116187169" expanded="true" signature="410:757" placeholder="{&quot;test&quot;: 'Single enemy to kill'...}" />
+            <marker date="1461116187169" expanded="true" signature="761:1107" placeholder="{&quot;test&quot;: 'Enemy group to kill'...}" />
+            <marker date="1461116187169" expanded="true" signature="1111:1473" placeholder="{&quot;test&quot;: 'Avoiding suicide by capturing enemy'...}" />
+            <marker date="1461116187169" expanded="true" signature="1477:1843" placeholder="{&quot;test&quot;: 'Capturing a stone and creating ko point'...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/unit/specs/game/engine.spec.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="125" column="83" selection-start-line="125" selection-start-column="83" selection-end-line="125" selection-end-column="83" />
+          <folding>
+            <marker date="1461117752435" expanded="false" signature="7:333" placeholder="..." />
+            <marker date="1461117752435" expanded="true" signature="357:1154" placeholder="{...}" />
+            <marker date="1461117752435" expanded="true" signature="555:1088" placeholder="{...}" />
+            <marker date="1461117752435" expanded="true" signature="624:1084" placeholder="{...}" />
+            <marker date="1461117752435" expanded="true" signature="649:1078" placeholder="{...}" />
+            <marker date="1461117752435" expanded="true" signature="1186:4332" placeholder="{...}" />
+            <marker date="1461117752435" expanded="true" signature="1226:2347" placeholder="{...}" />
+            <marker date="1461117752435" expanded="true" signature="1275:1439" placeholder="{...}" />
+            <marker date="1461117752435" expanded="true" signature="1493:1657" placeholder="{...}" />
+            <marker date="1461117752435" expanded="true" signature="1711:1875" placeholder="{...}" />
+            <marker date="1461117752435" expanded="true" signature="1932:2096" placeholder="{...}" />
+            <marker date="1461117752435" expanded="true" signature="2136:2341" placeholder="{...}" />
+            <marker date="1461117752435" expanded="true" signature="2380:2950" placeholder="{...}" />
+            <marker date="1461117752435" expanded="true" signature="2403:2623" placeholder="{...}" />
+            <marker date="1461117752435" expanded="true" signature="2453:2615" placeholder="{...}" />
+            <marker date="1461117752435" expanded="true" signature="2497:2607" placeholder="{...}" />
+            <marker date="1461117752435" expanded="true" signature="2678:2946" placeholder="{...}" />
+            <marker date="1461117752435" expanded="true" signature="2741:2938" placeholder="{...}" />
+            <marker date="1461117752435" expanded="true" signature="2987:3688" placeholder="{...}" />
+            <marker date="1461117752435" expanded="true" signature="3043:3684" placeholder="{...}" />
+            <marker date="1461117752435" expanded="true" signature="3109:3676" placeholder="{...}" />
+            <marker date="1461117752435" expanded="true" signature="3320:3392" placeholder="{...}" />
+            <marker date="1461117752435" expanded="true" signature="3422:3497" placeholder="{...}" />
+            <marker date="1461117752435" expanded="true" signature="3717:4328" placeholder="{...}" />
+            <marker date="1461117752435" expanded="true" signature="3767:4324" placeholder="{...}" />
+            <marker date="1461117752435" expanded="true" signature="3827:4316" placeholder="{...}" />
+            <marker date="1461117752435" expanded="true" signature="4133:4228" placeholder="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/unit/specs/game/validatePlay.data.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="373">
+          <caret line="43" column="38" selection-start-line="43" selection-start-column="38" selection-end-line="43" selection-end-column="38" />
+          <folding>
+            <marker date="1461118020558" expanded="true" signature="63:2601" placeholder="[...]" />
+            <marker date="1461118020558" expanded="true" signature="67:268" placeholder="{&quot;test&quot;: 'Empty board'...}" />
+            <marker date="1461118020558" expanded="true" signature="272:499" placeholder="{&quot;test&quot;: 'Same color neighbor'...}" />
+            <marker date="1461118020558" expanded="true" signature="503:738" placeholder="{&quot;test&quot;: 'Occupied point'...}" />
+            <marker date="1461118020558" expanded="true" signature="742:971" placeholder="{&quot;test&quot;: 'Ko point'...}" />
+            <marker date="1461118020558" expanded="true" signature="975:1182" placeholder="{&quot;test&quot;: 'Surrounded corner'...}" />
+            <marker date="1461118020558" expanded="true" signature="1186:1393" placeholder="{&quot;test&quot;: 'Surrounded Middle'...}" />
+            <marker date="1461118020558" expanded="true" signature="1397:1618" placeholder="{&quot;test&quot;: 'Surrounded middle of like color'...}" />
+            <marker date="1461118020558" expanded="true" signature="1622:1858" placeholder="{&quot;test&quot;: 'Surrounded middle with friendly alive neighbor'...}" />
+            <marker date="1461118020558" expanded="true" signature="1862:2103" placeholder="{&quot;test&quot;: 'Surrounded middle with friendly surrounded neighbor'...}" />
+            <marker date="1461118020558" expanded="true" signature="2107:2357" placeholder="{&quot;test&quot;: 'Surrounded middle with multiple friendly surrounded neighbor'...}" />
+            <marker date="1461118020558" expanded="true" signature="2361:2599" placeholder="{&quot;test&quot;: 'Surrounded corner with vulnerable enemy neighbor'...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/game/engine.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="407">
+          <caret line="158" column="17" selection-start-line="158" selection-start-column="17" selection-end-line="158" selection-end-column="17" />
+          <folding>
+            <marker date="1461118082237" expanded="true" signature="8:524" placeholder="..." />
+            <marker date="1461118082237" expanded="true" signature="566:810" placeholder="{...}" />
+            <marker date="1461118082237" expanded="true" signature="598:632" placeholder="{...}" />
+            <marker date="1461118082237" expanded="true" signature="654:688" placeholder="{...}" />
+            <marker date="1461118082237" expanded="true" signature="703:737" placeholder="{...}" />
+            <marker date="1461118082237" expanded="true" signature="759:793" placeholder="{...}" />
+            <marker date="1461118082237" expanded="true" signature="856:1362" placeholder="{...}" />
+            <marker date="1461118082237" expanded="true" signature="1012:1035" placeholder="{...}" />
+            <marker date="1461118082237" expanded="true" signature="1156:1203" placeholder="{...}" />
+            <marker date="1461118082237" expanded="true" signature="1266:1289" placeholder="{...}" />
+            <marker date="1461118082237" expanded="true" signature="1396:1452" placeholder="{...}" />
+            <marker date="1461118082237" expanded="true" signature="1498:2057" placeholder="{...}" />
+            <marker date="1461118082237" expanded="true" signature="1606:1653" placeholder="{...}" />
+            <marker date="1461118082237" expanded="true" signature="1791:2024" placeholder="{...}" />
+            <marker date="1461118082237" expanded="true" signature="1859:2020" placeholder="{...}" />
+            <marker date="1461118082237" expanded="true" signature="1888:1936" placeholder="{...}" />
+            <marker date="1461118082237" expanded="true" signature="1969:2014" placeholder="{...}" />
+            <marker date="1461118082237" expanded="true" signature="2119:2651" placeholder="{...}" />
+            <marker date="1461118082237" expanded="true" signature="2159:2176" placeholder="{...}" />
+            <marker date="1461118082237" expanded="true" signature="2213:2248" placeholder="{...}" />
+            <marker date="1461118082237" expanded="true" signature="2254:2314" placeholder="{...}" />
+            <marker date="1461118082237" expanded="true" signature="2419:2649" placeholder="{...}" />
+            <marker date="1461118082237" expanded="true" signature="2492:2534" placeholder="{...}" />
+            <marker date="1461118082237" expanded="true" signature="2577:2645" placeholder="{...}" />
+            <marker date="1461118082237" expanded="true" signature="2689:2896" placeholder="{...}" />
+            <marker date="1461118082237" expanded="true" signature="2716:2739" placeholder="{...}" />
+            <marker date="1461118082237" expanded="true" signature="2776:2799" placeholder="{...}" />
+            <marker date="1461118082237" expanded="true" signature="2855:2878" placeholder="{...}" />
+            <marker date="1461118082237" expanded="true" signature="2926:3597" placeholder="{...}" />
+            <marker date="1461118082237" expanded="true" signature="3277:3511" placeholder="{...}" />
+            <marker date="1461118082237" expanded="true" signature="3477:3507" placeholder="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/game/store.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="46" column="18" selection-start-line="46" selection-start-column="18" selection-end-line="46" selection-end-column="18" />
+          <folding>
+            <marker date="1461118462822" expanded="true" signature="7:47" placeholder="..." />
+            <marker date="1461118462822" expanded="true" signature="72:202" placeholder="..." />
+            <marker date="1461118462822" expanded="true" signature="225:348" placeholder="{&quot;current_turn&quot;: null...}" />
+            <marker date="1461118462822" expanded="true" signature="298:334" placeholder="{&quot;null&quot;: 0...}" />
+            <marker date="1461118462822" expanded="true" signature="376:1029" placeholder="{...}" />
+            <marker date="1461118462822" expanded="true" signature="403:584" placeholder="{...}" />
+            <marker date="1461118462822" expanded="true" signature="615:1027" placeholder="{...}" />
+            <marker date="1461118462822" expanded="true" signature="676:697" placeholder="{...}" />
+            <marker date="1461118462822" expanded="true" signature="793:943" placeholder="{...}" />
+            <marker date="1461118462822" expanded="true" signature="882:937" placeholder="{...}" />
+            <marker date="1461118462822" expanded="true" signature="1062:1086" placeholder="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/game/Board.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="41" column="12" selection-start-line="41" selection-start-column="12" selection-end-line="41" selection-end-column="12" />
+          <folding>
+            <marker date="1461118975870" expanded="true" signature="9:760" placeholder="..." />
+            <marker date="1461118975870" expanded="true" signature="66:748" placeholder="..." />
+            <marker date="1461118975870" expanded="true" signature="282:425" placeholder="..." />
+            <marker date="1461118975870" expanded="true" signature="446:607" placeholder="..." />
+            <marker date="1461118975870" expanded="true" signature="625:739" placeholder="..." />
+            <marker date="1461118975870" expanded="true" signature="770:2852" placeholder="..." />
+            <marker date="1461118975870" expanded="true" signature="779:1096" placeholder="..." />
+            <marker date="1461118975870" expanded="true" signature="1168:2843" placeholder="{...}" />
+            <marker date="1461118975870" expanded="true" signature="1179:1241" placeholder="{...}" />
+            <marker date="1461118975870" expanded="true" signature="1191:1237" placeholder="{&quot;default&quot;: 350...}" />
+            <marker date="1461118975870" expanded="true" signature="1253:1296" placeholder="{...}" />
+            <marker date="1461118975870" expanded="true" signature="1266:1291" placeholder="{&quot;hover&quot;: null...}" />
+            <marker date="1461118975870" expanded="true" signature="1310:1389" placeholder="{...}" />
+            <marker date="1461118975870" expanded="true" signature="1338:1385" placeholder="{...}" />
+            <marker date="1461118975870" expanded="true" signature="1405:1444" placeholder="{...}" />
+            <marker date="1461118975870" expanded="true" signature="1457:2091" placeholder="{...}" />
+            <marker date="1461118975870" expanded="true" signature="1491:1668" placeholder="{...}" />
+            <marker date="1461118975870" expanded="true" signature="1522:1547" placeholder="{...}" />
+            <marker date="1461118975870" expanded="true" signature="1631:1661" placeholder="{...}" />
+            <marker date="1461118975870" expanded="true" signature="1703:1735" placeholder="{...}" />
+            <marker date="1461118975870" expanded="true" signature="1765:1859" placeholder="{...}" />
+            <marker date="1461118975870" expanded="true" signature="1897:1966" placeholder="{...}" />
+            <marker date="1461118975870" expanded="true" signature="2004:2087" placeholder="{...}" />
+            <marker date="1461118975870" expanded="true" signature="2101:2841" placeholder="{...}" />
+            <marker date="1461118975870" expanded="true" signature="2116:2146" placeholder="{...}" />
+            <marker date="1461118975870" expanded="true" signature="2161:2837" placeholder="{...}" />
+            <marker date="1461118975870" expanded="true" signature="2186:2222" placeholder="{...}" />
+            <marker date="1461118975870" expanded="true" signature="2250:2294" placeholder="{...}" />
+            <marker date="1461118975870" expanded="true" signature="2313:2347" placeholder="{...}" />
+            <marker date="1461118975870" expanded="true" signature="2370:2831" placeholder="{...}" />
+            <marker date="1461118975870" expanded="true" signature="2473:2544" placeholder="{...}" />
+            <marker date="1461118975870" expanded="true" signature="2501:2544" placeholder="{...}" />
+            <marker date="1461118975870" expanded="true" signature="2570:2612" placeholder="{...}" />
+            <marker date="1461118975870" expanded="true" signature="2638:2707" placeholder="{...}" />
+            <marker date="1461118975870" expanded="true" signature="2861:2948" placeholder="..." />
+            <marker date="1461118975870" expanded="true" signature="2876:2895" placeholder="{...}" />
+            <marker date="1461118975870" expanded="true" signature="2916:2940" placeholder="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/game/Grid.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
+          <folding>
+            <marker date="1460574340646" expanded="true" signature="9:398" placeholder="..." />
+            <marker date="1460574340646" expanded="true" signature="15:386" placeholder="..." />
+            <marker date="1460574340646" expanded="true" signature="409:1318" placeholder="..." />
+            <marker date="1460574340646" expanded="false" signature="418:480" placeholder="..." />
+            <marker date="1460574340646" expanded="true" signature="501:813" placeholder="{...}" />
+            <marker date="1460574340646" expanded="true" signature="509:699" placeholder="[...]" />
+            <marker date="1460574340646" expanded="true" signature="707:811" placeholder="[...]" />
+            <marker date="1460574340646" expanded="true" signature="831:1309" placeholder="{...}" />
+            <marker date="1460574340646" expanded="true" signature="875:986" placeholder="{...}" />
+            <marker date="1460574340646" expanded="true" signature="913:982" placeholder="{...}" />
+            <marker date="1460574340646" expanded="true" signature="1000:1307" placeholder="{...}" />
+            <marker date="1460574340646" expanded="true" signature="1028:1075" placeholder="{...}" />
+            <marker date="1460574340646" expanded="true" signature="1101:1148" placeholder="{...}" />
+            <marker date="1460574340646" expanded="true" signature="1175:1303" placeholder="{...}" />
+            <marker date="1460574340646" expanded="true" signature="1229:1261" placeholder="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/game/KoMarker.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" column="16" selection-start-line="8" selection-start-column="16" selection-end-line="8" selection-end-column="16" />
           <folding />
         </state>
       </provider>

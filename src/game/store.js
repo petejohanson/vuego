@@ -14,7 +14,8 @@ export const state = {
   captures: {
     [BLACK]: 0,
     [WHITE]: 0
-  }
+  },
+  ko: null
 };
 
 export const mutations = {
@@ -24,6 +25,7 @@ export const mutations = {
     state.current_turn = BLACK;
     state.captures[BLACK] = 0;
     state.captures[WHITE] = 0;
+    state.ko = null;
   },
 
   PLAYER_TURN (state, x, y) {
@@ -31,7 +33,7 @@ export const mutations = {
       return;
     }
 
-    let turn = play(state, x, y);
+    let { changes: turn, ko } = play(state, x, y);
 
     for (let i = 0; i < turn.length; ++i) {
       let t = turn[i];
@@ -42,6 +44,7 @@ export const mutations = {
       }
     }
 
+    state.ko = ko;
     state.current_turn = oppositeColor(state.current_turn);
   }
 };

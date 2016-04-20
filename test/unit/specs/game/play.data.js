@@ -65,5 +65,21 @@ export default [
            '++++++\n' +
            '++++++\n',
     turn: WHITE
+  },
+  {
+    test: 'Capturing a stone and creating ko point',
+    before: '+BW+++\n' +
+            'BW?W++\n' +
+            '+BW+++\n' +
+            '++++++\n' +
+            '++++++\n' +
+            '++++++\n',
+    after: '+BW+++\n' +
+           'BKBW++\n' +
+           '+BW+++\n' +
+           '++++++\n' +
+           '++++++\n' +
+           '++++++\n',
+    turn: BLACK
   }
 ];

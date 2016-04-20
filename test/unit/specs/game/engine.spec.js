@@ -10,6 +10,7 @@ let parseBoard = s => {
   let valid = [];
   let invalid = [];
   let expect = [];
+  let ko = null;
 
   let lines = s.split('\n');
   let board = matrix(lines.length, lines.length);
@@ -24,6 +25,9 @@ let parseBoard = s => {
         case 'W':
           board[i][j] = WHITE;
           break;
+        case 'K':
+          ko = { x: j, y: i };
+          break;
         case '?':
           expect.push({ x: j, y: i });
           break;
@@ -37,7 +41,7 @@ let parseBoard = s => {
     }
   }
 
-  return { board, check: expect, expect, valid, invalid };
+  return { board, check: expect, expect, valid, invalid, ko };
 }
 
 describe('game engine', () => {
@@ -105,7 +109,7 @@ describe('game engine', () => {
       let test = VALID_PLAY_TESTS[i];
       it(test.test, () => {
         let { color } = test.check;
-        let { board, valid, invalid } = parseBoard(test.board);
+        let { board, valid, invalid, ko } = parseBoard(test.board);
 
         let expectedResult = test.expect;
         let check = test.check;
@@ -119,20 +123,21 @@ describe('game engine', () => {
 
         let { x, y } = check;
 
-        let res = validatePlay({board, size: board.length, current_turn: color}, x, y);
+        let res = validatePlay({board, size: board.length, current_turn: color, ko }, x, y);
 
         expect(res).toEqual(expectedResult);
       });
     }
   });
+
   describe('play', () => {
     for (let i = 0; i < PLAY_TESTS.length; ++i) {
       let test = PLAY_TESTS[i];
       it(test.test, () => {
         let { board: before, check: [{ x, y }] } = parseBoard(test.before);
-        let { board: after } = parseBoard(test.after);
+        let { board: after, ko: expectedKo } = parseBoard(test.after);
 
-        let res = play({board: before, size: before.length, current_turn: test.turn}, x, y);
+        let { changes: res, ko } = play({board: before, size: before.length, current_turn: test.turn}, x, y);
 
         for (let i = 0; i < res.length; ++i) {
           let change = res[i];
@@ -140,6 +145,7 @@ describe('game engine', () => {
         }
 
         expect(before).toEqual(after);
+        expect(ko).toEqual(expectedKo);
       });
     }
   });

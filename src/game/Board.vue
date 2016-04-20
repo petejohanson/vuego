@@ -12,12 +12,16 @@
     <g v-if="hover">
       <stone class="vuego-stone-hover" :size="cellSize/2" :x="pointToCoordinate(hover.x)" :y="pointToCoordinate(hover.y)" :color="currentTurn"></stone>
     </g>
+    <g v-if="ko">
+      <ko-marker :size="cellSize" :x="pointToCoordinate(ko.x)" :y="pointToCoordinate(ko.y)"></ko-marker>
+    </g>
   </svg>
 </template>
 
 <script>
 import Stone from './Stone';
 import Grid from './Grid';
+import KoMarker from './KoMarker';
 
 import { playerTurn } from './actions';
 
@@ -50,7 +54,8 @@ export default {
   },
   components: {
     Stone,
-    Grid
+    Grid,
+    KoMarker
   },
   methods: {
     mouseMove: function (event) {
@@ -90,6 +95,9 @@ export default {
       },
       currentTurn (state) {
         return state.current_turn;
+      },
+      ko (state) {
+        return state.ko;
       },
       stones (state) {
         // TODO: This is ugly. Must be a nicer lodash/fp way.
