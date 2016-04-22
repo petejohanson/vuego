@@ -5,7 +5,14 @@ var ora = require('ora')
 var spinner = ora('publishing to GitHub Pages...')
 spinner.start()
 
-ghpages.publish(path.join(__dirname, '../dist'), function(err) {
-  spinner.stop();
-  if (err) throw err;
-});
+let options = {};
+if (process.env.GH_TOKEN) {
+  options.repo = 'https://' + process.env.GH_TOKEN + '@github.com/petejohanson/vuego.git';
+}
+
+ghpages.publish(path.join(__dirname, '../dist'), options,
+  function(err) {
+    spinner.stop();
+    if (err) throw err;
+  }
+);
