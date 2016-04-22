@@ -1,15 +1,15 @@
 <template>
   <g>
-    <line v-for="x in centers" :x1="x" :x2="x" :y1="cellSize/2" :y2="size-cellSize/2" stroke="black" stroke-width="1"></line>
-    <line v-for="y in centers" :y1="y" :y2="y" :x1="cellSize/2" :x2="size-cellSize/2" stroke="black" stroke-width="1"></line>
+    <line v-for="x in centers" :x1="pointToCoordinate(x)" :x2="pointToCoordinate(x)" :y1="pointToCoordinate(0)" :y2="pointToCoordinate(size-1)" stroke="black" stroke-width="1"></line>
+    <line v-for="y in centers" :y1="pointToCoordinate(y)" :y2="pointToCoordinate(y)" :x1="pointToCoordinate(0)" :x2="pointToCoordinate(size-1)" stroke="black" stroke-width="1"></line>
     <circle v-for="dot in guides" :cx="pointToCoordinate(dot.x)" :cy="pointToCoordinate(dot.y)" r="3"></circle>
   </g>
 </template>
 
 
 <script>
-import map from 'lodash/fp/map';
 import range from 'lodash/fp/range';
+import { SCALE } from './graphics';
 
 const GUIDE_DOTS = {
   19: [
@@ -33,7 +33,7 @@ const GUIDE_DOTS = {
 };
 
 export default {
-  props: ['size', 'gameSize'],
+  props: ['size'],
   methods: {
     pointToCoordinate: function (x) {
       let cs = this.cellSize;
@@ -42,16 +42,13 @@ export default {
   },
   computed: {
     cellSize: function () {
-      return this.size / this.gameSize;
+      return SCALE;
     },
     guides: function () {
-      return GUIDE_DOTS[this.gameSize];
+      return GUIDE_DOTS[this.size];
     },
     centers: function () {
-      let cs = this.cellSize;
-      return map(c => {
-        return c * cs + cs / 2;
-      })(range(0)(this.gameSize));
+      return range(0)(this.size);
     }
   }
 }

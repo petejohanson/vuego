@@ -4,15 +4,19 @@
 
 <script>
 import { BLACK, WHITE } from './color';
+import { SCALE } from './graphics';
 
 export default {
-  props: ['x', 'y', 'color', 'size'],
+  props: ['x', 'y', 'color'],
   computed: {
     isBlack: function () {
       return this.color === BLACK;
     },
     isWhite: function () {
       return this.color === WHITE;
+    },
+    size: function () {
+      return SCALE / 2;
     }
   }
 }

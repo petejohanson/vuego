@@ -6,20 +6,22 @@
 </template>
 
 <script>
+import { SCALE } from './graphics';
+
 export default {
-  props: ['x', 'y', 'size'],
+  props: ['x', 'y'],
   computed: {
     topLeft () {
-      return { x: this.x - this.size / 4, y: this.y - this.size / 4 };
+      return { x: this.x - SCALE / 4, y: this.y - SCALE / 4 };
     },
     topRight () {
-      return { x: this.x + this.size / 4, y: this.y - this.size / 4 };
+      return { x: this.x + SCALE / 4, y: this.y - SCALE / 4 };
     },
     bottomLeft () {
-      return { x: this.x - this.size / 4, y: this.y + this.size / 4 };
+      return { x: this.x - SCALE / 4, y: this.y + SCALE / 4 };
     },
     bottomRight () {
-      return { x: this.x + this.size / 4, y: this.y + this.size / 4 };
+      return { x: this.x + SCALE / 4, y: this.y + SCALE / 4 };
     }
   }
 }

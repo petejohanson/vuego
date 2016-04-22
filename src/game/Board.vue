@@ -1,19 +1,20 @@
 <template>
   <svg version="1.1" xmlns="http://www.w3.org/2000/svg"
        class="vuego-board"
-       :height="size" :width="size"
+       v-el:board
+       :view-box.camel="viewBox"
        @mousemove="mouseMove"
        @mouseleave="mouseLeave"
        @click.capture="click">
-    <grid :size="size" :game-size="gameSize"></grid>
+    <grid :size="size"></grid>
     <g>
-      <stone v-for="s in stones" :size="cellSize/2" :x="pointToCoordinate(s.x)" :y="pointToCoordinate(s.y)" :color="s.color"></stone>
+      <stone v-for="s in stones" :x="pointToCoordinate(s.x)" :y="pointToCoordinate(s.y)" :color="s.color"></stone>
     </g>
     <g v-if="hover">
-      <stone class="vuego-stone-hover" :size="cellSize/2" :x="pointToCoordinate(hover.x)" :y="pointToCoordinate(hover.y)" :color="currentTurn"></stone>
+      <stone class="vuego-stone-hover" :x="pointToCoordinate(hover.x)" :y="pointToCoordinate(hover.y)" :color="currentTurn"></stone>
     </g>
     <g v-if="ko">
-      <ko-marker :size="cellSize" :x="pointToCoordinate(ko.x)" :y="pointToCoordinate(ko.y)"></ko-marker>
+      <ko-marker :x="pointToCoordinate(ko.x)" :y="pointToCoordinate(ko.y)"></ko-marker>
     </g>
   </svg>
 </template>
@@ -23,11 +24,11 @@ import Stone from './Stone';
 import Grid from './Grid';
 import KoMarker from './KoMarker';
 
+import { SCALE } from './graphics';
 import { playerTurn } from './actions';
 
-import offset from 'mouse-event-offset';
-
 import map from 'lodash/fp/map';
+import mapValues from 'lodash/fp/mapValues';
 import flatMap from 'lodash/fp/flatMap';
 import filter from 'lodash/fp/filter';
 import range from 'lodash/fp/range';
@@ -36,12 +37,6 @@ let range0 = range(0);
 let compact = filter(Boolean);
 
 export default {
-  props: {
-    size: {
-      type: Number,
-      default: 350
-    }
-  },
   data () {
     return {
       hover: null
@@ -49,7 +44,10 @@ export default {
   },
   computed: {
     cellSize: function () {
-      return this.size / this.gameSize;
+      return SCALE;
+    },
+    viewBox: function () {
+      return `0 0 ${this.size * SCALE} ${this.size * SCALE}`;
     }
   },
   components: {
@@ -63,26 +61,42 @@ export default {
         return;
       }
 
-      let [x, y] = map(this.coordinateToPoint)(offset(event));
-      this.hover = {
-        x,
-        y
-      };
+      let p = this.eventToPoint(event);
+      this.hover = this.isValidPoint(p) ? p : null;
     },
     mouseLeave: function (event) {
       this.hover = null;
     },
     click: function (event) {
-      let [x, y] = map(this.coordinateToPoint)(offset(event));
+      let p = this.eventToPoint(event);
 
-      this.play(x, y);
+      if (!this.isValidPoint(p)) {
+        return;
+      }
+
+      this.play(p.x, p.y);
+    },
+    isValidPoint (p) {
+      let { x, y } = p;
+      return x >= 0 && y >= 0 && x < this.size && y < this.size;
     },
     pointToCoordinate: function (x) {
       let cs = this.cellSize;
       return x * cs + cs / 2.0;
     },
     coordinateToPoint: function (x) {
-      return Math.abs(Math.round((x - this.cellSize / 2) / this.cellSize));
+      return Math.round((x - this.cellSize / 2) / this.cellSize);
+    },
+    eventToPoint: function (event) {
+      let point = this.$el.createSVGPoint();
+      point.x = event.clientX;
+      point.y = event.clientY;
+
+      let ctm = this.$els.board.getScreenCTM();
+
+      let { x, y } = point.matrixTransform(ctm.inverse());
+
+      return mapValues(a => this.coordinateToPoint(a))({ x, y });
     }
   },
   vuex: {
@@ -90,7 +104,7 @@ export default {
       play: playerTurn
     },
     getters: {
-      gameSize (state) {
+      size (state) {
         return state.size;
       },
       currentTurn (state) {
@@ -125,9 +139,14 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .vuego-board {
-  cursor: none;
+  display: block;
+  cursor: grabbing;
+  width: 100%;
+  height: 100%;
+  min-width: 300px;
+  min-height: 300px;
 }
 
 .vuego-stone-hover {

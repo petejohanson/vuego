@@ -26,11 +26,17 @@ export default {
 <style scoped>
 
 .captures {
+  padding: 0;
+  margin: 0;
+}
+
+.captures li {
+  width: 49%;
   list-style: none;
+  display: inline-block;
   margin: 0;
   padding: 0;
 }
-
 
 </style>
 
