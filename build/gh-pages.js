@@ -1,11 +1,14 @@
 var ghpages = require('gh-pages');
 var path = require('path');
 var ora = require('ora');
-
+var pkg = require('../package.json');
 var spinner = ora('publishing to GitHub Pages...');
 spinner.start();
 
-var options = {};
+var options = {
+  user: pkg.author
+};
+
 if (process.env.GH_TOKEN) {
   options.repo = 'https://' + process.env.GH_TOKEN + '@github.com/petejohanson/vuego.git';
 }

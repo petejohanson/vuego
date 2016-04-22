@@ -2,7 +2,11 @@
   "name": "vuego",
   "version": "0.1.0",
   "description": "A Vue.js Go Game",
-  "author": "Peter Johanson",
+  "author": {
+    "name": "Peter Johanson",
+    "email": "peter@peterjohanson.com",
+    "url": "https://github.com/petejohanson"
+  },
   "private": true,
   "scripts": {
     "dev": "node build/dev-server.js",
