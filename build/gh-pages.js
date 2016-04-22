@@ -1,9 +1,9 @@
 var ghpages = require('gh-pages');
 var path = require('path');
-var ora = require('ora')
+var ora = require('ora');
 
-var spinner = ora('publishing to GitHub Pages...')
-spinner.start()
+var spinner = ora('publishing to GitHub Pages...');
+spinner.start();
 
 var options = {};
 if (process.env.GH_TOKEN) {
@@ -13,6 +13,10 @@ if (process.env.GH_TOKEN) {
 ghpages.publish(path.join(__dirname, '../dist'), options,
   function(err) {
     spinner.stop();
-    if (err) throw err;
+    if (err) {
+      process.stderr.write(err.toString());
+      throw err;
+    }
+    process.stdout.write('Finished publishing to GitHub Pages');
   }
 );
