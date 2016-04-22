@@ -5,7 +5,7 @@ var ora = require('ora')
 var spinner = ora('publishing to GitHub Pages...')
 spinner.start()
 
-let options = {};
+var options = {};
 if (process.env.GH_TOKEN) {
   options.repo = 'https://' + process.env.GH_TOKEN + '@github.com/petejohanson/vuego.git';
 }
