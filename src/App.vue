@@ -65,6 +65,8 @@ body {
 }
 
 .app-footer {
+  color: rgb(158,158,158);
+  background-color: rgb(66,66,66);
   padding: 8px 8px;
   margin: 0;
   position: absolute;
