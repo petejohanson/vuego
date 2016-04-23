@@ -123,7 +123,7 @@ describe('game engine', () => {
 
         let { x, y } = check;
 
-        let res = validatePlay({board, size: board.length, current_turn: color, ko }, x, y);
+        let res = validatePlay({ board, size: board.length, current_turn: color, ko }, x, y);
 
         expect(res).toEqual(expectedResult);
       });
