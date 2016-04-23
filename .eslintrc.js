@@ -6,6 +6,9 @@ module.exports = {
   plugins: [
     'html'
   ],
+  globals: {
+    "componentHandler": true
+  },
   // add your custom rules here
   'rules': {
     'semi': 0,

@@ -6,12 +6,14 @@
       </div>
       <board></board>
       <div>
-        <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" @click="newGame(19)">
+        <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" @click="promptNewGame">
           New Game
         </button>
       </div>
     </div>
   </div>
+
+  <new-game-dialog v-ref:new-game-dialog></new-game-dialog>
 </template>
 
 <script type="text/babel">
@@ -23,6 +25,7 @@ Vue.use(Vuex);
 import Hello from './components/Hello';
 import Board from './game/Board';
 import Captures from './game/Captures';
+import NewGameDialog from './game/NewGameDialog';
 
 import store from './game/store';
 
@@ -33,11 +36,17 @@ export default {
   components: {
     Hello,
     Board,
-    Captures
+    Captures,
+    NewGameDialog
   },
   vuex: {
     actions: {
       newGame
+    }
+  },
+  methods: {
+    promptNewGame: function () {
+      this.$refs.newGameDialog.show();
     }
   },
   ready: function () {
