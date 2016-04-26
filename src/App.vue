@@ -4,12 +4,31 @@
       <div>
         <captures></captures>
       </div>
-      <board></board>
-      <div>
-        <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" @click="promptNewGame">
-          New Game
-        </button>
+      <div v-if="!currentTurn" class="app-new-game-hint-container">
+        <div>
+          <h3 class="app-new-game-hint">Press '+' button to start</h3>
+        </div>
       </div>
+      <board></board>
+    </div>
+  </div>
+
+  <div class="app-actions">
+    <div v-if="currentTurn">
+      <mdl-button  id="pass" fab icon colored class="mdl-js-ripple-effect" @click="pass">
+        <i class="material-icons">skip_next</i>
+      </mdl-button>
+      <mdl-tooltip for="pass">
+        Pass Turn
+      </mdl-tooltip>
+    </div>
+    <div v-else>
+      <mdl-button v-else id="new_game" fab icon colored class="mdl-js-ripple-effect" @click="promptNewGame">
+        <i class="material-icons">add</i>
+      </mdl-button>
+      <mdl-tooltip for="new_game">
+        New Game
+      </mdl-tooltip>
     </div>
   </div>
 
@@ -22,6 +41,8 @@ import Vuex from 'vuex';
 
 Vue.use(Vuex);
 
+import { MdlButton, MdlTooltip } from 'vue-mdl';
+
 import Hello from './components/Hello';
 import Board from './game/Board';
 import Captures from './game/Captures';
@@ -29,7 +50,8 @@ import NewGameDialog from './game/NewGameDialog';
 
 import store from './game/store';
 
-import { newGame } from './game/actions';
+import { newGame, pass } from './game/actions';
+import { currentTurn } from './game/getters';
 
 export default {
   store,
@@ -37,49 +59,120 @@ export default {
     Hello,
     Board,
     Captures,
-    NewGameDialog
+    NewGameDialog,
+    MdlTooltip,
+    MdlButton
   },
   vuex: {
     actions: {
-      newGame
+      newGame,
+      pass
+    },
+    getters: {
+      currentTurn
     }
   },
   methods: {
     promptNewGame: function () {
       this.$refs.newGameDialog.show();
     }
-  },
-  ready: function () {
-    this.newGame(19);
   }
 }
 </script>
 
-<style>
-html {
+<style lang="scss">
+@import './style.scss';
+
+html, body {
   height: 100%;
+  margin: 0;
+  padding: 0;
 }
 
 body {
+  position: relative;
+}
+
+
+.app-actions {
+  position: fixed;
+  z-index: 120;
+  right: 0;
+  bottom: 0;
+  margin: 30px;
+
+}
+
+.app-new-game-hint-container {
+  position: absolute;
+  width: 100%;
   height: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.app-new-game-hint-container > * {
+  height: 100%;
+  width: 70vh;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.app-new-game-hint {
+  @extend .mdl-shadow--2dp;
+  border-radius: 2px;
+  background-color: #fff;
+  padding: 6px;
 }
 
 .app-footer {
   color: rgb(158,158,158);
   background-color: rgb(66,66,66);
-  padding: 8px 8px;
+  padding: 4px 4px;
   margin: 0;
   position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
   opacity: .90;
+}
+
+@media (orientation: landscape) {
+  .app-footer {
+    top: 0;
+    bottom: 0;
+    right: 0;
+  }
+
+  .app-footer ul {
+    flex-direction: column;
+    min-height: 100%;
+    margin: 0;
+  }
+
+  .app-footer ul li {
+    margin: 10px 0;
+  }
+}
+@media (orientation: portrait) {
+  .app-footer {
+    bottom: 0;
+    left: 0;
+    right: 0;
+  }
+
+  .app-footer ul {
+    flex-direction: row;
+  }
+
+  .app-footer ul li {
+    margin: 0 10px;
+  }
 }
 
 .app-footer ul {
   padding: 0;
   display: flex;
-  flex-direction: row;
   align-items: center;
   justify-content: center;
   width: 100%;
@@ -88,7 +181,6 @@ body {
 .app-footer ul li {
   display: list-item;
   list-style: none;
-  margin: 0 10px;
   width: auto;
   height: auto;
   background-color: transparent;
@@ -132,6 +224,7 @@ body {
   height: 100%;
   font-family: Helvetica, sans-serif;
   text-align: center;
+  position: relative;
 }
 
 </style>

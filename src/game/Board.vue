@@ -3,6 +3,7 @@
        class="vuego-board"
        v-el:board
        :view-box.camel="viewBox"
+       preserveAspectRatio="xMidYMid meet"
        @mousemove="mouseMove"
        @mouseleave="mouseLeave"
        @click.capture="click">
@@ -19,7 +20,7 @@
   </svg>
 </template>
 
-<script>
+<script type="text/babel">
 import Stone from './Stone';
 import Grid from './Grid';
 import KoMarker from './KoMarker';

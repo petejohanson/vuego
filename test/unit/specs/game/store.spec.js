@@ -1,6 +1,6 @@
 import { state, mutations } from 'src/game/store';
 import { BLACK, WHITE } from 'src/game/color';
-const { PLAYER_TURN, NEW_GAME } = mutations;
+const { PLAYER_TURN, PASS_TURN, NEW_GAME } = mutations;
 
 describe('game store', () => {
   describe('starting a new game', () => {
@@ -51,6 +51,15 @@ describe('game store', () => {
           PLAYER_TURN(s, 1, 2);
 
           expect(s.board[2][1]).toBe(BLACK);
+          expect(s.current_turn).toBe(WHITE);
+        });
+      });
+
+      describe('passing a turn', () => {
+        it('should leave the board as is, and change the current turn', () => {
+          PASS_TURN(s);
+
+          // TODO: Validate no changes to board.
           expect(s.current_turn).toBe(WHITE);
         });
       });

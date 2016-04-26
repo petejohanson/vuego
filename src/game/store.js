@@ -46,6 +46,11 @@ export const mutations = {
 
     state.ko = ko;
     state.current_turn = oppositeColor(state.current_turn);
+  },
+
+  PASS_TURN (state) {
+    state.ko = null;
+    state.current_turn = oppositeColor(state.current_turn);
   }
 };
 
