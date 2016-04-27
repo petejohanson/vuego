@@ -48,7 +48,9 @@ export default {
     }
   },
   ready () {
-    pf.registerDialog(this.$els.newGame);
+    if (!this.$els.newGame.showModal) {
+      pf.registerDialog(this.$els.newGame);
+    }
     componentHandler.upgradeElement(this.$els.sizeRange);
   }
 }
