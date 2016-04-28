@@ -26,6 +26,12 @@ describe('game store', () => {
       expect(s.captures[WHITE]).toBe(0);
     });
 
+    it('has no previous passes',
+      () => expect(s.pass_last_turn).toBe(false));
+
+    it('is not done',
+      () => expect(s.game_done).toBe(false));
+    
     it('has the correct number of rows',
        () => expect(s.board.length).toBe(19));
     it('has the correct first turn',
@@ -52,6 +58,7 @@ describe('game store', () => {
 
           expect(s.board[2][1]).toBe(BLACK);
           expect(s.current_turn).toBe(WHITE);
+          expect(s.pass_last_turn).toBe(false);
         });
       });
 
@@ -61,8 +68,19 @@ describe('game store', () => {
 
           // TODO: Validate no changes to board.
           expect(s.current_turn).toBe(WHITE);
+          expect(s.pass_last_turn).toBe(true);
         });
       });
+
+      describe('two consecutive passes', () => {
+        it('should mark the game as done', () => {
+          PASS_TURN(s);
+          PASS_TURN(s);
+
+          expect(s.current_turn).toBeNull();
+          expect(s.game_done).toBe(true);
+        })
+      })
 
       describe('player turn to capture a piece', () => {
         beforeEach(() => {
@@ -82,7 +100,7 @@ describe('game store', () => {
       describe('attempting to play an occupied location', () => {
         let s = Object.assign({}, state);
         beforeEach(() => {
-          NEW_GAME(s, 19)
+          NEW_GAME(s, 19);
           PLAYER_TURN(s, 1, 1);
         });
 

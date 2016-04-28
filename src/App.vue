@@ -5,7 +5,14 @@
         <captures></captures>
       </div>
       <div v-if="!currentTurn" class="app-new-game-hint-container">
-        <div>
+        <div v-if="gameDone" >
+          <div class="app-new-game-hint">
+            <h5>Game Complete!</h5>
+            <span>Black: {{score[BLACK]}}</span>
+            <span>White: {{score[WHITE]}}</span>
+          </div>
+        </div>
+        <div v-else>
           <h3 class="app-new-game-hint">Press '+' button to start</h3>
         </div>
       </div>
@@ -48,10 +55,11 @@ import Board from './game/Board';
 import Captures from './game/Captures';
 import NewGameDialog from './game/NewGameDialog';
 
+import { BLACK, WHITE } from './game/color';
 import store from './game/store';
 
 import { newGame, pass } from './game/actions';
-import { currentTurn } from './game/getters';
+import { currentTurn, gameDone, score } from './game/getters';
 
 export default {
   store,
@@ -69,8 +77,16 @@ export default {
       pass
     },
     getters: {
-      currentTurn
+      currentTurn,
+      gameDone,
+      score
     }
+  },
+  data: function () {
+    return {
+      WHITE,
+      BLACK
+    };
   },
   methods: {
     promptNewGame: function () {

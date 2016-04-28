@@ -13,6 +13,10 @@ export function currentTurn (state) {
   return state.current_turn;
 }
 
+export function gameDone (state) {
+  return state.game_done;
+}
+
 function inspectTerritory (state, x, y, t, territories) {
   if (territories[y][x]) {
     return;
