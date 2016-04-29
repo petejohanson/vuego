@@ -32,5 +32,15 @@ export default [
            '++WWB+\n' +
            '+++WB+',
     expect: { [BLACK]: 0, [WHITE]: 0 }
-  }
+  },
+  {
+    test: 'Basic game, with eyes',
+    board: '+++WB+\n' +
+           '++WB++\n' +
+           '+WWBB+\n' +
+           'W+WB+B\n' +
+           '+WWWB+\n' +
+           '+++WB+',
+    expect: { [BLACK]: 7, [WHITE]: 11 }
+  },
 ];
