@@ -4,16 +4,23 @@
       <div>
         <captures></captures>
       </div>
-      <div v-if="!currentTurn" class="app-new-game-hint-container">
-        <div v-if="gameDone" >
-          <div class="app-new-game-hint">
-            <h5>Game Complete!</h5>
-            <span>Black: {{score[BLACK]}}</span>
-            <span>White: {{score[WHITE]}}</span>
+      <div v-if="!currentTurn" class="app-prompt-overlay">
+        <div>
+          <div class="app-prompt">
+            <div v-if="gameDone">
+              <h5>Game Complete!</h5>
+              <ul class="app-game-scores">
+                <li>Black: {{score[BLACK]}}</li>
+                <li>White: {{score[WHITE]}}</li>
+              </ul>
+            </div>
+            <div v-else>
+              <h5>Welcome to VueGo</h5>
+            </div>
+            <mdl-button colored raised class="mdl-js-ripple-effect" @click="promptNewGame">
+              New Game
+            </mdl-button>
           </div>
-        </div>
-        <div v-else>
-          <h3 class="app-new-game-hint">Press '+' button to start</h3>
         </div>
       </div>
       <board></board>
@@ -27,14 +34,6 @@
       </mdl-button>
       <mdl-tooltip for="pass">
         Pass Turn
-      </mdl-tooltip>
-    </div>
-    <div v-else>
-      <mdl-button v-else id="new_game" fab icon colored class="mdl-js-ripple-effect" @click="promptNewGame">
-        <i class="material-icons">add</i>
-      </mdl-button>
-      <mdl-tooltip for="new_game">
-        New Game
       </mdl-tooltip>
     </div>
   </div>
@@ -119,7 +118,7 @@ body {
 
 }
 
-.app-new-game-hint-container {
+.app-prompt-overlay {
   position: absolute;
   width: 100%;
   height: 100%;
@@ -128,7 +127,7 @@ body {
   justify-content: center;
 }
 
-.app-new-game-hint-container > * {
+.app-prompt-overlay > * {
   height: 100%;
   width: 70vh;
   margin: 0;
@@ -137,11 +136,26 @@ body {
   justify-content: center;
 }
 
-.app-new-game-hint {
+.app-prompt {
   @extend .mdl-shadow--2dp;
   border-radius: 2px;
   background-color: #fff;
   padding: 6px;
+}
+
+.app-game-scores {
+  display: inline-block;
+  list-style-type: none;
+  font-weight: bold;
+  font-size: larger;
+  margin: 8px 0;
+  padding: 0;
+}
+
+.app-game-scores li {
+  display: inline-block;
+  margin: 0 8px;
+  padding: 0;
 }
 
 .app-footer {
