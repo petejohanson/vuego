@@ -4,7 +4,7 @@
       <div>
         <captures></captures>
       </div>
-      <div v-if="!currentTurn" class="app-prompt-overlay">
+      <div v-if="showNewGamePrompt" class="app-prompt-overlay">
         <div>
           <div class="app-prompt">
             <div v-if="gameDone">
@@ -23,12 +23,12 @@
           </div>
         </div>
       </div>
-      <board></board>
+      <board @play="play" :local-current-turn="localCurrentTurn" :ko="ko" :size="size" :board="board"></board>
     </div>
   </div>
 
   <div class="app-actions">
-    <div v-if="currentTurn">
+    <div v-if="localCurrentTurn">
       <mdl-button  id="pass" fab icon colored class="mdl-js-ripple-effect" @click="pass">
         <i class="material-icons">skip_next</i>
       </mdl-button>
@@ -38,7 +38,7 @@
     </div>
   </div>
 
-  <new-game-dialog v-ref:new-game-dialog></new-game-dialog>
+  <new-game-dialog v-if="showNewGameDialog" v-on:new-game="doNewGame"></new-game-dialog>
 </template>
 
 <script type="text/babel">
@@ -57,8 +57,10 @@ import NewGameDialog from './game/NewGameDialog';
 import { BLACK, WHITE } from './game/color';
 import store from './game/store';
 
-import { newGame, pass } from './game/actions';
-import { currentTurn, gameDone, score } from './game/getters';
+import LocalGame from './game/local_game';
+
+import { newGame } from './game/actions';
+import { gameDone, score, ko, size, gameType, board } from './game/getters';
 
 export default {
   store,
@@ -72,24 +74,53 @@ export default {
   },
   vuex: {
     actions: {
-      newGame,
-      pass
+      newGame
     },
     getters: {
-      currentTurn,
+      gameType,
+      ko,
       gameDone,
-      score
+      score,
+      board,
+      size
+    }
+  },
+  computed: {
+    game: function () {
+      switch (this.gameType) {
+        case 'local':
+          return new LocalGame(this.$store);
+        default:
+          return null;
+      }
+    },
+    localCurrentTurn: function () {
+      return this.game ? this.game.localCurrentTurn() : null;
+    },
+    showNewGamePrompt: function () {
+      return !this.game || this.gameDone;
     }
   },
   data: function () {
     return {
       WHITE,
-      BLACK
+      BLACK,
+      showNewGameDialog: false
     };
   },
   methods: {
+    pass: function () {
+      this.game.pass();
+    },
+    play: function ({ x, y }) {
+      this.game.play({ x, y }); // TODO: Color as well?
+    },
+    doNewGame: function (options) {
+      this.showNewGameDialog = false;
+      this.newGame(options);
+    },
     promptNewGame: function () {
-      this.$refs.newGameDialog.show();
+      this.showNewGameDialog = true;
     }
   }
 }

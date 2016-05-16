@@ -9,8 +9,24 @@ import filter from 'lodash/fp/filter';
 import defaults from 'lodash/fp/defaults';
 import flow from 'lodash/fp/flow';
 
+export function ko (state) {
+  return state.ko;
+}
+
+export function size (state) {
+  return state.size;
+}
+
+export function gameType (state) {
+  return state.gameType;
+}
+
 export function currentTurn (state) {
   return state.current_turn;
+}
+
+export function board (state) {
+  return state.board;
 }
 
 export function gameDone (state) {

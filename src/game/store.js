@@ -10,6 +10,7 @@ import { play, validatePlay } from './engine';
 export const state = {
   game_done: false,
   board: matrix(19, 19),
+  gameType: 'placeholder',
   current_turn: null,
   pass_last_turn: false,
   size: 19,
@@ -22,6 +23,7 @@ export const state = {
 
 export const mutations = {
   NEW_GAME (state, size) {
+    state.gameType = 'local';
     state.game_done = false;
     state.size = size;
     state.board = matrix(size, size);

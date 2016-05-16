@@ -1,6 +1,6 @@
 <template>
   <svg version="1.1" xmlns="http://www.w3.org/2000/svg"
-       class="vuego-board"
+       class="board"
        v-el:board
        :view-box.camel="viewBox"
        preserveAspectRatio="xMidYMid meet"
@@ -12,7 +12,7 @@
       <stone v-for="s in stones" :x="pointToCoordinate(s.x)" :y="pointToCoordinate(s.y)" :color="s.color"></stone>
     </g>
     <g v-if="hover">
-      <stone class="vuego-stone-hover" :x="pointToCoordinate(hover.x)" :y="pointToCoordinate(hover.y)" :color="currentTurn"></stone>
+      <stone class="hover-stone" :x="pointToCoordinate(hover.x)" :y="pointToCoordinate(hover.y)" :color="hover.color"></stone>
     </g>
     <g v-if="ko">
       <ko-marker :x="pointToCoordinate(ko.x)" :y="pointToCoordinate(ko.y)"></ko-marker>
@@ -26,7 +26,6 @@ import Grid from './Grid';
 import KoMarker from './KoMarker';
 
 import { SCALE } from './graphics';
-import { playerTurn } from './actions';
 
 import map from 'lodash/fp/map';
 import mapValues from 'lodash/fp/mapValues';
@@ -38,6 +37,12 @@ let range0 = range(0);
 let compact = filter(Boolean);
 
 export default {
+  props: {
+    localCurrentTurn: String,
+    ko: Object,
+    size: Number,
+    board: Array
+  },
   data () {
     return {
       hover: null
@@ -49,6 +54,27 @@ export default {
     },
     viewBox: function () {
       return `0 0 ${this.size * SCALE} ${this.size * SCALE}`;
+    },
+    stones () {
+      // TODO: This is ugly. Must be a nicer lodash/fp way.
+      let ret = compact(flatMap(y => {
+        return map(x => {
+          let color = this.board[y][x];
+          if (!color) {
+            return null;
+          }
+
+          let stone = {
+            x,
+            y,
+            color
+          };
+
+          return stone;
+        })(range0(this.size));
+      })(range0(this.size)));
+
+      return ret;
     }
   },
   components: {
@@ -58,14 +84,14 @@ export default {
   },
   methods: {
     mouseMove: function (event) {
-      if (!this.currentTurn) {
+      if (!this.localCurrentTurn) {
         return;
       }
 
       let p = this.eventToPoint(event);
-      this.hover = this.isValidPoint(p) ? p : null;
+      this.hover = this.isValidPoint(p) ? { x: p.x, y: p.y, color: this.localCurrentTurn } : null;
     },
-    mouseLeave: function (event) {
+    mouseLeave: function () {
       this.hover = null;
     },
     click: function (event) {
@@ -75,7 +101,7 @@ export default {
         return;
       }
 
-      this.play(p.x, p.y);
+      this.$dispatch('play', { x: p.x, y: p.y });
     },
     isValidPoint (p) {
       let { x, y } = p;
@@ -99,49 +125,12 @@ export default {
 
       return mapValues(a => this.coordinateToPoint(a))({ x, y });
     }
-  },
-  vuex: {
-    actions: {
-      play: playerTurn
-    },
-    getters: {
-      size (state) {
-        return state.size;
-      },
-      currentTurn (state) {
-        return state.current_turn;
-      },
-      ko (state) {
-        return state.ko;
-      },
-      stones (state) {
-        // TODO: This is ugly. Must be a nicer lodash/fp way.
-        let ret = compact(flatMap(y => {
-          return map(x => {
-            let color = state.board[y][x];
-            if (!color) {
-              return null;
-            }
-
-            let stone = {
-              x,
-              y,
-              color
-            };
-
-            return stone;
-          })(range0(state.size));
-        })(range0(state.size)));
-
-        return ret;
-      }
-    }
   }
 }
 </script>
 
 <style scoped>
-.vuego-board {
+.board {
   display: block;
   cursor: grabbing;
   width: 100%;
@@ -150,7 +139,7 @@ export default {
   min-height: 300px;
 }
 
-.vuego-stone-hover {
+.hover-stone {
   fill-opacity: .75;
 }
 </style>

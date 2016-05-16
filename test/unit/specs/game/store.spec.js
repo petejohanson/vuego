@@ -21,6 +21,9 @@ describe('game store', () => {
     it('has the specified size',
        () => expect(s.size).toBe(19));
 
+    it('has a game type of "local"',
+       () => expect(s.gameType).toBe('local'));
+
     it('has 0 captures for both colors', () => {
       expect(s.captures[BLACK]).toBe(0);
       expect(s.captures[WHITE]).toBe(0);
@@ -31,7 +34,7 @@ describe('game store', () => {
 
     it('is not done',
       () => expect(s.game_done).toBe(false));
-    
+
     it('has the correct number of rows',
        () => expect(s.board.length).toBe(19));
     it('has the correct first turn',

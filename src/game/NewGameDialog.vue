@@ -17,8 +17,6 @@
 <script type="text/babel">
 import pf from 'dialog-polyfill';
 
-import { newGame } from './actions';
-
 const SIZES = [9, 13, 19];
 
 export default {
@@ -30,21 +28,22 @@ export default {
   computed: {
     sizes: () => SIZES
   },
-  vuex: {
-    actions: {
-      newGame
-    }
-  },
+//  vuex: {
+//    actions: {
+//      newGame
+//    }
+//  },
   methods: {
-    show: function () {
-      this.$els.newGame.showModal();
-    },
+//    show: function () {
+//      this.$els.newGame.showModal();
+//    },
     doNewGame: function () {
-      this.newGame(SIZES[this.sizeIndex]);
-      this.close();
+      this.$dispatch('new-game', { size: SIZES[this.sizeIndex] });
+//      this.newGame(SIZES[this.sizeIndex]);
+//      this.close();
     },
     close: function () {
-      this.$els.newGame.close();
+//      this.$els.newGame.close();
     }
   },
   ready () {
@@ -52,6 +51,7 @@ export default {
       pf.registerDialog(this.$els.newGame);
     }
     componentHandler.upgradeElement(this.$els.sizeRange);
+    this.$els.newGame.showModal();
   }
 }
 </script>
