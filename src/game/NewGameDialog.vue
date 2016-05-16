@@ -28,22 +28,12 @@ export default {
   computed: {
     sizes: () => SIZES
   },
-//  vuex: {
-//    actions: {
-//      newGame
-//    }
-//  },
   methods: {
-//    show: function () {
-//      this.$els.newGame.showModal();
-//    },
     doNewGame: function () {
       this.$dispatch('new-game', { size: SIZES[this.sizeIndex] });
-//      this.newGame(SIZES[this.sizeIndex]);
-//      this.close();
     },
     close: function () {
-//      this.$els.newGame.close();
+      this.$dispatch('cancel');
     }
   },
   ready () {

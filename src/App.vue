@@ -38,7 +38,7 @@
     </div>
   </div>
 
-  <new-game-dialog v-if="showNewGameDialog" v-on:new-game="doNewGame"></new-game-dialog>
+  <new-game-dialog v-if="showNewGameDialog" @new-game="doNewGame" @cancel="hideNewGamePrompt"></new-game-dialog>
 </template>
 
 <script type="text/babel">
@@ -121,6 +121,9 @@ export default {
     },
     promptNewGame: function () {
       this.showNewGameDialog = true;
+    },
+    hideNewGamePrompt: function () {
+      this.showNewGameDialog = false;
     }
   }
 }
