@@ -42,5 +42,5 @@ export default [
            '+WWWB+\n' +
            '+++WB+',
     expect: { [BLACK]: 7, [WHITE]: 11 }
-  },
+  }
 ];
