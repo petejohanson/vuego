@@ -22,7 +22,7 @@ export const state = {
 };
 
 export const mutations = {
-  NEW_GAME (state, size) {
+  NEW_LOCAL_GAME (state, size) {
     state.gameType = 'local';
     state.game_done = false;
     state.size = size;
@@ -31,7 +31,37 @@ export const mutations = {
     state.captures[BLACK] = 0;
     state.captures[WHITE] = 0;
     state.ko = null;
+    state.remoteGameId = null;
     state.pass_last_turn = false;
+  },
+
+  NEW_REMOTE_GAME (state, { size, gameId, inviteId, [BLACK]: blackId, [WHITE]: whiteId }) {
+    state.gameType = 'remote';
+    state.game_done = false;
+    state.size = size;
+    state.captures = { [BLACK]: 0, [WHITE]: 0 };
+    state.board = matrix(size, size);
+    state.remoteGameId = gameId;
+    state.remoteInviteId = inviteId;
+    state.current_turn = BLACK;
+    Vue.set(state, BLACK, blackId);
+    Vue.set(state, WHITE, whiteId);
+  },
+
+  JOIN_REMOTE_GAME (state, { size, gameId, [BLACK]: blackId, [WHITE]: whiteId }) {
+    state.gameType = 'remote';
+    state.game_done = false;
+    state.size = size;
+    state.captures = { [BLACK]: 0, [WHITE]: 0 };
+    state.board = matrix(size, size);
+    state.remoteGameId = gameId;
+    state.current_turn = BLACK;
+    Vue.set(state, BLACK, blackId);
+    Vue.set(state, WHITE, whiteId);
+  },
+
+  REMOTE_MOVE (state, moveId) {
+    state.lastRemoteMove = moveId;
   },
 
   PLAYER_TURN (state, x, y) {

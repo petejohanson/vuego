@@ -1,6 +1,7 @@
 <template>
   <svg version="1.1" xmlns="http://www.w3.org/2000/svg"
        class="board"
+       v-class="{ 'hover': hover }"
        v-el:board
        :view-box.camel="viewBox"
        preserveAspectRatio="xMidYMid meet"
@@ -132,11 +133,14 @@ export default {
 <style scoped>
 .board {
   display: block;
-  cursor: grabbing;
   width: 100%;
   height: 100%;
   min-width: 300px;
   min-height: 300px;
+}
+
+.board.hover {
+  cursor: grabbing;
 }
 
 .hover-stone {

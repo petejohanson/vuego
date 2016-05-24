@@ -20,6 +20,9 @@
             <mdl-button colored raised class="mdl-js-ripple-effect" @click="promptNewGame">
               New Game
             </mdl-button>
+            <mdl-button colored raised class="mdl-js-ripple-effect" @click="promptJoinGame">
+              Join Game
+            </mdl-button>
           </div>
         </div>
       </div>
@@ -39,6 +42,7 @@
   </div>
 
   <new-game-dialog v-if="showNewGameDialog" @new-game="doNewGame" @cancel="hideNewGamePrompt"></new-game-dialog>
+  <join-game-dialog v-if="showJoinGameDialog" @join-game="doJoinGame" @cancel="hideJoinGamePrompt"></join-game-dialog>
 </template>
 
 <script type="text/babel">
@@ -47,19 +51,23 @@ import Vuex from 'vuex';
 
 Vue.use(Vuex);
 
+import promiseTry from 'es6-promise-try';
+
 import { MdlButton, MdlTooltip } from 'vue-mdl';
 
 import Hello from './components/Hello';
 import Board from './game/Board';
 import Captures from './game/Captures';
 import NewGameDialog from './game/NewGameDialog';
+import JoinGameDialog from './game/JoinGameDialog';
 
 import { BLACK, WHITE } from './game/color';
 import store from './game/store';
 
 import LocalGame from './game/local_game';
+import RemoteGame from './game/remote_game';
 
-import { newGame } from './game/actions';
+import { newGame, joinGame } from './game/actions';
 import { gameDone, score, ko, size, gameType, board } from './game/getters';
 
 export default {
@@ -69,12 +77,14 @@ export default {
     Board,
     Captures,
     NewGameDialog,
+    JoinGameDialog,
     MdlTooltip,
     MdlButton
   },
   vuex: {
     actions: {
-      newGame
+      newGame,
+      joinGame
     },
     getters: {
       gameType,
@@ -90,6 +100,8 @@ export default {
       switch (this.gameType) {
         case 'local':
           return new LocalGame(this.$store);
+        case 'remote':
+          return new RemoteGame(this.$store);
         default:
           return null;
       }
@@ -105,7 +117,8 @@ export default {
     return {
       WHITE,
       BLACK,
-      showNewGameDialog: false
+      showNewGameDialog: false,
+      showJoinGameDialog: false
     };
   },
   methods: {
@@ -116,14 +129,32 @@ export default {
       this.game.play({ x, y }); // TODO: Color as well?
     },
     doNewGame: function (options) {
-      this.showNewGameDialog = false;
-      this.newGame(options);
+      // TODO: Make the dialog disabled
+      promiseTry(() =>
+        this.newGame(options)
+      ).then(() => {
+        this.hideNewGamePrompt();
+        // Make the dialog enabled again for next use.
+      });
+    },
+    doJoinGame: function (options) {
+      promiseTry(() =>
+        this.joinGame(options)
+      ).then(() =>
+        this.hideJoinGamePrompt()
+      );
     },
     promptNewGame: function () {
       this.showNewGameDialog = true;
     },
     hideNewGamePrompt: function () {
       this.showNewGameDialog = false;
+    },
+    promptJoinGame: function () {
+      this.showJoinGameDialog = true;
+    },
+    hideJoinGamePrompt: function () {
+      this.showJoinGameDialog = false;
     }
   }
 }

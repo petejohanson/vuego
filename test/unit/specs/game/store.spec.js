@@ -1,6 +1,6 @@
 import { state, mutations } from 'src/game/store';
 import { BLACK, WHITE } from 'src/game/color';
-const { PLAYER_TURN, PASS_TURN, NEW_GAME } = mutations;
+const { PLAYER_TURN, PASS_TURN, NEW_LOCAL_GAME, NEW_REMOTE_GAME, JOIN_REMOTE_GAME, REMOTE_MOVE } = mutations;
 
 describe('game store', () => {
   describe('starting a new game', () => {
@@ -9,13 +9,13 @@ describe('game store', () => {
     beforeAll(() => {
       s = Object.assign({}, state);
 
-      NEW_GAME(s, 13);
+      NEW_LOCAL_GAME(s, 13);
       PLAYER_TURN(s, 0, 0);
       PLAYER_TURN(s, 0, 1);
       PLAYER_TURN(s, 10, 10);
       PLAYER_TURN(s, 1, 0);
 
-      NEW_GAME(s, 19);
+      NEW_LOCAL_GAME(s, 19);
     });
 
     it('has the specified size',
@@ -53,7 +53,7 @@ describe('game store', () => {
 
     describe('with an active game', () => {
       let s = Object.assign({}, state);
-      beforeEach(() => NEW_GAME(s, 19));
+      beforeEach(() => NEW_LOCAL_GAME(s, 19));
 
       describe('player turn', () => {
         it('should update the board', () => {
@@ -83,7 +83,7 @@ describe('game store', () => {
           expect(s.current_turn).toBeNull();
           expect(s.game_done).toBe(true);
         })
-      })
+      });
 
       describe('player turn to capture a piece', () => {
         beforeEach(() => {
@@ -103,7 +103,7 @@ describe('game store', () => {
       describe('attempting to play an occupied location', () => {
         let s = Object.assign({}, state);
         beforeEach(() => {
-          NEW_GAME(s, 19);
+          NEW_LOCAL_GAME(s, 19);
           PLAYER_TURN(s, 1, 1);
         });
 
@@ -115,5 +115,115 @@ describe('game store', () => {
         });
       });
     });
+  });
+
+  describe('starting a new remote game', () => {
+    var s;
+
+    beforeAll(() => {
+      s = Object.assign({}, state);
+
+      NEW_LOCAL_GAME(s, 13);
+      PLAYER_TURN(s, 0, 0);
+      PLAYER_TURN(s, 10, 10);
+      PLAYER_TURN(s, 1, 0);
+
+      NEW_REMOTE_GAME(s, { size: 19, gameId: '1234', inviteId: '321', [BLACK]: '0123' });
+    });
+
+    it('has the specified size',
+      () => expect(s.size).toBe(19));
+
+    it('has a game type of "remote"',
+      () => expect(s.gameType).toBe('remote'));
+
+    it('has 0 captures for both colors', () => {
+      expect(s.captures[BLACK]).toBe(0);
+      expect(s.captures[WHITE]).toBe(0);
+    });
+
+    it('has no previous passes',
+      () => expect(s.pass_last_turn).toBe(false));
+
+    it('is not done',
+      () => expect(s.game_done).toBe(false));
+
+    it('has the correct number of rows',
+      () => expect(s.board.length).toBe(19));
+
+    it('has the correct first turn',
+      () => expect(s.current_turn).toBe(BLACK));
+
+    it('has the remote game id',
+      () => expect(s.remoteGameId).toBe('1234'));
+
+    it('has the remote invite id',
+      () => expect(s.remoteInviteId).toBe('321'));
+
+    it('has the correct black player ID',
+      () => expect(s[BLACK]).toBe('0123'));
+  });
+
+  describe('joining a remote game', () => {
+    var s;
+
+    beforeAll(() => {
+      s = Object.assign({}, state);
+
+      NEW_LOCAL_GAME(s, 13);
+      PLAYER_TURN(s, 0, 0);
+      PLAYER_TURN(s, 10, 10);
+      PLAYER_TURN(s, 1, 0);
+
+      JOIN_REMOTE_GAME(s, { size: 19, gameId: '1234', [BLACK]: '0123', [WHITE]: '3210' });
+    });
+
+    it('has the specified size',
+      () => expect(s.size).toBe(19));
+
+    it('has a game type of "remote"',
+      () => expect(s.gameType).toBe('remote'));
+
+    it('has 0 captures for both colors', () => {
+      expect(s.captures[BLACK]).toBe(0);
+      expect(s.captures[WHITE]).toBe(0);
+    });
+
+    it('has no previous passes',
+      () => expect(s.pass_last_turn).toBe(false));
+
+    it('is not done',
+      () => expect(s.game_done).toBe(false));
+
+    it('has the correct number of rows',
+      () => expect(s.board.length).toBe(19));
+
+    it('has the correct first turn',
+      () => expect(s.current_turn).toBe(BLACK));
+
+    it('has the remote game id',
+      () => expect(s.remoteGameId).toBe('1234'));
+
+    it('has the correct black player ID',
+      () => expect(s[BLACK]).toBe('0123'));
+
+    it('has the correct white player ID',
+      () => expect(s[WHITE]).toBe('3210'));
+  });
+
+  describe('playing a remote move', () => {
+    let s = null;
+
+    beforeEach(() => {
+      s = Object.assign({}, state);
+
+      NEW_REMOTE_GAME(s, { size: 9, gameId: '123', inviteId: '321' });
+
+      PLAYER_TURN(s, 0, 0);
+      REMOTE_MOVE(s, '123');
+    });
+
+    it('stores the last remote move id',
+      () => expect(s.lastRemoteMove).toBe('123'));
   });
 });
