@@ -35,6 +35,22 @@ export default [
     turn: WHITE
   },
   {
+    test: 'Single enemy to kill mid-board',
+    before: '++++++\n' +
+            '++++++\n' +
+            '++W+++\n' +
+            '+WBW++\n' +
+            '++?+++\n' +
+            '++++++\n',
+    after: '++++++\n' +
+           '++++++\n' +
+           '++W+++\n' +
+           '+W+W++\n' +
+           '++W+++\n' +
+           '++++++\n',
+    turn: WHITE
+  },
+  {
     test: 'Enemy group to kill',
     before: 'BBBW++\n' +
             'WW?+++\n' +

@@ -142,9 +142,9 @@ function play (state, x, y) {
 
   if (changes.length === 1) {
     let isKo = flow(
-      differenceWith(changes, isEqual),
+      differenceWith(isEqual)(neighboringPoints(x, y, state.size)),
       every(p => state.board[p.y][p.x] === oppositeColor(state.current_turn))
-    )(neighboringPoints(x, y, state.size));
+    )(changes);
 
     if (isKo) {
       ko = changes[0];
