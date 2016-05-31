@@ -12,6 +12,8 @@ export const state = {
   board: matrix(19, 19),
   gameType: 'placeholder',
   current_turn: null,
+  remoteInviteId: null,
+  remoteGameId: null,
   pass_last_turn: false,
   size: 19,
   captures: {
@@ -58,6 +60,10 @@ export const mutations = {
     state.current_turn = BLACK;
     Vue.set(state, BLACK, blackId);
     Vue.set(state, WHITE, whiteId);
+  },
+
+  REMOTE_OPPONENT_ACCEPTED (state, { opponentId }) {
+    Vue.set(state, WHITE, opponentId);
   },
 
   REMOTE_MOVE (state, moveId) {

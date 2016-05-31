@@ -4,6 +4,7 @@
       <div>
         <captures></captures>
       </div>
+      <joining-game-overlay v-if="showJoiningDialog"></joining-game-overlay>
       <div v-if="showNewGamePrompt" class="app-prompt-overlay">
         <div>
           <div class="app-prompt">
@@ -19,9 +20,6 @@
             </div>
             <mdl-button colored raised class="mdl-js-ripple-effect" @click="promptNewGame">
               New Game
-            </mdl-button>
-            <mdl-button colored raised class="mdl-js-ripple-effect" @click="promptJoinGame">
-              Join Game
             </mdl-button>
           </div>
         </div>
@@ -42,7 +40,7 @@
   </div>
 
   <new-game-dialog v-if="showNewGameDialog" @new-game="doNewGame" @cancel="hideNewGamePrompt"></new-game-dialog>
-  <join-game-dialog v-if="showJoinGameDialog" @join-game="doJoinGame" @cancel="hideJoinGamePrompt"></join-game-dialog>
+  <invite-opponent-dialog v-if="waitingForRemoteOpponent" @cancel="cancelRemoteGame"></invite-opponent-dialog>
 </template>
 
 <script type="text/babel">
@@ -59,16 +57,18 @@ import Hello from './components/Hello';
 import Board from './game/Board';
 import Captures from './game/Captures';
 import NewGameDialog from './game/NewGameDialog';
-import JoinGameDialog from './game/JoinGameDialog';
+import InviteOpponentDialog from './game/InviteOpponentDialog';
+import JoiningGameOverlay from './game/JoiningGameOverlay';
 
 import { BLACK, WHITE } from './game/color';
 import store from './game/store';
 
+import URI from 'urijs';
 import LocalGame from './game/local_game';
 import RemoteGame from './game/remote_game';
 
 import { newGame, joinGame } from './game/actions';
-import { gameDone, score, ko, size, gameType, board } from './game/getters';
+import { gameDone, score, ko, size, gameType, board, waitingForRemoteOpponent } from './game/getters';
 
 export default {
   store,
@@ -77,7 +77,8 @@ export default {
     Board,
     Captures,
     NewGameDialog,
-    JoinGameDialog,
+    InviteOpponentDialog,
+    JoiningGameOverlay,
     MdlTooltip,
     MdlButton
   },
@@ -92,7 +93,8 @@ export default {
       gameDone,
       score,
       board,
-      size
+      size,
+      waitingForRemoteOpponent
     }
   },
   computed: {
@@ -110,7 +112,19 @@ export default {
       return this.game ? this.game.localCurrentTurn() : null;
     },
     showNewGamePrompt: function () {
-      return !this.game || this.gameDone;
+      return !this.showJoiningDialog && (!this.game || this.gameDone);
+    }
+  },
+  ready () {
+    let uri = URI(window.location.href);
+    let { join: gameId } = uri.query(true);
+    if (gameId) {
+      this.showJoiningDialog = true;
+      promiseTry(() =>
+        this.joinGame({ gameId })
+      ).then(() => {
+        this.showJoiningDialog = false;
+      });
     }
   },
   data: function () {
@@ -118,7 +132,7 @@ export default {
       WHITE,
       BLACK,
       showNewGameDialog: false,
-      showJoinGameDialog: false
+      showJoiningDialog: false
     };
   },
   methods: {
@@ -137,24 +151,11 @@ export default {
         // Make the dialog enabled again for next use.
       });
     },
-    doJoinGame: function (options) {
-      promiseTry(() =>
-        this.joinGame(options)
-      ).then(() =>
-        this.hideJoinGamePrompt()
-      );
-    },
     promptNewGame: function () {
       this.showNewGameDialog = true;
     },
     hideNewGamePrompt: function () {
       this.showNewGameDialog = false;
-    },
-    promptJoinGame: function () {
-      this.showJoinGameDialog = true;
-    },
-    hideJoinGamePrompt: function () {
-      this.showJoinGameDialog = false;
     }
   }
 }

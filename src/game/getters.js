@@ -33,6 +33,10 @@ export function gameDone (state) {
   return state.game_done;
 }
 
+export function waitingForRemoteOpponent (state) {
+  return state.gameType === 'remote' && !state[WHITE];
+}
+
 function inspectTerritory (state, x, y, t, territories) {
   if (territories[y][x]) {
     return;

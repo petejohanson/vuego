@@ -1,6 +1,6 @@
 import { state, mutations } from 'src/game/store';
 import { BLACK, WHITE } from 'src/game/color';
-const { PLAYER_TURN, PASS_TURN, NEW_LOCAL_GAME, NEW_REMOTE_GAME, JOIN_REMOTE_GAME, REMOTE_MOVE } = mutations;
+const { PLAYER_TURN, PASS_TURN, NEW_LOCAL_GAME, NEW_REMOTE_GAME, JOIN_REMOTE_GAME, REMOTE_MOVE, REMOTE_OPPONENT_ACCEPTED } = mutations;
 
 describe('game store', () => {
   describe('starting a new game', () => {
@@ -209,6 +209,21 @@ describe('game store', () => {
 
     it('has the correct white player ID',
       () => expect(s[WHITE]).toBe('3210'));
+  });
+
+  describe('an opponent accepting your remote game invitation', () => {
+    var s;
+
+    beforeAll(() => {
+      s = Object.assign({}, state);
+
+      NEW_REMOTE_GAME(s, { size: 19, gameId: '1234', [BLACK]: '0123'});
+
+      REMOTE_OPPONENT_ACCEPTED(s, { opponentId: '4321' });
+    });
+
+    it('updates the white player ID',
+      () => expect(s[WHITE]).toBe('4321'));
   });
 
   describe('playing a remote move', () => {

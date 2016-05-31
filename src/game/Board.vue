@@ -1,7 +1,7 @@
 <template>
   <svg version="1.1" xmlns="http://www.w3.org/2000/svg"
        class="board"
-       v-class="{ 'hover': hover }"
+       :class="{ 'hover': hover }"
        v-el:board
        :view-box.camel="viewBox"
        preserveAspectRatio="xMidYMid meet"
