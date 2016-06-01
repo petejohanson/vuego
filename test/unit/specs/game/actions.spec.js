@@ -3,7 +3,6 @@ import { WHITE } from 'src/game/color';
 import { addRemoteMove } from 'src/game/actions';
 
 describe('Game store actions', () => {
-
   describe('adding a remote play', () => {
     var dispatch;
 

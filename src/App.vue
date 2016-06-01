@@ -67,7 +67,7 @@ import URI from 'urijs';
 import LocalGame from './game/local_game';
 import RemoteGame from './game/remote_game';
 
-import { newGame, joinGame } from './game/actions';
+import { newGame, joinGame, cancelRemoteGame } from './game/actions';
 import { gameDone, score, ko, size, gameType, board, waitingForRemoteOpponent } from './game/getters';
 
 export default {
@@ -85,7 +85,8 @@ export default {
   vuex: {
     actions: {
       newGame,
-      joinGame
+      joinGame,
+      cancelRemoteGame
     },
     getters: {
       gameType,

@@ -22,6 +22,10 @@ export function joinGame ({ dispatch }, { gameId }) {
   );
 }
 
+export function cancelRemoteGame ({ dispatch }) {
+  dispatch('CANCEL_REMOTE_GAME');
+}
+
 export function addRemoteMove (store, { id, move }) {
   let { dispatch } = store;
   let { type, params } = move;

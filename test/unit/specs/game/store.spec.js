@@ -1,6 +1,15 @@
 import { state, mutations } from 'src/game/store';
 import { BLACK, WHITE } from 'src/game/color';
-const { PLAYER_TURN, PASS_TURN, NEW_LOCAL_GAME, NEW_REMOTE_GAME, JOIN_REMOTE_GAME, REMOTE_MOVE, REMOTE_OPPONENT_ACCEPTED } = mutations;
+const {
+  PLAYER_TURN,
+  PASS_TURN,
+  NEW_LOCAL_GAME,
+  NEW_REMOTE_GAME,
+  JOIN_REMOTE_GAME,
+  CANCEL_REMOTE_GAME,
+  REMOTE_MOVE,
+  REMOTE_OPPONENT_ACCEPTED
+} = mutations;
 
 describe('game store', () => {
   describe('starting a new game', () => {
@@ -164,6 +173,38 @@ describe('game store', () => {
       () => expect(s[BLACK]).toBe('0123'));
   });
 
+  describe('canceling a remote game', () => {
+    var s;
+    beforeAll(() => {
+      s = Object.assign({}, state);
+
+      NEW_REMOTE_GAME(s, { size: 19, gameId: '1234', inviteId: '321', [BLACK]: '0123' });
+
+      CANCEL_REMOTE_GAME(s);
+    });
+
+    it('should have a placeholder game',
+      () => expect(s.gameType).toEqual('placeholder'));
+
+    it('should not have a remote game id',
+      () => expect(s.remoteGameId).toBeNull());
+
+    it('should have no invite ID',
+      () => expect(s.remoteInviteId).toBeNull());
+
+    it('should have no black player ID',
+      () => expect(s[BLACK]).toBeNull());
+
+    it('should have no white player ID',
+      () => expect(s[WHITE]).toBeNull());
+
+    it('should have no current turn',
+      () => expect(s.current_turn).toBeNull());
+
+    it('should have the default size',
+      () => expect(s.size).toBe(state.size));
+  });
+
   describe('joining a remote game', () => {
     var s;
 
@@ -217,7 +258,7 @@ describe('game store', () => {
     beforeAll(() => {
       s = Object.assign({}, state);
 
-      NEW_REMOTE_GAME(s, { size: 19, gameId: '1234', [BLACK]: '0123'});
+      NEW_REMOTE_GAME(s, { size: 19, gameId: '1234', [BLACK]: '0123' });
 
       REMOTE_OPPONENT_ACCEPTED(s, { opponentId: '4321' });
     });

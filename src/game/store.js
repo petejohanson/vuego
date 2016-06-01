@@ -9,13 +9,13 @@ import { play, validatePlay } from './engine';
 
 export const state = {
   game_done: false,
-  board: matrix(19, 19),
+  board: matrix(9, 9),
   gameType: 'placeholder',
   current_turn: null,
   remoteInviteId: null,
   remoteGameId: null,
   pass_last_turn: false,
-  size: 19,
+  size: 9,
   captures: {
     [BLACK]: 0,
     [WHITE]: 0
@@ -48,6 +48,17 @@ export const mutations = {
     state.current_turn = BLACK;
     Vue.set(state, BLACK, blackId);
     Vue.set(state, WHITE, whiteId);
+  },
+
+  CANCEL_REMOTE_GAME (s) {
+    s.gameType = 'placeholder';
+    s.remoteGameId = null;
+    s.remoteInviteId = null;
+    s.current_turn = null;
+    s.size = state.size;
+    s.board = matrix(s.size, s.size);
+    Vue.set(s, BLACK, null);
+    Vue.set(s, WHITE, null);
   },
 
   JOIN_REMOTE_GAME (state, { size, gameId, [BLACK]: blackId, [WHITE]: whiteId }) {
