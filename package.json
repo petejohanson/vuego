@@ -12,9 +12,10 @@
     "dev": "node build/dev-server.js",
     "build": "node build/build.js",
     "gh-pages": "npm run build && node build/gh-pages.js",
+    "security-rules": "targaryen --verbose firebase/rules.json test/firebase/rules/tests.json",
     "unit": "karma start test/unit/karma.conf.js --single-run",
     "e2e": "node test/e2e/runner.js",
-    "test": "npm run unit && npm run e2e"
+    "test": "npm run unit && npm run e2e && npm run security-rules"
   },
   "dependencies": {
     "babel-runtime": "^5.8.0",
@@ -72,6 +73,7 @@
     "sass-loader": "^3.2.0",
     "selenium-server": "2.53.0",
     "shelljs": "^0.6.0",
+    "targaryen": "^2.1.1",
     "url-loader": "^0.5.7",
     "vue-hot-reload-api": "^1.2.0",
     "vue-html-loader": "^1.0.0",

@@ -1,0 +1,10 @@
+{
+  "rules": {
+    "moves": {
+      "$game": {
+        ".write": "root.child('games').child($game).child('black').val() === auth.uid || root.child('games').child($game).child('white').val() === auth.uid"
+      }
+    }
+
+  }
+}

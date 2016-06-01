@@ -1,0 +1,32 @@
+{
+  "root": {
+    "games": {
+      "1234": {
+        "black": "anon:1",
+        "white": "anon:2",
+        "size": 9
+      }
+    }
+  },
+  "users": {
+    "User 1": { "uid": "anon:1" },
+    "User 2": { "uid": "anon:2" },
+    "User 3": { "uid": "anon:3" }
+  },
+  "tests": {
+    "moves/123": {
+      "cannotWrite": [
+        { "auth": "User 1", "data": {} }
+      ]
+    },
+    "moves/1234": {
+      "cannotWrite": [
+        { "auth": "User 3", "data": { "type": "pass" } }
+      ],
+      "canWrite": [
+        { "auth": "User 1", "data": { "type": "pass" } },
+        { "auth": "User 2", "data": { "type": "pass" } }
+      ]
+    }
+  }
+}
