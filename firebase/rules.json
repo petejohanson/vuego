@@ -1,8 +1,17 @@
 {
   "rules": {
+    "games": {
+      "$game": {
+        ".write": "auth.uid !== null && newData.val() !== null && data.val() === null"
+      }
+    },
     "moves": {
       "$game": {
-        ".write": "root.child('games').child($game).child('black').val() === auth.uid || root.child('games').child($game).child('white').val() === auth.uid"
+        ".read": "root.child('games').child($game).child('black').val() === auth.uid || root.child('games').child($game).child('white').val() === auth.uid",
+        ".validate": "root.child('games').child($game).child('black').val() === auth.uid || root.child('games').child($game).child('white').val() === auth.uid",
+        "$move_id": {
+          ".write": "!data.exists() && newData.exists()"
+        }
       }
     }
 

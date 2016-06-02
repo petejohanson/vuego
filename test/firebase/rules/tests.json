@@ -6,6 +6,11 @@
         "white": "anon:2",
         "size": 9
       }
+    },
+    "moves": {
+      "1234": {
+        "0": { "type": "pass" }
+      }
     }
   },
   "users": {
@@ -14,18 +19,75 @@
     "User 3": { "uid": "anon:3" }
   },
   "tests": {
+    "games/123": {
+      "cannotWrite": [
+        { "auth": null, "data": {} }
+      ],
+      "canWrite": [
+        { "auth": "User 1", "data": { "black": "anon:1" } }
+      ]
+    },
+    "games/1234": {
+      "cannotWrite": [
+        { "auth": null, "data": {} },
+        { "auth": "User 1", "data": { "black": "anon:1" } }
+      ]
+    },
     "moves/123": {
       "cannotWrite": [
-        { "auth": "User 1", "data": {} }
+        { "auth": "User 1", "data": {} },
+        { "auth": "User 2", "data": {} },
+        { "auth": "User 3", "data": {} }
       ]
     },
     "moves/1234": {
+      "cannotWrite": [
+        { "auth": "User 1", "data": {} },
+        { "auth": "User 2", "data": {} },
+        { "auth": "User 3", "data": {} }
+      ]
+    },
+    "moves/1234/123": {
       "cannotWrite": [
         { "auth": "User 3", "data": { "type": "pass" } }
       ],
       "canWrite": [
         { "auth": "User 1", "data": { "type": "pass" } },
         { "auth": "User 2", "data": { "type": "pass" } }
+      ]
+    },
+    "moves/1234/0": {
+      "cannotWrite": [
+        {
+          "auth": "User 1",
+          "data": {
+            "type": "move",
+            "params": {
+              "x": 1,
+              "y": 3
+            }
+          }
+        },
+        {
+          "auth": "User 2",
+          "data": {
+            "type": "move",
+            "params": {
+              "x": 1,
+              "y": 3
+            }
+          }
+        },
+        {
+          "auth": "User 3",
+          "data": {
+            "type": "move",
+            "params": {
+              "x": 1,
+              "y": 3
+            }
+          }
+        }
       ]
     }
   }
