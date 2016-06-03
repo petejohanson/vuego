@@ -1,14 +1,19 @@
 {
   "root": {
     "games": {
-      "1234": {
+      "in_progress": {
         "black": "anon:1",
         "white": "anon:2",
+        "size": 9
+      },
+      "no_opponent": {
+        "black": "anon:1",
+        "white": null,
         "size": 9
       }
     },
     "moves": {
-      "1234": {
+      "in_progress": {
         "0": { "type": "pass" }
       }
     }
@@ -19,7 +24,7 @@
     "User 3": { "uid": "anon:3" }
   },
   "tests": {
-    "games/123": {
+    "games/new_game": {
       "cannotWrite": [
         { "auth": null, "data": {} }
       ],
@@ -27,7 +32,18 @@
         { "auth": "User 1", "data": { "black": "anon:1" } }
       ]
     },
-    "games/1234": {
+    "games/no_opponent/white": {
+      "cannotWrite": [
+        { "auth": null, "data": "anon:2" },
+        { "auth": "User 2", "data": "anon:1" }
+      ],
+      "canWrite": [
+        { "auth": "User 2", "data": "anon:2" }
+      ]
+    },
+    "games/in_progress": {
+      "canRead": [ "User 1", "User 2" ],
+      "cannotRead": [ null, "User 3" ],
       "cannotWrite": [
         { "auth": null, "data": {} },
         { "auth": "User 1", "data": { "black": "anon:1" } }
@@ -40,14 +56,18 @@
         { "auth": "User 3", "data": {} }
       ]
     },
-    "moves/1234": {
+    "moves/in_progress": {
+      "canRead": [ "User 1", "User 2" ],
+      "cannotRead": [ null, "User 3" ],
       "cannotWrite": [
         { "auth": "User 1", "data": {} },
         { "auth": "User 2", "data": {} },
         { "auth": "User 3", "data": {} }
       ]
     },
-    "moves/1234/123": {
+    "moves/in_progress/123": {
+      "canRead": [ "User 1", "User 2" ],
+      "cannotRead": [ null, "User 3" ],
       "cannotWrite": [
         { "auth": "User 3", "data": { "type": "pass" } }
       ],
@@ -56,7 +76,7 @@
         { "auth": "User 2", "data": { "type": "pass" } }
       ]
     },
-    "moves/1234/0": {
+    "moves/in_progress/0": {
       "cannotWrite": [
         {
           "auth": "User 1",

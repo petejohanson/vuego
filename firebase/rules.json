@@ -2,7 +2,11 @@
   "rules": {
     "games": {
       "$game": {
-        ".write": "auth.uid !== null && newData.val() !== null && data.val() === null"
+        ".read": "auth.uid !== null && (data.child('black').val() === auth.uid || data.child('white').val() === auth.uid)",
+        ".write": "auth.uid !== null && newData.val() !== null && data.val() === null",
+        "white": {
+          ".write": "data.val() === null && newData.val() === auth.uid"
+        }
       }
     },
     "moves": {
