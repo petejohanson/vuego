@@ -54,6 +54,8 @@ app.use(devMiddleware)
 // compilation error display
 app.use(hotMiddleware)
 
+app.use('/images/mdl', express.static('./node_modules/material-design-lite/dist/images'))
+
 // serve pure static assets
 app.use('/static', express.static('./static'))
 

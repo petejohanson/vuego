@@ -1,6 +1,7 @@
 var path = require('path')
 var cssLoaders = require('./css-loaders')
 var projectRoot = path.resolve(__dirname, '../')
+var CopyWebpackPlugin = require('copy-webpack-plugin')
 
 module.exports = {
   entry: {
@@ -11,6 +12,11 @@ module.exports = {
     publicPath: './static/',
     filename: '[name].js'
   },
+  plugins: [
+    new CopyWebpackPlugin([
+      { from: 'node_modules/material-design-lite/dist/images', to: '../images/mdl' }
+    ])
+  ],
   resolve: {
     extensions: ['', '.js', '.vue'],
     fallback: [path.join(__dirname, '../node_modules')],
