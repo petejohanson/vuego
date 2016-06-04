@@ -22,6 +22,10 @@ export function joinGame ({ dispatch }, { gameId }) {
   );
 }
 
+export function remoteOpponentAccepted ({ dispatch }, { opponentId }) {
+  dispatch('REMOTE_OPPONENT_ACCEPTED', { opponentId });
+}
+
 export function cancelRemoteGame ({ dispatch }) {
   dispatch('CANCEL_REMOTE_GAME');
 }

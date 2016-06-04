@@ -4,7 +4,7 @@
 
 import promiseTry from 'es6-promise-try';
 import firebase from 'firebase';
-import { addRemoteMove } from './actions';
+import { addRemoteMove, remoteOpponentAccepted } from './actions';
 
 import { BLACK, WHITE } from './color';
 
@@ -23,8 +23,22 @@ class RemoteGame {
   constructor (store) {
     this.store = store;
     let gameId = store.state.remoteGameId;
+
+    if (!store.state[WHITE]) {
+      let opponent = fb.ref(`games/${gameId}/${WHITE}`);
+      let cb = snapshot => {
+        if (!snapshot.val()) {
+          return;
+        }
+
+        remoteOpponentAccepted(store, { opponentId: snapshot.val() });
+        opponent.off('value', cb);
+      };
+      opponent.on('value', cb);
+    }
+
     // TODO: If no opponent yet, listen for acceptance of invitation!
-    this.movesRef = fb.ref(`moves/${gameId}`);
+    this.movesRef = fb.ref('moves').child(gameId);
     this.movesRef.on('child_added', m => {
       addRemoteMove(store, { id: m.key, move: m.val() });
     });
