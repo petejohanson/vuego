@@ -12,7 +12,7 @@
     "dev": "node build/dev-server.js",
     "build": "node build/build.js",
     "gh-pages": "npm run build && node build/gh-pages.js",
-    "deploy": "npm run build && firebase deploy",
+    "deploy": "npm run build && firebase deploy --token $FIREBASE_TOKEN",
     "security-rules": "targaryen --verbose firebase/rules.json test/firebase/rules/tests.json",
     "unit": "karma start test/unit/karma.conf.js --single-run",
     "e2e": "node test/e2e/runner.js",
