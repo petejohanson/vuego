@@ -2,7 +2,7 @@
   <svg version="1.1" xmlns="http://www.w3.org/2000/svg"
        class="board"
        :class="{ 'hover': hover }"
-       v-el:board
+       ref="board"
        :view-box.camel="viewBox"
        preserveAspectRatio="xMidYMid meet"
        @mousemove="mouseMove"
@@ -10,7 +10,7 @@
        @click.capture="click">
     <grid :size="size"></grid>
     <g>
-      <stone v-for="s in stones" :x="pointToCoordinate(s.x)" :y="pointToCoordinate(s.y)" :color="s.color"></stone>
+      <stone v-for="s in stones" :x="pointToCoordinate(s.x)" :y="pointToCoordinate(s.y)" :color="s.color" key="'' + s.x + s.y"></stone>
     </g>
     <g v-if="hover">
       <stone class="hover-stone" :x="pointToCoordinate(hover.x)" :y="pointToCoordinate(hover.y)" :color="hover.color"></stone>
@@ -102,7 +102,7 @@ export default {
         return;
       }
 
-      this.$dispatch('play', { x: p.x, y: p.y });
+      this.$emit('play', { x: p.x, y: p.y });
     },
     isValidPoint (p) {
       let { x, y } = p;
@@ -120,7 +120,7 @@ export default {
       point.x = event.clientX;
       point.y = event.clientY;
 
-      let ctm = this.$els.board.getScreenCTM();
+      let ctm = this.$refs.board.getScreenCTM();
 
       let { x, y } = point.matrixTransform(ctm.inverse());
 
@@ -147,4 +147,3 @@ export default {
   fill-opacity: .75;
 }
 </style>
-

@@ -1,21 +1,23 @@
 <template>
-  <dialog v-el:invite-opponent class="mdl-dialog">
+  <dialog ref="inviteOpponent" class="mdl-dialog">
     <h6 class="mdl-dialog__title">Invite Player</h6>
     <div class="mdl-dialog__content">
       <div class="invite-url-container">
-        <mdl-textfield :value="invitationUrl" readonly v-el:invite-url></mdl-textfield>
-        <mdl-tooltip for="copy_invite">Copy Invite URL</mdl-tooltip>
-        <mdl-button id="copy_invite" icon="content_copy" @click="copyInvite"></mdl-button>
+        <mdl-textfield :value="invitationUrl" readonly ref="inviteUrl"></mdl-textfield>
+        <mdl-tooltip target="copy_invite">Copy Invite URL</mdl-tooltip>
+        <mdl-button id="copy_invite" icon="content_copy" @click.native="copyInvite"></mdl-button>
       </div>
       <mdl-progress indeterminate></mdl-progress>
     </div>
     <div class="mdl-dialog__actions">
-      <mdl-button @click="cancel">Cancel</mdl-button>
+      <mdl-button @click.native="cancel">Cancel</mdl-button>
     </div>
   </dialog>
 </template>
 
 <script type="text/babel">
+import { mapGetters } from 'vuex';
+
 import pf from 'dialog-polyfill';
 
 import { MdlButton, MdlTooltip, MdlTextfield, MdlProgress } from 'vue-mdl';
@@ -28,29 +30,27 @@ export default {
     MdlProgress
   },
   computed: {
+    ...mapGetters([
+      'inviteId'
+    ]),
     invitationUrl: function () {
       return window.location.origin + `/?join=${this.inviteId}`;
     }
   },
-  vuex: {
-    getters: {
-      inviteId: state => state.remoteInviteId
-    }
-  },
   methods: {
     copyInvite: function () {
-      this.$els.inviteUrl.querySelector('input').select();
+      this.$refs.inviteUrl.$el.querySelector('input').select();
       document.execCommand('copy');
     },
     cancel: function () {
       this.$emit('cancel');
     }
   },
-  ready () {
-    if (!this.$els.inviteOpponent.showModal) {
-      pf.registerDialog(this.$els.inviteOpponent);
+  mounted () {
+    if (!this.$refs.inviteOpponent.showModal) {
+      pf.registerDialog(this.$refs.inviteOpponent);
     }
-    this.$els.inviteOpponent.showModal();
+    this.$refs.inviteOpponent.showModal();
   }
 }
 </script>

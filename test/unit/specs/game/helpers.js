@@ -1,5 +1,5 @@
-import { BLACK, WHITE } from 'src/game/color';
-import { matrix } from 'src/arrays';
+import { BLACK, WHITE } from '@/game/color';
+import { matrix } from '@/arrays';
 
 export function parseBoard (s) {
   let valid = [];

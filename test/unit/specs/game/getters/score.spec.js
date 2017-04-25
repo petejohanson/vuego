@@ -1,8 +1,10 @@
 
-import { score } from 'src/game/getters';
-import { BLACK, WHITE } from 'src/game/color';
+import { getters } from '@/game/store';
+import { BLACK, WHITE } from '@/game/color';
 import { parseBoard } from '../helpers';
 import SCORE_TESTS from './score.data';
+
+const { score } = getters;
 
 describe('game score', () => {
   for (let i = 0; i < SCORE_TESTS.length; ++i) {

@@ -1,18 +1,18 @@
 <template>
-  <dialog v-el:new-game class="mdl-dialog">
+  <dialog ref="newGame" class="mdl-dialog">
     <h6 class="mdl-dialog__title">New Game</h6>
     <div class="mdl-dialog__content">
-      <div class="mdl-selectfield mdl-js-selectfield mdl-selectfield--floating-label" v-el:size>
+      <div class="mdl-selectfield mdl-js-selectfield mdl-selectfield--floating-label" ref="size">
         <select id="game-size" class="mdl-selectfield__select" v-model="size">
           <option v-for="s in sizes" :value="s">{{s}}</option>
         </select>
         <label for="game-size" class="mdl-selectfield__label">Game Size</label>
       </div>
-      <mdl-switch :checked.sync="remoteGame" id="play-online">Play Online</mdl-switch>
+      <mdl-switch v-model="remoteGame" id="play-online">Play Online</mdl-switch>
     </div>
     <div class="mdl-dialog__actions">
-      <mdl-button v-mdl-ripple-effect :disabled="!size" @click="doNewGame">New Game</mdl-button>
-      <mdl-button v-mdl-ripple-effect @click="close">Cancel</mdl-button>
+      <mdl-button v-mdl-ripple-effect :disabled="!size" @click.native="doNewGame">New Game</mdl-button>
+      <mdl-button v-mdl-ripple-effect @click.native="close">Cancel</mdl-button>
     </div>
   </dialog>
 </template>
@@ -47,12 +47,12 @@ export default {
       this.$emit('cancel');
     }
   },
-  ready () {
-    if (!this.$els.newGame.showModal) {
-      pf.registerDialog(this.$els.newGame);
+  mounted () {
+    if (!this.$refs.newGame.showModal) {
+      pf.registerDialog(this.$refs.newGame);
     }
-    componentHandler.upgradeElement(this.$els.size);
-    this.$els.newGame.showModal();
+    componentHandler.upgradeElement(this.$refs.size);
+    this.$refs.newGame.showModal();
   }
 }
 </script>

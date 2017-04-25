@@ -1,5 +1,5 @@
 import _ from 'lodash';
-import { neighboringPoints, freedoms, validatePlay, play } from 'src/game/engine';
+import { neighboringPoints, freedoms, validatePlay, play } from '@/game/engine';
 import { parseBoard } from './helpers';
 import FREEDOM_TESTS from './freedomDetection.data';
 import VALID_PLAY_TESTS from './validatePlay.data';

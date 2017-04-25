@@ -1,5 +1,5 @@
 
-import { BLACK, WHITE } from 'src/game/color';
+import { BLACK, WHITE } from '@/game/color';
 
 export default [
   {

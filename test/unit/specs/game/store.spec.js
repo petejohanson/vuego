@@ -1,14 +1,14 @@
-import { state, mutations } from 'src/game/store';
-import { BLACK, WHITE } from 'src/game/color';
+import { state, mutations } from '@/game/store';
+import { BLACK, WHITE } from '@/game/color';
 const {
-  PLAYER_TURN,
-  PASS_TURN,
-  NEW_LOCAL_GAME,
-  NEW_REMOTE_GAME,
-  JOIN_REMOTE_GAME,
-  CANCEL_REMOTE_GAME,
-  REMOTE_MOVE,
-  REMOTE_OPPONENT_ACCEPTED
+  player_turn,
+  pass_turn,
+  new_local_game,
+  new_remote_game,
+  join_remote_game,
+  cancel_remote_game,
+  remote_move,
+  remote_opponent_accepted
 } = mutations;
 
 describe('game store', () => {
@@ -18,13 +18,13 @@ describe('game store', () => {
     beforeAll(() => {
       s = Object.assign({}, state);
 
-      NEW_LOCAL_GAME(s, 13);
-      PLAYER_TURN(s, 0, 0);
-      PLAYER_TURN(s, 0, 1);
-      PLAYER_TURN(s, 10, 10);
-      PLAYER_TURN(s, 1, 0);
+      new_local_game(s, 13);
+      player_turn(s, { x: 0, y: 0 });
+      player_turn(s, { x: 0, y: 1 });
+      player_turn(s, { x: 10, y: 10 });
+      player_turn(s, { x: 1, y: 0 });
 
-      NEW_LOCAL_GAME(s, 19);
+      new_local_game(s, 19);
     });
 
     it('has the specified size',
@@ -54,7 +54,7 @@ describe('game store', () => {
     describe('without an active game', () => {
       it('player turn does nothing', () => {
         let s = Object.assign({}, state);
-        PLAYER_TURN(s, 1, 2);
+        player_turn(s, { x: 1, y: 2 });
 
         expect(s).toEqual(state);
       });
@@ -62,11 +62,11 @@ describe('game store', () => {
 
     describe('with an active game', () => {
       let s = Object.assign({}, state);
-      beforeEach(() => NEW_LOCAL_GAME(s, 19));
+      beforeEach(() => new_local_game(s, 19));
 
       describe('player turn', () => {
         it('should update the board', () => {
-          PLAYER_TURN(s, 1, 2);
+          player_turn(s, { x: 1, y: 2 });
 
           expect(s.board[2][1]).toBe(BLACK);
           expect(s.current_turn).toBe(WHITE);
@@ -76,7 +76,7 @@ describe('game store', () => {
 
       describe('passing a turn', () => {
         it('should leave the board as is, and change the current turn', () => {
-          PASS_TURN(s);
+          pass_turn(s);
 
           // TODO: Validate no changes to board.
           expect(s.current_turn).toBe(WHITE);
@@ -86,8 +86,8 @@ describe('game store', () => {
 
       describe('two consecutive passes', () => {
         it('should mark the game as done', () => {
-          PASS_TURN(s);
-          PASS_TURN(s);
+          pass_turn(s);
+          pass_turn(s);
 
           expect(s.current_turn).toBeNull();
           expect(s.game_done).toBe(true);
@@ -96,14 +96,14 @@ describe('game store', () => {
 
       describe('player turn to capture a piece', () => {
         beforeEach(() => {
-          PLAYER_TURN(s, 0, 0);
-          PLAYER_TURN(s, 0, 1);
-          PLAYER_TURN(s, 10, 10);
+          player_turn(s, { x: 0, y: 0 });
+          player_turn(s, { x: 0, y: 1 });
+          player_turn(s, { x: 10, y: 10 });
         });
 
         it('should update the captures appropriately', () => {
           let turn = s.current_turn;
-          PLAYER_TURN(s, 1, 0);
+          player_turn(s, { x: 1, y: 0 });
 
           expect(s.captures[turn]).toBe(1);
         });
@@ -112,12 +112,12 @@ describe('game store', () => {
       describe('attempting to play an occupied location', () => {
         let s = Object.assign({}, state);
         beforeEach(() => {
-          NEW_LOCAL_GAME(s, 19);
-          PLAYER_TURN(s, 1, 1);
+          new_local_game(s, 19);
+          player_turn(s, { x: 1, y: 1 });
         });
 
         it('should not update the board', () => {
-          PLAYER_TURN(s, 1, 1);
+          player_turn(s, { x: 1, y: 1 });
 
           expect(s.board[1][1]).toBe(BLACK);
           expect(s.current_turn).toBe(WHITE);
@@ -132,12 +132,12 @@ describe('game store', () => {
     beforeAll(() => {
       s = Object.assign({}, state);
 
-      NEW_LOCAL_GAME(s, 13);
-      PLAYER_TURN(s, 0, 0);
-      PLAYER_TURN(s, 10, 10);
-      PLAYER_TURN(s, 1, 0);
+      new_local_game(s, 13);
+      player_turn(s, { x: 0, y: 0 });
+      player_turn(s, { x: 10, y: 10 });
+      player_turn(s, { x: 1, y: 0 });
 
-      NEW_REMOTE_GAME(s, { size: 19, gameId: '1234', inviteId: '321', [BLACK]: '0123' });
+      new_remote_game(s, { size: 19, gameId: '1234', inviteId: '321', [BLACK]: '0123' });
     });
 
     it('has the specified size',
@@ -178,9 +178,9 @@ describe('game store', () => {
     beforeAll(() => {
       s = Object.assign({}, state);
 
-      NEW_REMOTE_GAME(s, { size: 19, gameId: '1234', inviteId: '321', [BLACK]: '0123' });
+      new_remote_game(s, { size: 19, gameId: '1234', inviteId: '321', [BLACK]: '0123' });
 
-      CANCEL_REMOTE_GAME(s);
+      cancel_remote_game(s);
     });
 
     it('should have a placeholder game',
@@ -211,12 +211,12 @@ describe('game store', () => {
     beforeAll(() => {
       s = Object.assign({}, state);
 
-      NEW_LOCAL_GAME(s, 13);
-      PLAYER_TURN(s, 0, 0);
-      PLAYER_TURN(s, 10, 10);
-      PLAYER_TURN(s, 1, 0);
+      new_local_game(s, 13);
+      player_turn(s, { x: 0, y: 0 });
+      player_turn(s, { x: 10, y: 10 });
+      player_turn(s, { x: 1, y: 0 });
 
-      JOIN_REMOTE_GAME(s, { size: 19, gameId: '1234', [BLACK]: '0123', [WHITE]: '3210' });
+      join_remote_game(s, { size: 19, gameId: '1234', [BLACK]: '0123', [WHITE]: '3210' });
     });
 
     it('has the specified size',
@@ -258,9 +258,9 @@ describe('game store', () => {
     beforeAll(() => {
       s = Object.assign({}, state);
 
-      NEW_REMOTE_GAME(s, { size: 19, gameId: '1234', [BLACK]: '0123' });
+      new_remote_game(s, { size: 19, gameId: '1234', [BLACK]: '0123' });
 
-      REMOTE_OPPONENT_ACCEPTED(s, { opponentId: '4321' });
+      remote_opponent_accepted(s, { opponentId: '4321' });
     });
 
     it('updates the white player ID',
@@ -273,10 +273,10 @@ describe('game store', () => {
     beforeEach(() => {
       s = Object.assign({}, state);
 
-      NEW_REMOTE_GAME(s, { size: 9, gameId: '123', inviteId: '321' });
+      new_remote_game(s, { size: 9, gameId: '123', inviteId: '321' });
 
-      PLAYER_TURN(s, 0, 0);
-      REMOTE_MOVE(s, '123');
+      player_turn(s, { x: 0, y: 0 });
+      remote_move(s, '123');
     });
 
     it('stores the last remote move id',

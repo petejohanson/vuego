@@ -6,18 +6,17 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
 import { BLACK, WHITE } from './color';
 
 export default {
-  vuex: {
-    getters: {
-      black (state) {
-        return state.captures[BLACK];
-      },
-
-      white (state) {
-        return state.captures[WHITE];
-      }
+  computed: {
+    ...mapGetters(['captures']),
+    black: function () {
+      return this.captures[BLACK];
+    },
+    white: function () {
+      return this.captures[WHITE];
     }
   }
 }
@@ -39,4 +38,3 @@ export default {
 }
 
 </style>
-
