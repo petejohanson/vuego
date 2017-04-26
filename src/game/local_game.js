@@ -2,24 +2,20 @@
  * Created by peter on 5/13/16.
  */
 
-import { pass, playerTurn } from './actions';
-
-import { currentTurn } from './getters';
-
 export default class LocalGame {
   constructor (store) {
     this.store = store;
   }
 
   pass () {
-    pass(this.store);
+    this.store.dispatch('pass');
   }
 
-  play ({ x, y }) {
-    playerTurn(this.store, x, y);
+  play (location) {
+    this.store.dispatch('playerTurn', location);
   }
 
   localCurrentTurn () {
-    return currentTurn(this.store.state);
+    return this.store.getters.currentTurn;
   }
 }

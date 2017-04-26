@@ -1,15 +1,15 @@
 
-import { waitingForRemoteOpponent } from 'src/game/getters';
-import { state, mutations } from 'src/game/store';
+import { state, mutations, getters } from '@/game/store';
 
-let { NEW_LOCAL_GAME, NEW_REMOTE_GAME, REMOTE_OPPONENT_ACCEPTED } = mutations;
+const { waitingForRemoteOpponent } = getters;
+const { new_local_game, new_remote_game, remote_opponent_accepted } = mutations;
 
 describe('waitingForRemoteOpponent getter', () => {
   describe('for a local game', () => {
     it('returns false', () => {
       let s = Object.assign({}, state);
 
-      NEW_LOCAL_GAME(s);
+      new_local_game(s);
 
       expect(waitingForRemoteOpponent(s)).toBe(false);
     });
@@ -19,7 +19,7 @@ describe('waitingForRemoteOpponent getter', () => {
     it('returns true', () => {
       let s = Object.assign({}, state);
 
-      NEW_REMOTE_GAME(s, { size: 9 });
+      new_remote_game(s, { size: 9 });
 
       expect(waitingForRemoteOpponent(s)).toBe(true);
     });
@@ -29,9 +29,9 @@ describe('waitingForRemoteOpponent getter', () => {
     it('returns false', () => {
       let s = Object.assign({}, state);
 
-      NEW_REMOTE_GAME(s, { size: 9 });
+      new_remote_game(s, { size: 9 });
 
-      REMOTE_OPPONENT_ACCEPTED(s, { opponentId: '123' });
+      remote_opponent_accepted(s, { opponentId: '123' });
 
       expect(waitingForRemoteOpponent(s)).toBe(false);
     });

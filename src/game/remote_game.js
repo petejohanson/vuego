@@ -4,11 +4,8 @@
 
 import promiseTry from 'es6-promise-try';
 import firebase from 'firebase';
-import { addRemoteMove, remoteOpponentAccepted } from './actions';
 
 import { BLACK, WHITE } from './color';
-
-import { currentTurn } from './getters';
 
 firebase.initializeApp({
   apiKey: 'AIzaSyD1sB2mtSubsImIEh4SklU7EivMnJHKLDA',
@@ -31,7 +28,7 @@ class RemoteGame {
           return;
         }
 
-        remoteOpponentAccepted(store, { opponentId: snapshot.val() });
+        store.dispatch('remoteOpponentAccepted', { opponentId: snapshot.val() });
         opponent.off('value', cb);
       };
       opponent.on('value', cb);
@@ -40,7 +37,7 @@ class RemoteGame {
     // TODO: If no opponent yet, listen for acceptance of invitation!
     this.movesRef = fb.ref('moves').child(gameId);
     this.movesRef.on('child_added', m => {
-      addRemoteMove(store, { id: m.key, move: m.val() });
+      store.dispatch('addRemoteMove', { id: m.key, move: m.val() });
     });
   }
 
@@ -61,7 +58,7 @@ class RemoteGame {
   }
 
   localCurrentTurn () {
-    let t = currentTurn(this.store.state); // TODO: Actually, you know, implement this.
+    let t = this.store.getters.currentTurn;
 
     if (!t) {
       return t;

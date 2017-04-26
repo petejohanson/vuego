@@ -1,53 +1,53 @@
 <template>
-  <div id="app-container">
-    <div id="app">
-      <div>
-        <captures></captures>
-      </div>
-      <joining-game-overlay v-if="showJoiningDialog"></joining-game-overlay>
-      <div v-if="showNewGamePrompt" class="app-prompt-overlay">
+  <div id="app-wrapper">
+    <div id="app-container">
+      <div id="app">
         <div>
-          <div class="app-prompt">
-            <div v-if="gameDone">
-              <h5>Game Complete!</h5>
-              <ul class="app-game-scores">
-                <li>Black: {{score[BLACK]}}</li>
-                <li>White: {{score[WHITE]}}</li>
-              </ul>
+          <captures></captures>
+        </div>
+        <joining-game-overlay v-if="showJoiningDialog"></joining-game-overlay>
+        <div v-if="showNewGamePrompt" class="app-prompt-overlay">
+          <div>
+            <div class="app-prompt">
+              <div v-if="gameDone">
+                <h5>Game Complete!</h5>
+                <ul class="app-game-scores">
+                  <li>Black: {{score[BLACK]}}</li>
+                  <li>White: {{score[WHITE]}}</li>
+                </ul>
+              </div>
+              <div v-else>
+                <h5>Welcome to VueGo</h5>
+              </div>
+              <mdl-button colored raised class="mdl-js-ripple-effect" @click.native="promptNewGame">
+                New Game
+              </mdl-button>
             </div>
-            <div v-else>
-              <h5>Welcome to VueGo</h5>
-            </div>
-            <mdl-button colored raised class="mdl-js-ripple-effect" @click="promptNewGame">
-              New Game
-            </mdl-button>
           </div>
         </div>
+        <board @play="play" :local-current-turn="localCurrentTurn" :ko="ko" :size="size" :board="board"></board>
       </div>
-      <board @play="play" :local-current-turn="localCurrentTurn" :ko="ko" :size="size" :board="board"></board>
     </div>
-  </div>
 
-  <div class="app-actions">
-    <div v-if="localCurrentTurn">
-      <mdl-button  id="pass" fab icon colored class="mdl-js-ripple-effect" @click="pass">
-        <i class="material-icons">skip_next</i>
-      </mdl-button>
-      <mdl-tooltip for="pass">
-        Pass Turn
-      </mdl-tooltip>
+    <div class="app-actions">
+      <div v-if="localCurrentTurn">
+        <mdl-button id="pass" fab icon colored class="mdl-js-ripple-effect" @click.native="pass">
+          <i class="material-icons">skip_next</i>
+        </mdl-button>
+        <mdl-tooltip target="pass">
+          Pass Turn
+        </mdl-tooltip>
+      </div>
     </div>
-  </div>
 
-  <new-game-dialog v-if="showNewGameDialog" @new-game="doNewGame" @cancel="hideNewGamePrompt"></new-game-dialog>
-  <invite-opponent-dialog v-if="waitingForRemoteOpponent" @cancel="cancelRemoteGame"></invite-opponent-dialog>
+    <new-game-dialog v-if="showNewGameDialog" @new-game="doNewGame" @cancel="hideNewGamePrompt"></new-game-dialog>
+    <invite-opponent-dialog v-if="waitingForRemoteOpponent" @cancel="cancelRemoteGame"></invite-opponent-dialog>
+  </div>
 </template>
 
 <script type="text/babel">
 import Vue from 'vue';
-import Vuex from 'vuex';
-
-Vue.use(Vuex);
+import Vuex, { mapGetters, mapActions } from 'vuex';
 
 import promiseTry from 'es6-promise-try';
 
@@ -67,8 +67,7 @@ import URI from 'urijs';
 import LocalGame from './game/local_game';
 import RemoteGame from './game/remote_game';
 
-import { newGame, joinGame, cancelRemoteGame } from './game/actions';
-import { gameDone, score, ko, size, gameType, board, waitingForRemoteOpponent } from './game/getters';
+Vue.use(Vuex);
 
 export default {
   store,
@@ -82,23 +81,16 @@ export default {
     MdlTooltip,
     MdlButton
   },
-  vuex: {
-    actions: {
-      newGame,
-      joinGame,
-      cancelRemoteGame
-    },
-    getters: {
-      gameType,
-      ko,
-      gameDone,
-      score,
-      board,
-      size,
-      waitingForRemoteOpponent
-    }
-  },
   computed: {
+    ...mapGetters([
+      'gameType',
+      'ko',
+      'gameDone',
+      'score',
+      'board',
+      'size',
+      'waitingForRemoteOpponent'
+    ]),
     game: function () {
       switch (this.gameType) {
         case 'local':
@@ -116,7 +108,7 @@ export default {
       return !this.showJoiningDialog && (!this.game || this.gameDone);
     }
   },
-  ready () {
+  mounted () {
     let uri = URI(window.location.href);
     let { join: gameId } = uri.query(true);
     if (gameId) {
@@ -137,6 +129,11 @@ export default {
     };
   },
   methods: {
+    ...mapActions([
+      'newGame',
+      'joinGame',
+      'cancelRemoteGame'
+    ]),
     pass: function () {
       this.game.pass();
     },
@@ -175,6 +172,10 @@ body {
   position: relative;
 }
 
+#app-wrapper {
+  width: 100%;
+  height: 100%;
+}
 
 .app-actions {
   position: fixed;
