@@ -1,5 +1,6 @@
 var utils = require('./utils')
 var webpack = require('webpack')
+var config = require('../config')
 var merge = require('webpack-merge')
 var baseConfig = require('./webpack.base.conf')
 var HtmlWebpackPlugin = require('html-webpack-plugin')
@@ -12,18 +13,20 @@ Object.keys(baseConfig.entry).forEach(function (name) {
 
 module.exports = merge(baseConfig, {
   module: {
-    rules: utils.styleLoaders()
+    rules: utils.styleLoaders({ sourceMap: config.dev.cssSourceMap })
   },
-  // eval-source-map is faster for development
-  devtool: '#eval-source-map',
+  // cheap-module-eval-source-map is faster for development
+  devtool: '#cheap-module-eval-source-map',
   output: {
     // necessary for the html plugin to work properly
     // when serving the html from in-memory
     publicPath: '/'
   },
   plugins: [
+    new webpack.DefinePlugin({
+      'process.env': config.dev.env
+    }),
     // https://github.com/glenjamin/webpack-hot-middleware#installation--usage
-    // new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoEmitOnErrorsPlugin(),
     // https://github.com/ampedandwired/html-webpack-plugin

@@ -18,11 +18,11 @@ var webpackConfig = merge(baseConfig, {
       'scss-loader': 'sass-loader'
     }
   },
-//  plugins: [
-//    new webpack.DefinePlugin({
-//      'process.env': require('../config/test.env')
-//    })
-//  ]
+  plugins: [
+    new webpack.DefinePlugin({
+      'process.env': require('../config/test.env')
+    })
+  ]
 })
 
 // no need for app entry during tests

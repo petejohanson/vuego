@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="app-wrapper">
     <div id="app-container">
       <div id="app">
         <div>
@@ -66,9 +66,6 @@ import store from './game/store';
 import URI from 'urijs';
 import LocalGame from './game/local_game';
 import RemoteGame from './game/remote_game';
-
-// import { newGame, joinGame, cancelRemoteGame } from './game/actions';
-// import { gameDone, score, ko, size, gameType, board, waitingForRemoteOpponent } from './game/getters';
 
 Vue.use(Vuex);
 
@@ -175,6 +172,10 @@ body {
   position: relative;
 }
 
+#app-wrapper {
+  width: 100%;
+  height: 100%;
+}
 
 .app-actions {
   position: fixed;
