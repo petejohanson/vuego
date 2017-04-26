@@ -1,4 +1,5 @@
 var utils = require('./utils')
+var config = require('../config')
 var path = require('path')
 var CopyWebpackPlugin = require('copy-webpack-plugin')
 var vueLoaderConfig = require('./vue-loader.conf')
@@ -12,13 +13,15 @@ module.exports = {
     app: './src/main.js'
   },
   output: {
-    path: path.resolve(__dirname, '../dist/static'),
-    publicPath: './static/',
-    filename: '[name].js'
+    path: config.build.assetsRoot,
+    filename: '[name].js',
+    publicPath: process.env.NODE_ENV === 'production'
+      ? config.build.assetsPublicPath
+      : config.dev.assetsPublicPath
   },
   plugins: [
     new CopyWebpackPlugin([
-      { from: 'node_modules/material-design-lite/dist/images', to: '../images/mdl' }
+      { from: 'node_modules/material-design-lite/dist/images', to: path.join(config.build.assetsRoot, config.build.assetsSubDirectory, './images/mdl') }
     ])
   ],
   resolve: {
