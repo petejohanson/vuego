@@ -5,6 +5,7 @@ var webpack = require('webpack')
 var merge = require('webpack-merge')
 var baseConfig = require('./webpack.base.conf')
 var OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin')
+var PwaManifestPlugin = require('pwa-manifest-webpack-plugin')
 var ExtractTextPlugin = require('extract-text-webpack-plugin')
 var HtmlWebpackPlugin = require('html-webpack-plugin')
 var CopyWebpackPlugin = require('copy-webpack-plugin')
@@ -36,6 +37,15 @@ var webpackConfig = merge(baseConfig, {
         warnings: false
       },
       sourceMap: true
+    }),
+    new PwaManifestPlugin({
+      name: 'VueGo',
+      description: 'VueGo - A Go Game written with VueJS',
+      // display: 'fullscreen',
+      icon: {
+        src: path.resolve('src/assets/logo.png'),
+        sizes: [200]
+      }
     }),
     // extract css into its own file
     new ExtractTextPlugin({

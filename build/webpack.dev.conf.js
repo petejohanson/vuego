@@ -1,9 +1,11 @@
+var path = require('path')
 var utils = require('./utils')
 var webpack = require('webpack')
 var config = require('../config')
 var merge = require('webpack-merge')
 var baseConfig = require('./webpack.base.conf')
 var HtmlWebpackPlugin = require('html-webpack-plugin')
+var PwaManifestPlugin = require('pwa-manifest-webpack-plugin')
 var FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin')
 
 // add hot-reload related code to entry chunks
@@ -29,6 +31,15 @@ module.exports = merge(baseConfig, {
     // https://github.com/glenjamin/webpack-hot-middleware#installation--usage
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoEmitOnErrorsPlugin(),
+    new PwaManifestPlugin({
+      name: 'VueGo',
+      description: 'VueGo - A Go Game written with VueJS',
+      // display: 'fullscreen',
+      icon: {
+        src: path.resolve('src/assets/logo.png'),
+        sizes: [200]
+      }
+    }),
     // https://github.com/ampedandwired/html-webpack-plugin
     new HtmlWebpackPlugin({
       filename: 'index.html',
