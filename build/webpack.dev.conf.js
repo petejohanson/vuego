@@ -37,6 +37,7 @@ module.exports = merge(baseConfig, {
       start_url: 'index.html',
       description: 'VueGo - A Go Game written with VueJS',
       icon: path.resolve('src/assets/logo.png'),
+      background_color: 'white',
       theme_color: '#3f51b5'
     }),
     // https://github.com/ampedandwired/html-webpack-plugin

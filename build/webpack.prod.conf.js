@@ -45,6 +45,7 @@ var webpackConfig = merge(baseConfig, {
       start_url: 'index.html',
       description: 'VueGo - A Go Game written with VueJS',
       icon: path.resolve('src/assets/logo.png'),
+      background_color: 'white',
       theme_color: '#3f51b5'
     }),
     // extract css into its own file
