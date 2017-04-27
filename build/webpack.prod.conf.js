@@ -9,6 +9,7 @@ var PwaManifestPlugin = require('pwa-manifest-webpack-plugin')
 var ExtractTextPlugin = require('extract-text-webpack-plugin')
 var HtmlWebpackPlugin = require('html-webpack-plugin')
 var CopyWebpackPlugin = require('copy-webpack-plugin')
+var SWPrecachePlugin = require('sw-precache-webpack-plugin')
 
 var env = process.env.NODE_ENV === 'testing'
   ? require('../config/test.env')
@@ -42,10 +43,8 @@ var webpackConfig = merge(baseConfig, {
       name: 'VueGo',
       description: 'VueGo - A Go Game written with VueJS',
       // display: 'fullscreen',
-      icon: {
-        src: path.resolve('src/assets/logo.png'),
-        sizes: [200]
-      }
+      icon: path.resolve('src/assets/logo.png'),
+      theme_color: '#3f51b5'
     }),
     // extract css into its own file
     new ExtractTextPlugin({
@@ -102,7 +101,12 @@ var webpackConfig = merge(baseConfig, {
         to: config.build.assetsSubDirectory,
         ignore: ['.*']
       }
-    ])
+    ]),
+    new SWPrecachePlugin({
+      cacheId: 'vuego-app',
+      staticFileGlobsIgnorePatterns: [/\.map$/],
+      minify: true
+    })
   ]
 })
 

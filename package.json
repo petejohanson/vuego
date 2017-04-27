@@ -11,6 +11,7 @@
   "scripts": {
     "dev": "node build/dev-server.js",
     "build": "node build/build.js",
+    "serve-dist": "http-server dist/",
     "gh-pages": "npm run build && node build/gh-pages.js",
     "deploy": "npm run build && firebase deploy --token $FIREBASE_TOKEN",
     "security-rules": "targaryen --verbose firebase/rules.json test/firebase/rules/tests.json",
@@ -62,6 +63,7 @@
     "gh-pages": "^0.12.0",
     "html-webpack-plugin": "^2.8.1",
     "http-proxy-middleware": "^0.17.4",
+    "http-server": "^0.9.0",
     "inject-loader": "^3.0.0",
     "isparta-loader": "^2.0.0",
     "jasmine-core": "^2.4.1",
@@ -85,6 +87,7 @@
     "selenium-server": "^3.4.0",
     "selenium-webdriver": "^3.4.0",
     "shelljs": "^0.7.7",
+    "sw-precache-webpack-plugin": "^0.10.1",
     "targaryen": "^3.0.1",
     "url-loader": "^0.5.7",
     "vue-hot-reload-api": "^2.1.0",

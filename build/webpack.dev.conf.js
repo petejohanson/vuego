@@ -35,10 +35,8 @@ module.exports = merge(baseConfig, {
       name: 'VueGo',
       description: 'VueGo - A Go Game written with VueJS',
       // display: 'fullscreen',
-      icon: {
-        src: path.resolve('src/assets/logo.png'),
-        sizes: [200]
-      }
+      icon: path.resolve('src/assets/logo.png'),
+      theme_color: '#3f51b5'
     }),
     // https://github.com/ampedandwired/html-webpack-plugin
     new HtmlWebpackPlugin({
