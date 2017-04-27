@@ -32,9 +32,10 @@ module.exports = merge(baseConfig, {
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoEmitOnErrorsPlugin(),
     new PwaManifestPlugin({
-      name: 'VueGo',
+      name: 'VueGo Go Game',
+      short_name: 'VueGo',
+      start_url: 'index.html',
       description: 'VueGo - A Go Game written with VueJS',
-      // display: 'fullscreen',
       icon: path.resolve('src/assets/logo.png'),
       theme_color: '#3f51b5'
     }),
