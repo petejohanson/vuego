@@ -107,7 +107,13 @@ var webpackConfig = merge(baseConfig, {
     new SWPrecachePlugin({
       cacheId: 'vuego-app',
       staticFileGlobsIgnorePatterns: [/\.map$/],
-      minify: true
+      minify: true,
+      runtimeCaching: [
+        {
+          urlPattern: /^https?:\/\/fonts\.google.+/,
+          handler: 'fastest'
+        }
+      ]
     })
   ]
 })
