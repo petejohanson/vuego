@@ -109,6 +109,10 @@ export default {
     }
   },
   mounted () {
+    if (!navigator.onLine) {
+      this.offline();
+    }
+
     let uri = URI(window.location.href);
     let { join: gameId } = uri.query(true);
     if (gameId) {
@@ -119,6 +123,14 @@ export default {
         this.showJoiningDialog = false;
       });
     }
+  },
+  created () {
+    window.addEventListener('online', this.online);
+    window.addEventListener('offline', this.offline);
+  },
+  destroyed () {
+    window.removeEventListener('online', this.online);
+    window.removeEventListener('offline', this.offline);
   },
   data: function () {
     return {
@@ -132,7 +144,9 @@ export default {
     ...mapActions([
       'newGame',
       'joinGame',
-      'cancelRemoteGame'
+      'cancelRemoteGame',
+      'online',
+      'offline'
     ]),
     pass: function () {
       this.game.pass();

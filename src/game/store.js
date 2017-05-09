@@ -88,6 +88,7 @@ function territoryCounts (state) {
 }
 
 export const state = {
+  online: true,
   game_done: false,
   board: matrix(9, 9),
   gameType: 'placeholder',
@@ -104,6 +105,9 @@ export const state = {
 };
 
 export const actions = {
+  online: ({ commit }) => commit('online'),
+  offline: ({ commit }) => commit('offline'),
+
   newGame ({ commit }, { size, remoteGame }) {
     if (remoteGame) {
       return promiseTry(() =>
@@ -152,6 +156,12 @@ export const actions = {
 };
 
 export const mutations = {
+  online (state) {
+    state.online = true;
+  },
+  offline (state) {
+    state.online = false;
+  },
   new_local_game (state, size) {
     state.gameType = 'local';
     state.game_done = false;
@@ -244,6 +254,7 @@ export const mutations = {
 };
 
 export const getters = {
+  online: state => state.online,
   ko: state => state.ko,
   size: state => state.size,
   gameType: state => state.gameType,

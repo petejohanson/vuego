@@ -1,5 +1,5 @@
 <template>
-  <dialog ref="newGame" class="mdl-dialog">
+  <dialog ref="newGame" class="mdl-dialog" @close="close">
     <h6 class="mdl-dialog__title">New Game</h6>
     <div class="mdl-dialog__content">
       <div class="mdl-selectfield mdl-js-selectfield mdl-selectfield--floating-label" ref="size">
@@ -8,7 +8,7 @@
         </select>
         <label for="game-size" class="mdl-selectfield__label">Game Size</label>
       </div>
-      <mdl-switch v-model="remoteGame" id="play-online">Play Online</mdl-switch>
+      <mdl-switch v-model="remoteGame" id="play-online" v-if="online">Play Online</mdl-switch>
     </div>
     <div class="mdl-dialog__actions">
       <mdl-button v-mdl-ripple-effect :disabled="!size" @click.native="doNewGame">New Game</mdl-button>
@@ -21,6 +21,8 @@
 import pf from 'dialog-polyfill';
 
 import { MdlSwitch, MdlButton, MdlRippleEffect } from 'vue-mdl';
+
+import { mapGetters } from 'vuex';
 
 const sizes = [9, 13, 19];
 
@@ -38,6 +40,9 @@ export default {
       size: null,
       remoteGame: false
     };
+  },
+  computed: {
+    ...mapGetters(['online'])
   },
   methods: {
     doNewGame: function () {
